@@ -1,11 +1,4 @@
 :root {
-  /* Breakpoints */
-  --mobile-bpoint: 320px;
-  --to-tablet-bpoint: 767.99px;
-  --tablet-bpoint: 768px;
-  --to-desktop-bpoint: 1439.99px;
-  --desktop-bpoint: 1440px;
-
   /* Colors */
   --primary-color-white: #fff;
   --primary-color-black: #2f2f2f;
