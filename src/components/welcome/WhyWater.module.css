@@ -1,0 +1,28 @@
+.drinkWrapper {
+  padding: 24px 16px;
+  border-radius: 10px;
+  background-color: #ecf2ff;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+}
+
+.drinkList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-weight: 400;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.point {
+  min-width: 8px;
+  max-width: 8px;
+  min-height: 8px;
+  max-height: 8px;
+  border-radius: 50%;
+  background-color: #407bff;
+}
