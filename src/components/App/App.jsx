@@ -10,6 +10,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
+const WaterPage = lazy(() => import('../../pages/WaterPage/WaterPage'));
 
 function App() {
   const { isRefreshing } = useAuthSelector();
@@ -49,6 +50,16 @@ function App() {
               element={
                 <RestrictedRoute
                   component={<SignupPage />}
+                  redirectTo="/home"
+                />
+              }
+            />
+
+            <Route
+              path="/water"
+              element={
+                <RestrictedRoute
+                  component={<WaterPage />}
                   redirectTo="/home"
                 />
               }
