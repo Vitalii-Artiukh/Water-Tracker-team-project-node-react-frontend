@@ -12,7 +12,7 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: {
     items: [],
-    currentServing: null,
+    currentServing: 0,
     loading: false,
   },
 

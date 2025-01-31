@@ -7,10 +7,14 @@ export const useAuthSelector = () => {
   const isRefreshing = useSelector(authSelectors.selectIsRefreshing);
   const currentTheme = useSelector(authSelectors.selectCurrentTheme);
 
+
+  const dailyNorm = useSelector(authSelectors.selectDailyNorm);  //my
+
   return {
     user,
     isLoggedIn,
     isRefreshing,
     currentTheme,
+    dailyNorm,   //my
   };
 };
