@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+  /* width: 320px; */
+  height: 100vh;
+  background-image: url('../../assets/images/home/bubbles_home_mobile_1x.png');
+  background-size: cover;
+  background-position: 0 28px;
+  background-repeat: no-repeat;
+  
+    /* background-image: url(../../assets/images/home/bottle_home_mobile_1x.png); */
+    /* url(../../assets/images/home/bubbles_home_mobile_1x.png); */
+    /* background-repeat: no-repeat;
+    background-size: 280px 208px; 
+    background-position: center; */
+    /* padding-top: 108px; */
+/* padding-bottom: 32px; */
+
+}
+
+.imgWrap {
+    background-image: url(../../assets/images/home/bottle_home_mobile_1x.png);
+    position: absolute;
+    top: 82px;
+    width: 280px;
+    height: 208px;
+
+
+}
