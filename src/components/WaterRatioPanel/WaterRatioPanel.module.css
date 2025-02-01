@@ -1,11 +1,10 @@
-.wrap {
+.container {
   position: relative;
-}
-.boxSlider {
   display: flex;
   flex-direction: column;
-  gap: 52px;
+  gap: 16px;
 }
+
 .title {
   font-weight: 400;
   font-size: 18px;
@@ -14,107 +13,70 @@
   margin-bottom: 8px;
 }
 
-.sliderWrapper {
+.progressBar {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: center;
-  width: 100%;
-  /* height: 50px; */
-  /* margin-bottom: 52px; */
+  height: 8px;
+  margin: 0 14px 0 10px;
+  background-color: #d7e3ff;
+  border-radius: 10px;
+}
+
+.ratioPanelWrapp {
+  position: relative;
+  height: 8px;
+  border-radius: 10px;
 }
 
 .slider {
-  width: 256px;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  background-color: var(--secondary-color-light-blue300);
-  border-radius: 10px;
-  border: none;
-  outline: transparent;
-  margin: 0 14px 0 10px;
-  transition: background-color 0.3s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
+  position: absolute;
+  top: 50%;
   width: 14px;
   height: 14px;
-  background: transparent;
   border: 1px solid var(--primary-color-blue);
   border-radius: 50%;
-  cursor: pointer;
+  background-color: var(--primary-color-white);
+  transform: translate(-50%, -50%);
 }
 
-.slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #ffffff;
-  border: 1px solid #407bff;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.marks {
+.percentNumber {
   position: absolute;
-  top: 22px;
-  /* left: 20px;
-    transform: translateX(-20px); */
+  bottom: 130%;
+  right: 0;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 100%;
+  transform: translate(50%, -50%);
+}
+
+.persentContainer {
+  position: relative;
   width: 280px;
-  /* height: 32px; */
+}
+
+.percentWrap {
   display: flex;
-  /* gap: 85px; */
   justify-content: space-between;
-  align-items: end;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 18px;
+}
+
+.percent {
+  font-size: 12px;
+  color: var(--primary-color-blue);
+}
+
+.markWrap {
+  position: absolute;
+  left: 9px;
+  top: -12px;
+  width: 256px;
 }
 
 .mark {
-  /* position: relative; */
-  bottom: -19px;
-  transform: translateX(0px);
-  font-size: 12px;
-  color: var(--primary-color-blue);
-  line-height: 1.33;
-  text-align: center;
-  /* transform: translateX(-50%); */
-  /* transition: font-size 0.2s, font-weight 0.2s, color 0.2s; */
-}
-
-.mark::before,
-  /* .mark::after, */
-  .mark span {
-  content: "";
   position: absolute;
-  top: -10px;
-  left: 50%;
-  /* transform: translateX(-50%); */
-  width: 0px;
+  top: 0;
+  width: 1px;
   height: 8px;
-  border: 1px solid #d7e3ff;
-}
-
-/* .marks::before {
-    left: -6px;
-} */
-
-/* .marks::after {
-    right: -6px;
-} */
-
-/* .marks span {
-    left: 50%;
-    transform: translateX(-50%);
-} */
-
-.activeMark {
-  font-size: 16px;
-  font-weight: bold;
-  color: #003cff;
+  background-color: var(--secondary-color-light-blue200);
 }
 
 .btn {
@@ -124,7 +86,6 @@
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
   background-color: var(--primary-color-blue);
   font-weight: 500;
-  text-align: center;
   color: #ffffff;
   outline: transparent;
   border: transparent;
@@ -143,31 +104,49 @@
 /* ========== TABLET ========*/
 
 @media screen and (min-width: 768px) {
-  .boxSlider {
-    display: flex;
+  .container {
     flex-direction: row;
-    gap: 12px;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
   }
+
   .title {
-    margin-bottom: 1px;
+    margin-bottom: 16px;
   }
 
-  .sliderWrapper {
-    width: 356px;
-  }
-
-  .slider {
+  .progressBar {
     width: 325px;
-    margin: 0 20px 0px 11px;
+    margin: 0 20px 0 11px;
   }
 
-  .marks {
-    width: 346px;
+  .ratioPanelFill {
+    height: 8px;
+    border-radius: 10px;
+  }
+
+  .percentNumber {
+    font-size: 10px;
+  }
+
+  .persentContainer {
+    width: 350px;
+    left: 2px;
+  }
+
+  .markWrap {
+    position: absolute;
+    left: 9px;
+    top: -12px;
+    width: 325px;
   }
 
   .mark {
-    transform: translateX(-2px);
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 8px;
+    background-color: var(--secondary-color-light-blue200);
   }
 
   .btn {
@@ -180,20 +159,31 @@
 
 /* ========== DESKTOP ========*/
 
-@media screen and (min-width: 1140px) {
-    .wrap {
-        width: 592px;
-      }
-  .boxSlider {
+@media screen and (min-width: 1440px) {
+  .container {
     gap: 23px;
+    width: 592px;
   }
 
-  .slider {
+  .progressBar {
     width: 360px;
   }
 
-  .marks {
-    width: 382px;
+  .ratioPanelFill {
+    height: 8px;
+    border-radius: 10px;
+  }
+
+  .percentNumber {
+    font-size: 10px;
+  }
+
+  .persentContainer {
+    width: 388px;
+  }
+
+  .markWrap {
+    width: 360px;
   }
 
   .btn {
