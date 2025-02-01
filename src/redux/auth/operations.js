@@ -1,14 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../api/ApiInstance.js';
 
-axios.defaults.baseURL = 'https://connections-api.goit.global/';
+export const signUp = createAsyncThunk(
+  'auth/signUp',
+  async (userCredits, thunkAPI) => {
+    try {
+      const response = await api.post('/users/signup', userCredits);
 
-// Add JWT
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-// Remove JWT
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
