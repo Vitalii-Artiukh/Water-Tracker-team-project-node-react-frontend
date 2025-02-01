@@ -1,7 +1,7 @@
-import css from "./WaterConsumption.module.css";
-import Icon from "../../ui/Icon.jsx";
+import css from "./WaterConsumptionTracker.module.css";
+import Icon from "../ui/Icon.jsx";
 
-const WaterConsumption = () => {
+const WaterConsumptionTracker = () => {
   return (
     <div className={css.waterTrackerWrapper}>
       <h1 className={css.pageTitle}>Water consumption tracker</h1>
@@ -10,7 +10,12 @@ const WaterConsumption = () => {
 
       <ul className={css.listBenefits}>
         <li className={css.itemBenefits}>
-          <Icon name={"icon-calendar"} width={32} height={32} />
+          <Icon
+            className={css.iconTracker}
+            name={"icon-calendar"}
+            // width={32}
+            // height={32}
+          />
           Habit drive
         </li>
         <li className={css.itemBenefits}>
@@ -23,9 +28,11 @@ const WaterConsumption = () => {
         </li>
       </ul>
 
-      <button type="button">Try tracker</button>
+      <button className={css.tryTrackerBtn} type="button">
+        Try tracker
+      </button>
     </div>
   );
 };
 
-export default WaterConsumption;
+export default WaterConsumptionTracker;

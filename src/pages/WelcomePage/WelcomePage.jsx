@@ -1,12 +1,15 @@
-import WaterConsumption from "../../components/welcome/WaterConsumption/WaterConsumption.jsx";
-import WhyWater from "../../components/welcome/WhyWater/WhyWater.jsx";
+import WaterConsumptionTracker from "../../components/WaterConsumptionTracker/WaterConsumptionTracker.jsx";
+import WhyDrinkWater from "../../components/WhyDrinkWater/WhyDrinkWater.jsx";
 import Container from "../../components/ui/Container/Container.jsx";
+import css from "./WelcomePage.module.css";
 
 const WelcomePage = () => {
   return (
     <Container>
-      <WaterConsumption />
-      <WhyWater />
+      <div className={css.wrapper}>
+        <WaterConsumptionTracker />
+        <WhyDrinkWater />
+      </div>
     </Container>
   );
 };

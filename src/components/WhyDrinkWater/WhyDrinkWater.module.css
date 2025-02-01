@@ -19,17 +19,31 @@
   font-weight: 400;
 }
 
-.drinItem {
+.drinkItem {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.point {
-  min-width: 8px;
-  max-width: 8px;
-  min-height: 8px;
-  max-height: 8px;
-  border-radius: 50%;
+.drinkItem::before {
   background-color: #407bff;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  padding: 4px;
+  margin-right: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .drinkWrapper {
+    width: 494px;
+    padding: 32px 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .drinkWrapper {
+    /* width: 494px;
+    padding: 32px 24px; */
+  }
 }
