@@ -1,10 +1,12 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAuthSelector } from '../../hooks/useAuthSelector';
 
 import SharedLayout from '@components/ui/SharedLayout';
 import PrivateRoute from '@components/PrivateRoute';
 import RestrictedRoute from '@components/RestrictedRoute.jsx';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
@@ -12,11 +14,16 @@ const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 
 function App() {
+  const dispatch = useDispatch();
   const { isRefreshing } = useAuthSelector();
+
+  useEffect(() => {
+    dispatch(authOperations.refreshUser());
+  }, [dispatch]);
   return (
     <>
       {isRefreshing ? (
-        <p>...Loading</p>
+        <p style={{ fontSize: '60px' }}>...Loading</p>
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>

@@ -13,11 +13,11 @@ api.interceptors.request.use(
   config => {
     const persistedToken = store.getState().auth.token;
 
-    if (!persistedToken) {
+    if (persistedToken) {
+      config.headers['Authorization'] = `Bearer ${persistedToken}`;
+    } else {
       config.headers['Authorization'] = '';
     }
-
-    config.headers['Authorization'] = `Bearer ${persistedToken}`;
 
     return config;
   },
