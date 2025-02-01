@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchDailyNorma, updateDailyNorma } from '../water/operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -23,14 +22,7 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: builder => builder
-  // .addCase(fetchDailyNorma.pending, )
-  .addCase(fetchDailyNorma.fulfilled, (state, action) => {
-    state.user.dailyNorm = action.payload;
-  })
-  .addCase(updateDailyNorma.fulfilled, (state, action) => {
-    state.user.dailyNorm = action.payload;
-  })
+  extraReducers: builder => builder,
 });
 
 export default authSlice.reducer;

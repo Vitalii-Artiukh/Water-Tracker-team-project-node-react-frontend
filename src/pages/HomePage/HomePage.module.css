@@ -1,28 +1,77 @@
 .container {
-    position: relative;
-  /* width: 320px; */
-  height: 100vh;
-  background-image: url('../../assets/images/home/bubbles_home_mobile_1x.png');
+  position: relative;
+  width: 320px;
+  height: 100vh; /* fix */
+  background-image: image-set(
+    url(../../assets/images/home/bubbles_home_mobile_1x.png) 1x,
+    url(../../assets/images/home/bubbles_home_mobile_2x.png) 2x
+  );
   background-size: cover;
   background-position: 0 28px;
   background-repeat: no-repeat;
-  
-    /* background-image: url(../../assets/images/home/bottle_home_mobile_1x.png); */
-    /* url(../../assets/images/home/bubbles_home_mobile_1x.png); */
-    /* background-repeat: no-repeat;
-    background-size: 280px 208px; 
-    background-position: center; */
-    /* padding-top: 108px; */
-/* padding-bottom: 32px; */
-
+  padding: 0 20px;
+  margin: 0 auto;
 }
 
 .imgWrap {
-    background-image: url(../../assets/images/home/bottle_home_mobile_1x.png);
-    position: absolute;
-    top: 82px;
-    width: 280px;
-    height: 208px;
+  background-image: image-set(
+    url(../../assets/images/home/bottle_home_mobile_1x.png) 1x,
+    url(../../assets/images/home/bottle_home_mobile_2x.png) 2x
+  );
+  position: absolute;
+  top: 82px;
+  width: 280px;
+  height: 208px;
+}
 
+/* ========== TABLET ========*/
 
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding: 0 32px;
+    background-image: image-set(
+      url(../../assets/images/home/bubbles_home_tablet_1x.png) 1x,
+      url(../../assets/images/home/bubbles_home_tablet_2x.png) 2x
+    );
+    background-position: 0 0;
+  }
+
+  .imgWrap {
+    background-image: image-set(
+      url(../../assets/images/home/bottle_home_tablet_1x.png) 1x,
+      url(../../assets/images/home/bottle_home_tablet_2x.png) 2x
+    );
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 518px;
+    height: 386px;
+  }
+}
+
+/* ========== DESKTOP ========*/
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1440px;
+    padding: 0 112px;
+    background-image: image-set(
+      url(../../assets/images/bubbles_desktop_any_1x.png) 1x,
+      url(../../assets/images/bubbles_desktop_any_2x.png) 2x
+    );
+    background-size: contain;
+  }
+
+  .imgWrap {
+    background-image: image-set(
+      url(../../assets/images/home/bottle_home_desktop_1x.png) 1x,
+      url(../../assets/images/home/bottle_home_desktop_2x.png) 2x
+    );
+    top: -20px;
+    left: 38px;
+    transform: translateX(0);
+    width: 738px;
+    height: 548px;
+  }
 }
