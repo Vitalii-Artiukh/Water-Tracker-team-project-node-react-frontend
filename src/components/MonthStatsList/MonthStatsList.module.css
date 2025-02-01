@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 26px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    row-gap: 20px;
+    column-gap: 34px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .list {
+    column-gap: 22px;
+  }
+}

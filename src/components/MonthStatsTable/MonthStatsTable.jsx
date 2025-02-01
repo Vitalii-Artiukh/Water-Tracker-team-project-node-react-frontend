@@ -1,19 +1,7 @@
 import { useState } from "react";
-
-const months = {
-  1: "January",
-  2: "February",
-  3: "March",
-  4: "April",
-  5: "May",
-  6: "June",
-  7: "July",
-  8: "August",
-  9: "September",
-  10: "October",
-  11: "November",
-  12: "December",
-};
+import css from "./MonthStatsTable.module.css";
+import MonthStatsList from "../MonthStatsList/MonthStatsList";
+import MonthStatsBar from "../MonthStatsBar/MonthStatsBar";
 
 const currentMonth = new Date().getMonth() + 1;
 const currentYear = new Date().getFullYear();
@@ -45,32 +33,16 @@ const MonthStatsTable = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div>
-        <button onClick={previousMonth}>Previous</button>
-        <span>
-          {months[month]}, {year}
-        </span>
-        <button onClick={nextMonth}>Next</button>
-      </div>
-
-      <ul
-        style={{
-          display: "flex",
-          gap: "5px",
-        }}
-      >
-        {days.map((day) => (
-          <li key={day}>{day}</li>
-        ))}
-      </ul>
+    <div className={css.container}>
+      <MonthStatsBar
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        month={month}
+        year={year}
+        prevMonth={previousMonth}
+        nextMonth={nextMonth}
+      />
+      <MonthStatsList days={days} />
     </div>
   );
 };
