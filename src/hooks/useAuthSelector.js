@@ -6,11 +6,13 @@ export const useAuthSelector = () => {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
   const isRefreshing = useSelector(authSelectors.selectIsRefreshing);
   const currentTheme = useSelector(authSelectors.selectCurrentTheme);
+  const dailyNorm = useSelector(authSelectors.selectUserDailyNorm);
 
   return {
     user,
     isLoggedIn,
     isRefreshing,
     currentTheme,
+    dailyNorm,
   };
 };
