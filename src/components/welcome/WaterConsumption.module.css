@@ -5,21 +5,21 @@
   margin-bottom: 40px;
 }
 
-.h1 {
+.pageTitle {
   font-weight: 700;
   font-size: 28px;
   line-height: 1.14286;
   margin-bottom: 16px;
 }
 
-.h2 {
+.sectionTitle {
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: 24px;
   padding-right: 50px;
 }
 
-.h3 {
+.listTitle {
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11111;

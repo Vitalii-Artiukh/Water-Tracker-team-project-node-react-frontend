@@ -1,30 +1,24 @@
-import React from "react";
-import clsx from "clsx";
 import css from "./WaterConsumption.module.css";
+import Icon from "../ui/Icon.jsx";
 
 const WaterConsumption = () => {
   return (
-    <div className={clsx(css.waterTrackerWrapper)}>
-      <h1 className={clsx(css.h1)}>Water consumption tracker</h1>
-      <h2 className={clsx(css.h2)}>Record daily water intake and track</h2>
-      <h3 className={clsx(css.h3)}>Tracker Benefits</h3>
-      <ul className={clsx(css.listBenefits)}>
-        <li className={clsx(css.itemBenefits)}>
-          <svg width="32" height="32">
-            <use href="../../../public/sprite.svg#icon-calendar"></use>
-          </svg>
+    <div className={css.waterTrackerWrapper}>
+      <h1 className={css.pageTitle}>Water consumption tracker</h1>
+      <h2 className={css.sectionTitle}>Record daily water intake and track</h2>
+      <h3 className={css.listTitle}>Tracker Benefits</h3>
+
+      <ul className={css.listBenefits}>
+        <li className={css.itemBenefits}>
+          <Icon name={"icon-calendar"} width={32} height={32} />
           Habit drive
         </li>
-        <li className={clsx(css.itemBenefits)}>
-          <svg width="32" height="32">
-            <use href="../../../public/sprite.svg#icon-chart-bar"></use>
-          </svg>
+        <li className={css.itemBenefits}>
+          <Icon name={"icon-chart-bar"} width={32} height={32} />
           View statistics
         </li>
-        <li className={clsx(css.itemBenefits)}>
-          <svg width="32" height="32">
-            <use href="../../../public/sprite.svg#icon-wrench-screwdriver"></use>
-          </svg>
+        <li className={css.itemBenefits}>
+          <Icon name={"icon-wrench-screwdriver"} width={32} height={32} />
           Personal rate setting
         </li>
       </ul>
