@@ -1,5 +1,5 @@
 import css from "./WaterConsumption.module.css";
-import Icon from "../ui/Icon.jsx";
+import Icon from "../../ui/Icon.jsx";
 
 const WaterConsumption = () => {
   return (

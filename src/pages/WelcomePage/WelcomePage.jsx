@@ -1,5 +1,5 @@
-import WaterConsumption from "../../components/welcome/WaterConsumption.jsx";
-import WhyWater from "../../components/welcome/whyWater.jsx";
+import WaterConsumption from "../../components/welcome/WaterConsumption/WaterConsumption.jsx";
+import WhyWater from "../../components/welcome/WhyWater/WhyWater.jsx";
 import Container from "../../components/ui/Container/Container.jsx";
 
 const WelcomePage = () => {
