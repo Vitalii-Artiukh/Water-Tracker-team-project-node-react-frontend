@@ -13,11 +13,10 @@
 @media screen and (min-width: 1440px) {
   .wrapper {
     display: flex;
-    /* flex-wrap: wrap; */
+    gap: 81px;
     align-items: flex-end;
     justify-content: flex-start;
     padding-top: 80px;
     padding-bottom: 294px;
-    gap: 81px;
   }
 }
