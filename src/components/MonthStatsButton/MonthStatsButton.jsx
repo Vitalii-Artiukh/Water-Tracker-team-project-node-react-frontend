@@ -11,13 +11,16 @@ const MonthStatsButton = ({ rotate, handleClick }) => {
       }}
       onClick={handleClick}
     >
-      <Icon
+      <svg width={14} height={14}>
+        <use href={"/public/symbol-defs2.svg#icon-chevron-left"}></use>
+      </svg>
+      {/* <Icon
         name={"icon-chevron-down"}
         width={14}
         height={14}
         fill={"var(--primary-color-blue)"}
         stroke={"var(--primary-color-blue)"}
-      />
+      /> */}
     </button>
   );
 };

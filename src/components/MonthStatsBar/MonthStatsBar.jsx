@@ -28,12 +28,15 @@ const MonthStatsBar = ({
     <div className={css.dateBar}>
       <h3 className={css.subtitle}>Month</h3>
       <div className={css.navPanel}>
-        <MonthStatsButton rotate={"rotate(90deg)"} handleClick={prevMonth} />
+        <MonthStatsButton rotate={"rotate(0deg)"} handleClick={prevMonth} />
         <span className={css.spanText}>
           {months[month]}, {year}
         </span>
         {!(month === currentMonth && year === currentYear) && (
-          <MonthStatsButton rotate={"rotate(-90deg)"} handleClick={nextMonth} />
+          <MonthStatsButton
+            rotate={"rotate(-180deg)"}
+            handleClick={nextMonth}
+          />
         )}
       </div>
     </div>
