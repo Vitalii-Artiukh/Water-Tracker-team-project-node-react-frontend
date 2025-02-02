@@ -27,9 +27,9 @@ const UpdateAvatar = () => {
   };
 
   return (
-    <div className={css.containerYourPhoto}>
+    <div className={css.yourPhotoWrapper}>
       <h3 className={css.fontOne}>Your photo</h3>
-      <div className={css.uploadContainer}>
+      <div className={css.uploadWrapper}>
         {/* {!userProfile.avatarURL && (
           <div>
             {userProfile.userName

@@ -91,10 +91,9 @@ const SettingModal = ({ onClose, isOpen }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
-      <div className={css.settingModal}>
-        {/* settingTitle & closeBtn */}
-        <div className={css.modalTitle}>
+    <div className={css.backdropWrapper} onClick={handleBackdropClick}>
+      <div className={css.settingWrapper}>
+        <div className={css.settingWrapperTitle}>
           <h2 className={css.title}>Setting</h2>
           <button className={css.closeBtn} onClick={onClose}>
             <img
@@ -105,20 +104,18 @@ const SettingModal = ({ onClose, isOpen }) => {
             />
           </button>
         </div>
-        {/* updateUserPhoto */}
         <UpdateAvatar />
-        {/* updateUserData & passwordСhange */}
         <Formik
           validationSchema={updateUserValidationSchema}
           initialValues={INITIAL_VALUES}
           onSubmit={handleSubmit}>
           <Form>
-            <div className={css.containerForm}>
+            <div className={css.formWrapper}>
               {/* updateUserData */}
-              <div className={css.containerFormOne}>
+              <div className={css.formOneWrapper}>
                 <div>
                   <h3 className={css.fontOne}>Your gender identity</h3>
-                  <div className={css.radioContainer}>
+                  <div className={css.radio}>
                     <div>
                       <label>
                         <Field
@@ -188,7 +185,7 @@ const SettingModal = ({ onClose, isOpen }) => {
                 </div>
               </div>
               {/* passwordСhange */}
-              <div className={css.containerFormTwo}>
+              <div className={css.formTwoWrapper}>
                 <h3 className={css.fontOne}>Password</h3>
                 <div>
                   <h4 className={css.fontTwo}>Outdated password:</h4>

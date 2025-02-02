@@ -1,4 +1,4 @@
-.backdrop {
+.backdropWrapper {
     position: fixed;
     z-index: 10;
     inset: 0;
@@ -6,7 +6,7 @@
     overflow-y: scroll;
 }
 
-.settingModal {
+.settingWrapper {
     position: absolute;
     left: 50%;
     top: 40px;
@@ -79,7 +79,7 @@
     color: var(--secondary-color-light-blue300);
 }
 
-.modalTitle {
+.settingWrapperTitle {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -99,14 +99,14 @@
     cursor: pointer;
 }
 
-.containerYourPhoto {
+.yourPhotoWrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
     max-width: 222px;
 }
 
-.uploadContainer {
+.uploadWrapper {
     display: flex;
     gap: 8px;
     height: 80px;
@@ -135,7 +135,7 @@
     color: var(--primary-color-blue);
 }
 
-.containerForm {
+.formWrapper {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -151,20 +151,20 @@
     }
 }
 
-.containerFormOne {
+.formOneWrapper {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.radioContainer {
+.radio {
     display: flex;
     flex-direction: column;
     margin-top: 12px;
     cursor: pointer;
 }
 
-.containerFormTwo {
+.formTwoWrapper {
     display: flex;
     flex-direction: column;
     gap: 12px;
