@@ -1,15 +1,15 @@
-import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { useAuthSelector } from '../../hooks/useAuthSelector';
+import { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useAuthSelector } from "../../hooks/useAuthSelector";
 
-import SharedLayout from '@components/ui/SharedLayout';
-import PrivateRoute from '@components/PrivateRoute';
-import RestrictedRoute from '@components/RestrictedRoute.jsx';
+import SharedLayout from "@components/ui/SharedLayout";
+import PrivateRoute from "@components/PrivateRoute";
+import RestrictedRoute from "@components/RestrictedRoute.jsx";
 
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
-const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
-const SigninPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
+const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage"));
+const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage"));
 
 function App() {
   const { isRefreshing } = useAuthSelector();

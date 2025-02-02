@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import { login } from "./operations";
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: {
       name: null,
@@ -13,7 +14,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    currentTheme: 'light',
+    currentTheme: "light",
   },
 
   reducers: {
@@ -22,7 +23,23 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: builder => builder,
+  extraReducers: (builder) =>
+    builder
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.token = action.payload.token;
+        state.user.name = action.payload.user.name;
+        state.user.email = action.payload.user.email;
+        state.isLoggedIn = true
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = action.payload;
+      }),
 });
 
 export default authSlice.reducer;
