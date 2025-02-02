@@ -1,33 +1,24 @@
-import { useEffect } from "react";
+import Modal from "react-modal";
 import css from "./ModalContainer.module.css";
 
-const ModalContainer = ({ onClose, children }) => {
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    document.documentElement.style.overflow = "hidden";
+Modal.setAppElement("#root");
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.documentElement.style.overflow = "visible";
-    };
-  });
-
-  const handleKeyDown = (e) => {
-    if (e.code === "Escape") {
-      onClose();
-    }
-  };
-
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
+const ModalContainer = ({
+  isOpen = false,
+  className = css.modal,
+  overlayClassName = css.overlay,
+  onClose,
+  children,
+}) => {
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    <Modal
+      isOpen={isOpen}
+      className={className}
+      overlayClassName={overlayClassName}
+      onRequestClose={onClose}
+    >
       {children}
-    </div>
+    </Modal>
   );
 };
 
