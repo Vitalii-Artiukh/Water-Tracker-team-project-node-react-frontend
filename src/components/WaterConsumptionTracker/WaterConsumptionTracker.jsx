@@ -1,5 +1,6 @@
 import css from "./WaterConsumptionTracker.module.css";
 import Icon from "../ui/Icon.jsx";
+import { NavLink } from "react-router-dom";
 
 const WaterConsumptionTracker = () => {
   return (
@@ -10,27 +11,22 @@ const WaterConsumptionTracker = () => {
 
       <ul className={css.listBenefits}>
         <li className={css.itemBenefits}>
-          <Icon
-            className={css.iconTracker}
-            name={"icon-calendar"}
-            // width={32}
-            // height={32}
-          />
+          <Icon className={css.iconTracker} name={"icon-calendar"} />
           Habit drive
         </li>
         <li className={css.itemBenefits}>
-          <Icon name={"icon-chart-bar"} width={32} height={32} />
+          <Icon name={"icon-chart-bar"} />
           View statistics
         </li>
         <li className={css.itemBenefits}>
-          <Icon name={"icon-wrench-screwdriver"} width={32} height={32} />
+          <Icon name={"icon-wrench-screwdriver"} />
           Personal rate setting
         </li>
       </ul>
 
-      <button className={css.tryTrackerBtn} type="button">
+      <NavLink className={css.tryTrackerBtn} to={"/signup"}>
         Try tracker
-      </button>
+      </NavLink>
     </div>
   );
 };

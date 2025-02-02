@@ -29,7 +29,7 @@
 .listBenefits {
   display: flex;
   gap: 16px;
-  /* flex-direction: column; */
+  flex-direction: column;
   flex-wrap: wrap;
   margin-bottom: 24px;
   width: 216px;
@@ -39,7 +39,6 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  font-weight: 400;
   svg {
     width: 32px;
     height: 32px;
@@ -68,19 +67,21 @@
   .pageTitle {
     font-size: 36px;
     line-height: 1.16667;
-    margin-bottom: 16px;
   }
   .sectionTitle {
     line-height: 1.23077;
     margin-bottom: 24px;
     padding: 0;
+    font-size: 26px;
   }
   .listBenefits {
     width: 100%;
+    flex-direction: row;
     justify-content: space-between;
   }
 
   .itemBenefits {
+    min-width: 224px;
     svg {
       width: 40px;
       height: 40px;
