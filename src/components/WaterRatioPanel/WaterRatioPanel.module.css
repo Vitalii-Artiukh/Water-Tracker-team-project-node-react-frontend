@@ -1,8 +1,13 @@
-.container {
+.waterRatioPanelСontainer {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .waterRatioPanelСontainer {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .title {
@@ -10,7 +15,7 @@
   font-size: 18px;
   line-height: 1.33;
   color: var(--primary-color-blue);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 .progressBar {
@@ -27,7 +32,12 @@
   border-radius: 10px;
 }
 
-.slider {
+.ratioPanelFill {
+  height: 8px;
+  border-radius: 10px;
+}
+
+.thumb {
   position: absolute;
   top: 50%;
   width: 14px;
@@ -40,12 +50,10 @@
 
 .percentNumber {
   position: absolute;
-  bottom: 130%;
-  right: 0;
-  font-weight: 400;
-  font-size: 8px;
-  line-height: 100%;
-  transform: translate(50%, -50%);
+  bottom: 140%;
+  /* right: 0; */
+  font-size: 12px;
+  transform: translateX(-50%);
 }
 
 .persentContainer {
@@ -104,8 +112,7 @@
 /* ========== TABLET ========*/
 
 @media screen and (min-width: 768px) {
-  .container {
-    flex-direction: row;
+  .waterRatioPanelСontainer {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -118,15 +125,6 @@
   .progressBar {
     width: 325px;
     margin: 0 20px 0 11px;
-  }
-
-  .ratioPanelFill {
-    height: 8px;
-    border-radius: 10px;
-  }
-
-  .percentNumber {
-    font-size: 10px;
   }
 
   .persentContainer {
@@ -160,22 +158,13 @@
 /* ========== DESKTOP ========*/
 
 @media screen and (min-width: 1440px) {
-  .container {
+  .waterRatioPanelСontainer {
     gap: 23px;
     width: 592px;
   }
 
   .progressBar {
     width: 360px;
-  }
-
-  .ratioPanelFill {
-    height: 8px;
-    border-radius: 10px;
-  }
-
-  .percentNumber {
-    font-size: 10px;
   }
 
   .persentContainer {

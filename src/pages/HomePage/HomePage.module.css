@@ -1,4 +1,4 @@
-.imgWrap {
+/* .imgWrap {
   background-image: image-set(
     url(../../assets/images/home/bottle_home_mobile_1x.png) 1x,
     url(../../assets/images/home/bottle_home_mobile_2x.png) 2x
@@ -7,11 +7,11 @@
   top: 82px;
   width: 280px;
   height: 208px;
-}
+} */
 
 /* ========== TABLET ========*/
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .imgWrap {
     background-image: image-set(
       url(../../assets/images/home/bottle_home_tablet_1x.png) 1x,
@@ -23,11 +23,11 @@
     width: 518px;
     height: 386px;
   }
-}
+} */
 
 /* ========== DESKTOP ========*/
 
-@media screen and (min-width: 1440px) {
+/* @media screen and (min-width: 1440px) {
   .imgWrap {
     background-image: image-set(
       url(../../assets/images/home/bottle_home_desktop_1x.png) 1x,
@@ -39,4 +39,4 @@
     width: 738px;
     height: 548px;
   }
-}
+} */

@@ -6,7 +6,6 @@ import css from "./HomePage.module.css";
 const HomePage = () => {
   return (
     <>
-<div className={css.imgWrap}></div>
       <DailyNorma />
       <WaterRatioPanel />
       {/* <p>Today Water List</p>

@@ -1,4 +1,4 @@
-.container {
+.dailyNormaContainer {
   width: 164px;
   border: 1px solid var(--secondary-color-light-blue100);
   border-radius: 10px;
@@ -15,7 +15,7 @@
   margin-bottom: 12px;
 }
 
-.wrapper {
+.dailyNormaValue {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -43,11 +43,11 @@
 /* ========== TABLET ========*/
 
 @media screen and (min-width: 768px) {
-  .container {
+  .dailyNormaContainer {
     margin-bottom: 326px;
   }
 
-  .wrapper {
+  .dailyNormaValue {
     display: flex;
     gap: 12px;
     align-items: center;
@@ -61,7 +61,7 @@
 /* ========== DESKTOP ========*/
 
 @media screen and (min-width: 1440px) {
-  .container {
+  .dailyNormaContainer {
     margin-bottom: 466px;
   }
 }
