@@ -1,18 +1,3 @@
-.container {
-  position: relative;
-  width: 320px;
-  height: 100vh; /* fix */
-  background-image: image-set(
-    url(../../assets/images/home/bubbles_home_mobile_1x.png) 1x,
-    url(../../assets/images/home/bubbles_home_mobile_2x.png) 2x
-  );
-  background-size: cover;
-  background-position: 0 28px;
-  background-repeat: no-repeat;
-  padding: 0 20px;
-  margin: 0 auto;
-}
-
 .imgWrap {
   background-image: image-set(
     url(../../assets/images/home/bottle_home_mobile_1x.png) 1x,
@@ -27,16 +12,6 @@
 /* ========== TABLET ========*/
 
 @media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    padding: 0 32px;
-    background-image: image-set(
-      url(../../assets/images/home/bubbles_home_tablet_1x.png) 1x,
-      url(../../assets/images/home/bubbles_home_tablet_2x.png) 2x
-    );
-    background-position: 0 0;
-  }
-
   .imgWrap {
     background-image: image-set(
       url(../../assets/images/home/bottle_home_tablet_1x.png) 1x,
@@ -53,16 +28,6 @@
 /* ========== DESKTOP ========*/
 
 @media screen and (min-width: 1440px) {
-  .container {
-    width: 1440px;
-    padding: 0 112px;
-    background-image: image-set(
-      url(../../assets/images/bubbles_desktop_any_1x.png) 1x,
-      url(../../assets/images/bubbles_desktop_any_2x.png) 2x
-    );
-    background-size: contain;
-  }
-
   .imgWrap {
     background-image: image-set(
       url(../../assets/images/home/bottle_home_desktop_1x.png) 1x,
