@@ -1,30 +1,86 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../api/axiosInstance.js";
 
-// axios.defaults.baseURL = "https://connections-api.goit.global/";
-export const authInstance = axios.create({
-  baseURL: "https://connections-api.goit.global/",
+export const signUp = createAsyncThunk(
+  "auth/signUp",
+  async (userCredits, thunkAPI) => {
+    try {
+      await api.post("/users/signup", userCredits);
+
+      const { data } = await api.post("/users/login", userCredits);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const signIn = createAsyncThunk(
+  "auth/signIn",
+  async (userCredits, thunkAPI) => {
+    try {
+      const { data } = await api.post("/users/login", userCredits);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await api.post("/users/logout");
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
-// Add JWT
-const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+export const updateUserData = createAsyncThunk(
+  "auth/updateUserData",
+  async (userData, thunkAPI) => {
+    try {
+      const { data } = await api.patch("/auth", userData);
 
-// Remove JWT
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
-};
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-export const login = createAsyncThunk(
-  "auth/login",
-  async (formData, thunkAPI) => {
-    console.log(formData);
+export const updateUserAvatar = createAsyncThunk(
+  "auth/updateUserAvatar",
+  async (file, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      const { data } = api.post("auth/avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refreshUser",
+  async (_, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Failed to refresh user");
+    }
 
     try {
-      const { data } = await authInstance.post("/users/login", formData);
-      // data -> email: "1111@gmai.com";name: "asdasdasd"   password: "222222222";
-      setAuthHeader(data.token);
+      const { data } = await api.get("/users/current");
 
       return data;
     } catch (error) {

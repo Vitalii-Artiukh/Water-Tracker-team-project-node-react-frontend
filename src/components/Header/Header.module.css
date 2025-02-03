@@ -5,14 +5,15 @@
 }
 .userInfo {
   display: flex;
-  gap: 8px;
   align-items: center;
 }
 
 .header {
+  position: relative;
+
   align-items: center;
-  width: 280px;
-  margin: 8px auto 24px;
+  width: 320px;
+  padding: 8px 20px 24px;
   display: flex;
   justify-content: space-between;
 }
@@ -33,10 +34,10 @@
 }
 
 .avatarPlaceholder {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background-color: #407bff;
+  background-color: var(--secondary-color-red);
   color: white;
   display: flex;
   align-items: center;
@@ -46,11 +47,62 @@
   text-transform: uppercase;
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userInfo > *:nth-child(2) {
+  margin-left: 8px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative; /* Зробимо кнопку відносною для коректного позиціонування меню */
+  display: inline-block;
+}
+
+.dropDownMenu {
+  position: absolute;
+  top: 60%; /* Відображається під кнопкою */
+  left: 20%; /* Центруємо по горизонталі відносно кнопки */
+  margin-top: 12px; /* Відступ між кнопкою і меню */
+  transform: translateX(90%); /* Щоб меню було рівно по центру кнопки */
+
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Щоб випадаюче меню було над іншими елементами */
+  width: 118px; /* Фіксована ширина */
+}
+
+.dropDownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropDownText {
+  color: var(--primary-color-blue);
+}
+
 /* Переломні точки для планшетів */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) {
   .header {
-    width: 80%; /* Ширина для планшету */
-    margin: 16px auto 40px;
+    width: 768px;
+    padding: 16px 32px 40px;
+  }
+  .dropDownMenu {
+    top: 60%; /* Відображається під кнопкою */
+    left: 65%;
   }
 
   .text {
@@ -64,10 +116,14 @@
 }
 
 /* Переломні точки для комп'ютерів */
-@media (min-width: 1025px) {
+@media (min-width: 1440px) {
   .header {
-    width: 1216px; /* Ширина для комп'ютера */
-    margin: 12px auto 80px;
+    width: 1440px;
+    padding: 16px 112px 0;
+  }
+  .dropDownMenu {
+    top: 90%; /* Відображається під кнопкою */
+    left: 76%;
   }
 
   .signIn {
