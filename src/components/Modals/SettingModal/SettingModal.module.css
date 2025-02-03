@@ -1,12 +1,4 @@
-.backdropWrapper {
-    position: fixed;
-    z-index: 10;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow-y: scroll;
-}
-
-.settingWrapper {
+.modalWrapper {
     position: absolute;
     left: 50%;
     top: 40px;
@@ -71,6 +63,11 @@
     @media screen and (min-width: 1440px) {}
 }
 
+.inputError {
+    border: 1px solid var(--secondary-color-red);
+    color: var(--secondary-color-red);
+}
+
 .input:focus {
     outline: none;
 }
@@ -79,7 +76,7 @@
     color: var(--secondary-color-light-blue300);
 }
 
-.settingWrapperTitle {
+.modalTitle {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -132,6 +129,7 @@
     font-size: 14px;
     line-height: 1.18;
     cursor: pointer;
+    stroke: var(--primary-color-blue);
     color: var(--primary-color-blue);
 }
 
@@ -179,7 +177,7 @@
     right: 20px;
     margin-top: 22px;
     cursor: pointer;
-    color: var(--primary-color-blue);
+    stroke: var(--primary-color-blue);
 
     @media screen and (min-width: 768px) {
         right: 300px;
