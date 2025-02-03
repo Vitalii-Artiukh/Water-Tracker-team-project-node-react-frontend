@@ -214,5 +214,5 @@
 }
 
 .saveBtn:active {
-    background: rgba(64, 123, 255, 1);
+    box-shadow: none;
 }
