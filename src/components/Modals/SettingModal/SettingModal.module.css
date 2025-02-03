@@ -196,9 +196,10 @@
     border-radius: 10px;
     align-items: center;
     margin-top: 12px;
-    cursor: pointer;
+    cursor: url("/src//assets/images/mdi_cursor-pointer.png"), auto;
     color: var(--primary-color-white);
     background-color: var(--primary-color-blue);
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
     @media screen and (min-width: 768px) {
         min-width: 160px;
@@ -206,4 +207,12 @@
         padding: 10px 30px;
         margin-left: auto;
     }
+}
+
+.saveBtn:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+}
+
+.saveBtn:active {
+    background: rgba(64, 123, 255, 1);
 }
