@@ -1,12 +1,14 @@
 .item {
   position: relative;
   display: flex;
-  /* padding-bottom: 12px; */
+  justify-content: space-between;
+  width: 254px;
   height: 38px;
-  /* border-bottom: 1px solid var(--secondary-color-light-blue200); */
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--secondary-color-light-blue200);
 }
 
-.item::after {
+/* .item::after {
   content: "";
   position: absolute;
   left: 0;
@@ -14,5 +16,51 @@
   background-color: var(--secondary-color-light-blue200);
   width: 254px;
   height: 0.5px;
-  /* border-radius: 1px; */
+} */
+
+.waterStatsPanel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconsPanel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.itemTextWater {
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--primary-color-blue);
+}
+
+.itemTextTime {
+  font-size: 12px;
+  line-height: 2;
+  color: var(--primary-color-black);
+}
+
+.svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    width: 646px;
+    height: 48px;
+  }
+
+  .svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .item {
+    width: 534px;
+  }
 }
