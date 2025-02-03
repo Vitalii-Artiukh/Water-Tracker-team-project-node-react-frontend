@@ -24,8 +24,6 @@ const SigninPage = () => {
   const handleSubmit = (values, actions) => {
     dispatch(signIn(values));
 
-    console.log(values);
-
     actions.resetForm();
   };
 

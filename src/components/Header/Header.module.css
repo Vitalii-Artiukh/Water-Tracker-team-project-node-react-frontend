@@ -68,18 +68,18 @@
 
 .dropDownMenu {
   position: absolute;
-  top: 60%; /* Відображається під кнопкою */
-  left: 20%; /* Центруємо по горизонталі відносно кнопки */
-  margin-top: 12px; /* Відступ між кнопкою і меню */
-  transform: translateX(90%); /* Щоб меню було рівно по центру кнопки */
+  top: 60%;
+  left: 20%;
+  margin-top: 12px;
+  transform: translateX(90%);
 
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Щоб випадаюче меню було над іншими елементами */
-  width: 118px; /* Фіксована ширина */
+  z-index: 1000;
+  width: 118px;
 }
 
 .dropDownItem {
@@ -94,20 +94,19 @@
   color: var(--primary-color-blue);
 }
 
-/* Переломні точки для планшетів */
 @media (min-width: 768px) {
   .header {
     width: 768px;
     padding: 16px 32px 40px;
   }
   .dropDownMenu {
-    top: 60%; /* Відображається під кнопкою */
+    top: 60%;
     left: 65%;
   }
 
   .text {
-    font-size: 14px; /* Збільшення розміру шрифта для планшету */
-    width: 80px; /* Збільшення ширини тексту */
+    font-size: 14px;
+    width: 80px;
   }
 
   .signIn {
@@ -115,18 +114,17 @@
   }
 }
 
-/* Переломні точки для комп'ютерів */
 @media (min-width: 1440px) {
   .header {
     width: 1440px;
     padding: 16px 112px 0;
   }
   .dropDownMenu {
-    top: 90%; /* Відображається під кнопкою */
+    top: 90%;
     left: 76%;
   }
 
   .signIn {
-    font-size: 20px; /* Збільшення шрифту для комп'ютера */
+    font-size: 20px;
   }
 }
