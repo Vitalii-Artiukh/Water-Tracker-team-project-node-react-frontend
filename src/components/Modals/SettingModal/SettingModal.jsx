@@ -1,12 +1,12 @@
 import css from "./SettingModal.module.css";
 import * as yup from "yup";
 import Icon from "../../ui/Icon";
+import UpdateAvatar from "./UpdateAvatar";
 import toast, { Toaster } from "react-hot-toast";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "../../../redux/auth/operations";
-import UpdateAvatar from "./UpdateAvatar";
 
 const updateUserValidationSchema = yup.object().shape({
   gender: yup
@@ -93,7 +93,7 @@ const SettingModal = ({ onClose }) => {
   };
 
   return (
-    <div className={css.modalWrapper}>
+    <>
       <div className={css.modalTitle}>
         <h2 className={css.title}>Setting</h2>
         <button className={css.closeBtn} onClick={onClose}>
@@ -112,7 +112,6 @@ const SettingModal = ({ onClose }) => {
         onSubmit={handleSubmit}>
         {({ errors, touched }) => (
           <Form className={css.formWrapper}>
-            {/* updateUserData */}
             <div className={css.formOneWrapper}>
               <div>
                 <h3 className={css.fontOne}>Your gender identity</h3>
@@ -189,7 +188,6 @@ const SettingModal = ({ onClose }) => {
                 />
               </div>
             </div>
-            {/* passwordСhange */}
             <div className={css.formTwoWrapper}>
               <h3 className={css.fontOne}>Password</h3>
               <div>
@@ -286,8 +284,8 @@ const SettingModal = ({ onClose }) => {
           </Form>
         )}
       </Formik>
-      <Toaster position="top-center" reverseOrder={false} />
-    </div>
+      <Toaster position="botton-center" reverseOrder={false} />
+    </>
   );
 };
 

@@ -40,16 +40,6 @@ const UpdateAvatar = () => {
     <div className={css.yourPhotoWrapper}>
       <h3 className={css.fontOne}>Your photo</h3>
       <div className={css.uploadWrapper}>
-        {/* {!userProfile.avatarURL && (
-          <div>
-            {userProfile.userName
-              ? userProfile.userName.split("")[0].toUpperCase()
-              : "V"}
-          </div>
-        )}
-        {userProfile.avatarURL && (
-          <img src={userProfile.avatarURL} width={80} height={80} />
-        )} */}
         {userProfile.avatarUrl ? (
           <img
             className={css.userPhoto}
