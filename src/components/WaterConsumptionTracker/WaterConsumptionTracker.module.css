@@ -30,7 +30,6 @@
   display: flex;
   gap: 16px;
   flex-direction: column;
-  flex-wrap: wrap;
   margin-bottom: 24px;
   width: 216px;
 }
