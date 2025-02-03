@@ -1,27 +1,37 @@
 import Icon from "../../ui/Icon";
 import css from "./SettingModal.module.css";
 import { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { selectUser } from "../../../redux/auth/selectors";
 
 const UpdateAvatar = () => {
-  // const userProfile = useSelector();
-  // const dispatch = useDispatch();
+  // const userProfile = useSelector(selectUser);
+  //  const dispatch = useDispatch();
 
-  const [image, setImage] = useState(null); // temporary
+  const [userProfile, setUserProfile] = useState({
+    name: "Andrii",
+    email: "m9ta@gmail.com",
+    gender: "male",
+    dailyNorm: "",
+    avatarUrl: "",
+  });
+  console.log(userProfile);
 
   const handleImageChange = (event) => {
-    const formaData = new FormData();
-    formaData.append("avatar", event.target.files[0]);
     const file = event.target.files?.[0];
-
     if (!file) return;
 
-    // if (file) {
-    //   dispatch(updateAvatar(formaData));
-    // }
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    // dispatch(updateAvatar(formData));
 
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImage(reader.result);
+      setUserProfile((prevState) => ({
+        ...prevState,
+        avatarUrl: reader.result,
+      }));
     };
     reader.readAsDataURL(file);
   };
@@ -40,10 +50,19 @@ const UpdateAvatar = () => {
         {userProfile.avatarURL && (
           <img src={userProfile.avatarURL} width={80} height={80} />
         )} */}
-        {image ? (
-          <img className={css.userPhoto} src={image} width={80} height={80} />
+        {userProfile.avatarUrl ? (
+          <img
+            className={css.userPhoto}
+            src={userProfile.avatarUrl}
+            width={80}
+            height={80}
+          />
         ) : (
-          <div className={css.userPhoto}>V</div>
+          <div className={css.userPhoto}>
+            {userProfile.name
+              ? userProfile.name.split("")[0].toUpperCase()
+              : userProfile.email.split("")[0].toUpperCase()}
+          </div>
         )}
         <div>
           <label className={css.uploadBtn} htmlFor="file-upload">

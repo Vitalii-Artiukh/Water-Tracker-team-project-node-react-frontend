@@ -1,12 +1,12 @@
 import css from "./SettingModal.module.css";
 import * as yup from "yup";
 import Icon from "../../ui/Icon";
-import UpdateAvatar from "./UpdateAvatar";
+import toast, { Toaster } from "react-hot-toast";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "../../../redux/auth/operations";
-import toast, { Toaster } from "react-hot-toast";
+import UpdateAvatar from "./UpdateAvatar";
 
 const updateUserValidationSchema = yup.object().shape({
   gender: yup
@@ -48,29 +48,34 @@ const SettingModal = ({ onClose }) => {
   // const userProfile = useSelector(updateUserData);
   const dispatch = useDispatch();
 
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const [userProfile] = useState({
+    name: "Andrii",
+    email: "m9ta@gmail.com",
+    gender: "male",
+    dailyNorm: "",
+    avatarUrl: "",
+  });
+  console.log(userProfile);
+
   const INITIAL_VALUES = {
-    gender: "",
-    name: "",
-    email: "",
-    // gender: userProfile.gender,
-    // name: userProfile.userName,
-    // email: userProfile.email,
+    gender: userProfile.gender,
+    name: userProfile.name,
+    email: userProfile.email,
     oldPassword: "",
     newPassword: "",
     repeatPassword: "",
   };
 
-  const [showOldPassword, setShowOldPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-
   const handleSubmit = (values, actions) => {
     console.log(values);
     dispatch(
       updateUserData({
-        gender: values.gender,
-        userName: values.name,
+        name: values.name,
         email: values.email,
+        gender: values.gender,
         oldPassword: values.oldPassword,
         newPassword: values.newPassword,
       })
@@ -79,10 +84,10 @@ const SettingModal = ({ onClose }) => {
       .then(() => {
         actions.resetForm();
         onClose();
-        console.log("update user - success");
+        console.log("Update user - success !");
       })
       .catch(() => {
-        console.log("update user - error");
+        console.log("Update user - error !");
         toast.error("Something is invalid !");
       });
   };
@@ -93,8 +98,8 @@ const SettingModal = ({ onClose }) => {
         <h2 className={css.title}>Setting</h2>
         <button className={css.closeBtn} onClick={onClose}>
           <img
-            src="/src/assets/images/closeBtn.png"
-            alt="closeBtn"
+            src="/src/assets/images/settingCloseBtn.png"
+            alt="button"
             width="12px"
             height="12px"
           />
