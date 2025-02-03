@@ -1,10 +1,62 @@
 .sectionWelcome {
-  background-image: url('../../../assets/images/welcome/backgr_welcome_tablet_1x.png');
+  background-image: url("../../../assets/images/welcome/backgr_welcome_tablet_1x.png");
   background-repeat: no-repeat;
 }
+
 .sectionHome {
-  background-image: url('../../../assets/images/home/bottle_home_desktop_1x.png');
+  background-image: image-set(
+      url("../../../assets/images/home/bubbles_home_mobile_1x.png") 1x,
+      url("../../../assets/images/home/bubbles_home_mobile_2x.png") 2x
+    ),
+    image-set(
+      url("../../../assets/images/home/bottle_home_mobile_1x.png") 1x,
+      url("../../../assets/images/home/bottle_home_mobile_2x.png") 2x
+    );
+  background-size: cover, 280px 208px;
+  background-position: left 0 top 28px, left 50% top 82px;
+  background-repeat: no-repeat;
+  padding-top: 24px;
+  padding-bottom: 40px;
 }
+
 .sectionAuth {
-  background-image: url('../../../assets/images/signin/bottle_signin_desktop_1x.png');
+  background-image: url("../../../assets/images/signin/bottle_signin_desktop_1x.png");
+}
+
+/* ========== TABLET ========*/
+
+@media screen and (min-width: 768px) {
+  .sectionHome {
+    background-image: image-set(
+        url("../../../assets/images/home/bubbles_home_tablet_1x.png") 1x,
+        url("../../../assets/images/home/bubbles_home_tablet_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/home/bottle_home_tablet_1x.png") 1x,
+        url("../../../assets/images/home/bottle_home_tablet_2x.png") 2x
+      );
+    background-position: left 0 top 0, left 50% top 38px;
+    background-size: cover, 518px 386px;
+    padding-top: 40px;
+    padding-bottom: 44px;
+  }
+}
+
+/* ========== DESKTOP ========*/
+
+@media screen and (min-width: 1440px) {
+  .sectionHome {
+    background-image: image-set(
+        url("../../../assets/images/bubbles_desktop_any_1x.png") 1x,
+        url("../../../assets/images/bubbles_desktop_any_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/home/bottle_home_desktop_1x.png") 1x,
+        url("../../../assets/images/home/bottle_home_desktop_2x.png") 2x
+      );
+    background-position: left 9px top 34px, left calc(50% - 310px) top 38px;
+    background-size: contain, 738px 548px;
+    padding-top: 40px;
+    padding-bottom: 44px;
+  }
 }
