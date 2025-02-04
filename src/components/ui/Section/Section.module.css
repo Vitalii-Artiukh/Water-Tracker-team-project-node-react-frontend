@@ -135,18 +135,18 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .sectionHome {
+  .sectionAuth {
     height: 90vh;
 
     background-image: image-set(
-        url('../../../assets/images/home/bottle_home_desktop_1x.png') 1x,
-        url('../../../assets/images/home/bottle_home_desktop_2x.png') 2x
+        url('../../../assets/images/signin/bottle_signin_desktop_1x.png') 1x,
+        url('../../../assets/images/signin/bottle_signin_desktop_2x.png') 2x
       ),
       image-set(
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
       );
-    background-position: left calc(50% - 310px) top 6px, left 90% top 34px;
+    background-position: left calc(50% - 310px) top 6px, left 60% top 34px;
     background-size: 916px 680px, auto;
     padding-top: 162px;
   }
