@@ -1,0 +1,20 @@
+.logo {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.text {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--primary-color-blue);
+  width: 58px;
+}
+@media (min-width: 768px) {
+  .text {
+    font-size: 14px;
+    width: 80px;
+  }
+}
+@media (min-width: 1440px) {
+}

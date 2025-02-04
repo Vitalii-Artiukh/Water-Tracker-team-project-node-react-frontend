@@ -1,12 +1,3 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.userInfo > *:nth-child(2) {
-  margin-left: 8px;
-}
-
 .dropDownMenu {
   position: absolute;
   top: 60%;
@@ -36,23 +27,16 @@
   display: flex;
   align-items: center;
 }
-
 @media (min-width: 768px) {
-  .header {
-    padding: 16px 32px 40px;
-  }
-
-  .signIn {
-    line-height: 1.33333;
+  .dropDownMenu {
+    top: 60%;
+    left: 65%;
   }
 }
 
 @media (min-width: 1440px) {
-  .header {
-    padding: 16px 112px 0;
-  }
-
-  .signIn {
-    font-size: 20px;
+  .dropDownMenu {
+    top: 90%;
+    left: 76%;
   }
 }

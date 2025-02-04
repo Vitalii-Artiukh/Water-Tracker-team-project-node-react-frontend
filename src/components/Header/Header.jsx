@@ -1,94 +1,36 @@
-import { Link } from "react-router-dom";
 import css from "./Header.module.css";
-import logo from "../../assets/images/logo/logo.png";
-import Icon from "../ui/Icon";
 import { useAuthSelector } from "../../hooks/useAuthSelector";
+import Container from "../ui/Container/Container";
 
 import { useState } from "react";
+import Logo from "../Logo/Logo";
+import UserAuth from "../UserAuth/UserAuth";
+import UserLogo from "../UserLogo/UserLogo";
+import UserLogoModal from "../UserLogoModal/UserLogoModal";
 
 const Header = () => {
-  const { isLoggedIn, user } = useAuthSelector();
+  const { isLoggedIn } = useAuthSelector();
   const [isOpen, setIsOpen] = useState();
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
   return (
-    <header className={css.header}>
-      <Link to="/" className={css.logo}>
-        <img src={logo} alt="logo" width={40} height={48} />
-        <p className={css.text}>Tracker of water</p>
-      </Link>
-      {isLoggedIn ? (
-        <>
-          <div className={css.userInfo}>
-            {user.name !== null ? <p>{user.name}</p> : <p>{user.email}</p>}
-            {user.avatarUrl ? (
-              <img src={user.avatarUrl} alt="User photo" />
-            ) : (
-              <div className={css.avatarPlaceholder}>
-                {user?.email?.charAt(0).toUpperCase() ||
-                  user?.name?.charAt(0).toUpperCase()}
-              </div>
+    <Container>
+      <header className={css.header}>
+        <Logo></Logo>
+        {isLoggedIn ? (
+          <>
+            <UserLogo></UserLogo>
+            {isOpen && (
+              <UserLogoModal toggleDropdown={toggleDropdown}></UserLogoModal>
             )}
-            <button
-              onClick={toggleDropdown}
-              className={css.button}
-              type="button"
-            >
-              <Icon
-                name="icon-chevron-down"
-                fill="#407bff"
-                stroke="#407bff"
-                width={28}
-                height={28}
-              ></Icon>
-            </button>
-          </div>
-          {isOpen && (
-            <ul className={css.dropDownMenu}>
-              <li className={css.dropDownItem}>
-                <button type="button" className={css.dropDownText}>
-                  <Icon
-                    name="icon-settings"
-                    fill="transparent"
-                    stroke="#407bff"
-                    width={16}
-                    height={16}
-                  ></Icon>
-                  Setting
-                </button>
-              </li>
-              <li className={css.dropDownItem}>
-                <button type="button" className={css.dropDownText}>
-                  <Icon
-                    name="icon-logout"
-                    fill="transparent"
-                    stroke="#407bff"
-                    width={16}
-                    height={16}
-                  ></Icon>
-                  Log out
-                </button>
-              </li>
-            </ul>
-          )}
-        </>
-      ) : (
-        <div className={css.userInfo}>
-          <Link to="/signin" className={css.signIn}>
-            Sign in
-          </Link>
-          <Icon
-            name="icon-user"
-            fill="transparent"
-            stroke="currentColor"
-            width={28}
-            height={28}
-          ></Icon>
-        </div>
-      )}
-    </header>
+          </>
+        ) : (
+          <UserAuth></UserAuth>
+        )}
+      </header>
+    </Container>
   );
 };
 
