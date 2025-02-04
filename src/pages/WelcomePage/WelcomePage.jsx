@@ -1,8 +1,13 @@
+import WaterConsumptionTracker from "../../components/WaterConsumptionTracker/WaterConsumptionTracker.jsx";
+import WhyDrinkWater from "../../components/WhyDrinkWater/WhyDrinkWater.jsx";
+import css from "./WelcomePage.module.css";
+
 const WelcomePage = () => {
   return (
-    <>
-      <p>WELCOME</p>
-    </>
+    <div className={css.wrapper}>
+      <WaterConsumptionTracker />
+      <WhyDrinkWater />
+    </div>
   );
 };
 
