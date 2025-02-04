@@ -91,7 +91,6 @@ const SettingModal = ({ isOpen, onClose }) => {
       className={css.settingModalWrapper}
       isOpen={isOpen}
       onClose={onClose}>
-      <SettingModal onClose={onClose} />
       <div className={css.modalTitle}>
         <h2 className={css.title}>Setting</h2>
         <button className={css.closeBtn} onClick={onClose}>
