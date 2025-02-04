@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   logout,
   refreshUser,
@@ -6,10 +6,10 @@ import {
   signUp,
   updateUserAvatar,
   updateUserData,
-} from './operations.js';
+} from "./operations.js";
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: {
       name: null,
@@ -19,9 +19,9 @@ const authSlice = createSlice({
       avatarUrl: null,
     },
     token: null,
-    isLoggedIn: false,
+    isLoggedIn: true,
     isRefreshing: false,
-    currentTheme: 'light',
+    currentTheme: "light",
   },
 
   reducers: {
@@ -30,13 +30,13 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: 'woman',
+          gender: "woman",
           dailyNorm: 1500,
           avatarUrl: null,
         };
@@ -47,14 +47,14 @@ const authSlice = createSlice({
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: 'woman',
+          gender: "woman",
           dailyNorm: 1500,
           avatarUrl: null,
         };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, state => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoggedIn = false;
         state.token = null;
         state.user = Object.keys(state.user).reduce((acc, key) => {
@@ -71,7 +71,7 @@ const authSlice = createSlice({
         // IF AVATAR URL
         state.user.avatarUrl = action.payload;
       })
-      .addCase(refreshUser.pending, state => {
+      .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
@@ -79,13 +79,13 @@ const authSlice = createSlice({
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: 'woman',
+          gender: "woman",
           dailyNorm: 1500,
           avatarUrl: null,
         };
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
       }),
 });

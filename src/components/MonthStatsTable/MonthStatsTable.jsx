@@ -2,7 +2,6 @@ import { useState } from "react";
 import css from "./MonthStatsTable.module.css";
 import MonthStatsList from "../MonthStatsList/MonthStatsList";
 import MonthStatsBar from "../MonthStatsBar/MonthStatsBar";
-import DailyStatsWaterPopup from "../DailyStatsWaterPopup/DailyStatsWaterPopup";
 
 const currentMonth = new Date().getMonth() + 1;
 const currentYear = new Date().getFullYear();
@@ -11,7 +10,12 @@ const MonthStatsTable = () => {
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
   const [isShowModal, setIsShowModal] = useState(false);
-  const [cords, setCords] = useState("");
+  const [modalData, setModalData] = useState({
+    cords: null,
+    currentElWidth: null,
+    currentElHeight: null,
+    currentDay: null,
+  });
 
   const numberOfDays = new Date(year, month, 0).getDate();
   const days = [...Array(numberOfDays).keys()].map((i) => i + 1);
@@ -36,16 +40,21 @@ const MonthStatsTable = () => {
   };
 
   const onShowModal = (e) => {
-    setIsShowModal(true);
-    const elem = e.target;
-    console.log(elem.closest("#closest").offsetHeight);
-    let cords = elem.getBoundingClientRect();
-    setCords(cords);
+    const el = e.target;
+    const elHeight = el.closest("li").offsetHeight;
+    const elWidth = el.closest("li").offsetWidth;
+    const cords = el.getBoundingClientRect();
+    const currentDay = Number(el.childNodes[0].data);
 
-    // const filteredImage = images.filter(
-    //   ({ urls: { small } }) => e.target.src === small
-    // );
-    // setModalData(filteredImage[0]);
+    setIsShowModal(true);
+
+    setModalData({
+      ...modalData,
+      cords: cords,
+      currentElWidth: elWidth,
+      currentElHeight: elHeight,
+      currentDay: currentDay,
+    });
   };
 
   const onCloseModal = () => {
@@ -66,12 +75,8 @@ const MonthStatsTable = () => {
         days={days}
         onShowModal={onShowModal}
         onCLoseModal={onCloseModal}
-      />
-      <DailyStatsWaterPopup
+        modalData={modalData}
         isOpen={isShowModal}
-        closeModal={onCloseModal}
-        cords={cords}
-        // modalData={modalData}
       />
     </div>
   );
