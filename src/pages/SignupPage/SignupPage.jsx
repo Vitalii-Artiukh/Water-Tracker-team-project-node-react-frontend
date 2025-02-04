@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { signUp } from "../../redux/auth/operations.js";
 // import { toast } from "react-hot-toast";
-import AuthForm from "../../components/AuthForm/AuthForm";
+import AuthForm from "../../components/ui/AuthForm/AuthForm.jsx";
 import css from "./SignupPage.module.css";
 
 const SignupPage = () => {
