@@ -89,7 +89,6 @@
       image-set(
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
-
       );
     background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
     background-size: 738px 548px, auto;
@@ -109,10 +108,10 @@
       url('../../../assets/images/signin/bubbles_signin_mobile_1x.png') 1x,
       url('../../../assets/images/signin/bubbles_signin_mobile_2x.png') 2x
     );
-  height: calc(100vh - 60px);
-
+  height: calc(89vh);
+  padding-top: 24px;
   background-size: 280px 210px, auto;
-  background-position: left 50% bottom 0, left 50% top 22px;
+  background-position: left 50% top 350px, left 50% top 22px;
   background-repeat: no-repeat;
 }
 
@@ -126,11 +125,11 @@
         url('../../../assets/images/signin/bubbles_signin_tablet_1x.png') 1x,
         url('../../../assets/images/signin/bubbles_signin_tablet_2x.png') 2x
       );
-    height: calc(100vh - 40px);
+    height: 100vh;
     padding-top: 40px;
+    background-size: 656px 548px, auto;
+    background-position: left 140px top 30px, left 50% top 22px;
 
-    background-size: auto, auto;
-    background-position: left calc(100%) top 50px, left 50% top -60px;
     background-repeat: no-repeat;
   }
 }
@@ -144,11 +143,9 @@
       image-set(
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
-
       );
-    background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
-    background-size: 738px 548px, auto;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    background-position: left calc(50% - 310px) top 6px, left 90% top 34px;
+    background-size: 916px 680px, auto;
+    padding-top: 162px;
   }
 }
