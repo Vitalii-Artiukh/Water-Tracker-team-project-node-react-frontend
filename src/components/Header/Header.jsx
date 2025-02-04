@@ -22,7 +22,7 @@ const Header = () => {
       {isLoggedIn ? (
         <>
           <div className={css.userInfo}>
-            <p>{user?.name}</p>
+            {user.name !== null ? <p>{user.name}</p> : <p>{user.email}</p>}
             {user.avatarUrl ? (
               <img src={user.avatarUrl} alt="User photo" />
             ) : (
@@ -48,28 +48,28 @@ const Header = () => {
           {isOpen && (
             <ul className={css.dropDownMenu}>
               <li className={css.dropDownItem}>
-                <Icon
-                  name="icon-settings"
-                  fill="transparent"
-                  stroke="#407bff"
-                  width={16}
-                  height={16}
-                ></Icon>
-                <Link to="/" className={css.dropDownText}>
+                <button type="button" className={css.dropDownText}>
+                  <Icon
+                    name="icon-settings"
+                    fill="transparent"
+                    stroke="#407bff"
+                    width={16}
+                    height={16}
+                  ></Icon>
                   Setting
-                </Link>
+                </button>
               </li>
               <li className={css.dropDownItem}>
-                <Icon
-                  name="icon-logout"
-                  fill="transparent"
-                  stroke="#407bff"
-                  width={16}
-                  height={16}
-                ></Icon>
-                <Link to="/" className={css.dropDownText}>
+                <button type="button" className={css.dropDownText}>
+                  <Icon
+                    name="icon-logout"
+                    fill="transparent"
+                    stroke="#407bff"
+                    width={16}
+                    height={16}
+                  ></Icon>
                   Log out
-                </Link>
+                </button>
               </li>
             </ul>
           )}

@@ -92,6 +92,8 @@
 
 .dropDownText {
   color: var(--primary-color-blue);
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
