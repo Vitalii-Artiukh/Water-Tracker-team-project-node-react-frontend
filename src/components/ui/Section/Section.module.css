@@ -8,7 +8,7 @@
 
 @media screen and (min-resolution: 192dpi) {
   .sectionWelcome {
-    background-image: url(../../../assets/images/welcome/backgr_welcome_mobile_2x.png);
+    background-image: url("../../../assets/images/welcome/backgr_welcome_mobile_2x.png");
     background-size: 320px;
   }
 }
@@ -30,14 +30,14 @@
   .sectionWelcome {
     background-image: url(../../../assets/images/bubbles_desktop_any_1x.png),
       url(../../../assets/images/welcome/backgr_welcome_desktop_1x.png);
-    background-size: auto, auto;
+    background-size: auto, 100% 432px;
     background-position: center center, center bottom;
   }
   @media screen and (min-resolution: 192dpi) {
     .sectionWelcome {
       background-image: url(../../../assets/images/bubbles_desktop_any_2x.png),
         url(../../../assets/images/welcome/backgr_welcome_desktop_2x.png);
-      background-size: 1404px, 1440px;
+      background-size: 1404px, 100% 432px;
     }
   }
 }
