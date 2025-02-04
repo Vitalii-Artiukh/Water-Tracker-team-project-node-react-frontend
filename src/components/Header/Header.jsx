@@ -20,10 +20,10 @@ const Header = () => {
       <header className={css.header}>
         <Logo></Logo>
         {isLoggedIn ? (
-          <>
+          <div>
             <UserLogo toggleDropdown={toggleDropdown}></UserLogo>
             {isOpen && <UserLogoModal></UserLogoModal>}
-          </>
+          </div>
         ) : (
           <UserAuth></UserAuth>
         )}
