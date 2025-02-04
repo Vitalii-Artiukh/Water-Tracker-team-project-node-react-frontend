@@ -30,7 +30,7 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: (builder) =>
+  extraReducers: builder =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
         const { _id, ...userData } = action.payload.user;
@@ -44,7 +44,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, (state) => {
+      .addCase(logout.fulfilled, state => {
         state.isLoggedIn = false;
         state.token = null;
         state.user = Object.keys(state.user).reduce((acc, key) => {
@@ -53,15 +53,13 @@ const authSlice = createSlice({
         }, {});
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { _id, ...userData } = action.payload;
+        state.user = userData;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        // IF USER
-        // state.user = action.payload
-        // IF AVATAR URL
-        state.user.avatarUrl = action.payload;
+        state.user.avatarUrl = action.payload.avatar;
       })
-      .addCase(refreshUser.pending, (state) => {
+      .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
@@ -70,7 +68,7 @@ const authSlice = createSlice({
         state.user = userData;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       }),
 });

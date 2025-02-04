@@ -3,7 +3,6 @@ import { store } from '../redux/store.js';
 
 const api = axios.create({
   baseURL: 'https://project-group-05-backend.onrender.com',
-  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
   },
