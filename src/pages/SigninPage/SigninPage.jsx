@@ -1,9 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 // import { useNavigate } from "react-router-dom";
-import { signIn } from "../../redux/auth/operations.js";
+import { signIn } from '../../redux/auth/operations.js';
 // import { toast } from "react-hot-toast";
-import AuthForm from "../../components/AuthForm/AuthForm";
-import css from "./SigninPage.module.css";
+import AuthForm from '../../components/AuthForm/AuthForm';
 
 const SigninPage = () => {
   const dispatch = useDispatch();
@@ -16,10 +15,9 @@ const SigninPage = () => {
   };
 
   return (
-    <section className={css.background}>
-      <AuthForm title="Sign In" type="signIn" onSubmit={handleSubmit} />
-      <div className={css.bottle}></div>
-    </section>
+    // <section className={css.background}>
+    <AuthForm title="Sign In" type="signIn" onSubmit={handleSubmit} />
+    // </section>
   );
 };
 

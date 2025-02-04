@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 16px;
   align-items: start;
-  width: 280px;
+  height: calc(100vh);
 }
 
 .title {
