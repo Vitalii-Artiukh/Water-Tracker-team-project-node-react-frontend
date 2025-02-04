@@ -1,13 +1,9 @@
-import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-import { signUp } from "../../redux/auth/operations.js";
-// import { toast } from "react-hot-toast";
-import AuthForm from "../../components/AuthForm/AuthForm.jsx";
-import css from "./SignupPage.module.css";
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/operations.js';
+import AuthForm from '../../components/AuthForm/AuthForm';
 
 const SignupPage = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
     dispatch(signUp(values));
@@ -15,12 +11,7 @@ const SignupPage = () => {
     actions.resetForm();
   };
 
-  return (
-    <section className={css.background}>
-      <AuthForm title="Sign Up" type="signUp" onSubmit={handleSubmit} />
-      <div className={css.bottle}></div>
-    </section>
-  );
+  return <AuthForm title="Sign Up" type="signUp" onSubmit={handleSubmit} />;
 };
 
 export default SignupPage;
