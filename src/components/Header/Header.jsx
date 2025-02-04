@@ -21,10 +21,8 @@ const Header = () => {
         <Logo></Logo>
         {isLoggedIn ? (
           <>
-            <UserLogo></UserLogo>
-            {isOpen && (
-              <UserLogoModal toggleDropdown={toggleDropdown}></UserLogoModal>
-            )}
+            <UserLogo toggleDropdown={toggleDropdown}></UserLogo>
+            {isOpen && <UserLogoModal></UserLogoModal>}
           </>
         ) : (
           <UserAuth></UserAuth>
