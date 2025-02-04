@@ -1,10 +1,50 @@
 .sectionWelcome {
-  background-image: url('../../../assets/images/welcome/backgr_welcome_tablet_1x.png');
+  margin: 0 auto;
+  background-image: url(../../../assets/images/welcome/backgr_welcome_mobile_1x.png);
   background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: auto;
 }
+
+@media screen and (min-resolution: 192dpi) {
+  .sectionWelcome {
+    background-image: url(../../../assets/images/welcome/backgr_welcome_mobile_2x.png);
+    background-size: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sectionWelcome {
+    background-image: url(../../../assets/images/welcome/backgr_welcome_tablet_1x.png);
+    background-size: auto;
+  }
+  @media screen and (min-resolution: 192dpi) {
+    .sectionWelcome {
+      background-image: url(../../../assets/images/welcome/backgr_welcome_tablet_2x.png);
+      background-size: 768px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .sectionWelcome {
+    background-image: url(../../../assets/images/bubbles_desktop_any_1x.png),
+      url(../../../assets/images/welcome/backgr_welcome_desktop_1x.png);
+    background-size: auto, auto;
+    background-position: center center, center bottom;
+  }
+  @media screen and (min-resolution: 192dpi) {
+    .sectionWelcome {
+      background-image: url(../../../assets/images/bubbles_desktop_any_2x.png),
+        url(../../../assets/images/welcome/backgr_welcome_desktop_2x.png);
+      background-size: 1404px, 1440px;
+    }
+  }
+}
+
 .sectionHome {
-  background-image: url('../../../assets/images/home/bottle_home_desktop_1x.png');
+  background-image: url("../../../assets/images/home/bottle_home_desktop_1x.png");
 }
 .sectionAuth {
-  background-image: url('../../../assets/images/signin/bottle_signin_desktop_1x.png');
+  background-image: url("../../../assets/images/signin/bottle_signin_desktop_1x.png");
 }

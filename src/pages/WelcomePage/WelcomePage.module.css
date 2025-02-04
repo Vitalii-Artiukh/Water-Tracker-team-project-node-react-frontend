@@ -2,35 +2,12 @@
   padding-top: 24px;
   padding-bottom: 40px;
   background-color: #ffffff00;
-
-  background-image: url(../../assets/images/welcome/backgr_welcome_mobile_1x.png);
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: auto;
-}
-
-@media screen and (min-resolution: 192dpi) {
-  .wrapper {
-    background-image: url(../../assets/images/welcome/backgr_welcome_mobile_2x.png);
-    background-size: 320px;
-  }
 }
 
 @media screen and (min-width: 768px) {
   .wrapper {
     padding-top: 40px;
     padding-bottom: 50px;
-
-    background-image: url(../../assets/images/welcome/backgr_welcome_tablet_1x.png);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: auto;
-  }
-  @media screen and (min-resolution: 192dpi) {
-    .wrapper {
-      background-image: url(../../assets/images/welcome/backgr_welcome_tablet_2x.png);
-      background-size: 768px;
-    }
   }
 }
 
@@ -41,18 +18,5 @@
     align-items: flex-end;
     justify-content: center;
     padding: 140px 0 294px 0;
-
-    background-image: url(../../assets/images/bubbles_desktop_any_1x.png),
-      url(../../assets/images/welcome/backgr_welcome_desktop_1x.png);
-    /* background-repeat: no-repeat;
-    background-position: center center, center bottom; */
-    background-size: auto, auto;
-  }
-  @media screen and (min-resolution: 192dpi) {
-    .wrapper {
-      background-image: url(../../assets/images/bubbles_desktop_any_2x.png),
-        url(../../assets/images/welcome/backgr_welcome_desktop_2x.png);
-      background-size: 1404px, 1440px;
-    }
   }
 }
