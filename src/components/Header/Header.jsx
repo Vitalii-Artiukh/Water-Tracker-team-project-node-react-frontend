@@ -18,14 +18,14 @@ const Header = () => {
   return (
     <Container>
       <header className={css.header}>
-        <Logo></Logo>
+        <Logo />
         {isLoggedIn ? (
           <div className={css.userFullInfo}>
             <UserLogo toggleDropdown={toggleDropdown}></UserLogo>
-            {isOpen && <UserLogoModal></UserLogoModal>}
+            {isOpen && <UserLogoModal />}
           </div>
         ) : (
-          <UserAuth></UserAuth>
+          <UserAuth />
         )}
       </header>
     </Container>
