@@ -1,12 +1,14 @@
 import css from "./SettingModal.module.css";
 import * as yup from "yup";
-import Icon from "../../ui/Icon";
-import UpdateAvatar from "./UpdateAvatar";
 import toast, { Toaster } from "react-hot-toast";
+import Icon from "../../ui/Icon";
+import ModalContainer from "../../ui/ModalContainer/ModalContainer";
+import UpdateAvatar from "./UpdateAvatar";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserData } from "../../../redux/auth/operations";
+import { selectUser } from "../../../redux/auth/selectors";
 
 const updateUserValidationSchema = yup.object().shape({
   gender: yup
@@ -44,21 +46,12 @@ const updateUserValidationSchema = yup.object().shape({
     }),
 });
 
-const SettingModal = ({ onClose }) => {
-  // const userProfile = useSelector(updateUserData);
-  const dispatch = useDispatch();
-
+const SettingModal = ({ isOpen, onClose }) => {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-  const [userProfile] = useState({
-    name: "Andrii",
-    email: "m9ta@gmail.com",
-    gender: "male",
-    dailyNorm: "",
-    avatarUrl: "",
-  });
-  console.log(userProfile);
+  const userProfile = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const INITIAL_VALUES = {
     gender: userProfile.gender,
@@ -70,7 +63,6 @@ const SettingModal = ({ onClose }) => {
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     dispatch(
       updateUserData({
         name: values.name,
@@ -84,16 +76,22 @@ const SettingModal = ({ onClose }) => {
       .then(() => {
         actions.resetForm();
         onClose();
-        console.log("Update user - success !");
+        toast.success("User updated successfully!");
       })
-      .catch(() => {
-        console.log("Update user - error !");
-        toast.error("Something is invalid !");
+      .catch((error) => {
+        toast.error(error?.message || "Something is invalid!");
       });
   };
 
+  if (!isOpen) null;
+
   return (
-    <>
+    <ModalContainer
+      overlayClassName={css.overlaySettingModal}
+      className={css.settingModalWrapper}
+      isOpen={isOpen}
+      onClose={onClose}>
+      <SettingModal onClose={onClose} />
       <div className={css.modalTitle}>
         <h2 className={css.title}>Setting</h2>
         <button className={css.closeBtn} onClick={onClose}>
@@ -285,7 +283,7 @@ const SettingModal = ({ onClose }) => {
         )}
       </Formik>
       <Toaster position="botton-center" reverseOrder={false} />
-    </>
+    </ModalContainer>
   );
 };
 

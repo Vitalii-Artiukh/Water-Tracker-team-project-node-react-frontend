@@ -1,39 +1,31 @@
-import Icon from "../../ui/Icon";
 import css from "./SettingModal.module.css";
-import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectUser } from "../../../redux/auth/selectors";
+import Icon from "../../ui/Icon";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../../redux/auth/selectors";
+import { updateUserAvatar } from "../../../redux/auth/operations";
 
 const UpdateAvatar = () => {
-  // const userProfile = useSelector(selectUser);
-  //  const dispatch = useDispatch();
-
-  const [userProfile, setUserProfile] = useState({
-    name: "Andrii",
-    email: "m9ta@gmail.com",
-    gender: "male",
-    dailyNorm: "",
-    avatarUrl: "",
-  });
-  console.log(userProfile);
+  const userProfile = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const handleImageChange = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Only JPG, PNG, and WEBP formats are allowed.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("avatar", file);
 
-    // dispatch(updateAvatar(formData));
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setUserProfile((prevState) => ({
-        ...prevState,
-        avatarUrl: reader.result,
-      }));
-    };
-    reader.readAsDataURL(file);
+    dispatch(updateUserAvatar(formData))
+      .unwrap()
+      .then(() => toast.success("Avatar updated successfully!"))
+      .catch(() => toast.error("Failed to update avatar."));
   };
 
   return (
