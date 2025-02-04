@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Icon from "../Icon";
+import Icon from "../ui/Icon";
 import css from "./AuthForm.module.css";
 
 const validationSchemas = {
