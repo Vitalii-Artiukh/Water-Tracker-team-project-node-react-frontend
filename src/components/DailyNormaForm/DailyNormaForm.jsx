@@ -19,6 +19,9 @@ const DailyNormaForm = () => {
             <TextField {...fields.weight} />
             <TextField {...fields.time} />
             <TextField {...fields.water} />
+            <button type="submit" className="save-button">
+              Save
+            </button>
           </Form>
         )}
       </Formik>
