@@ -99,5 +99,6 @@
 @media (min-width: 1440px) {
   .form {
     width: 384px;
+    margin-left: 710px;
   }
 }
