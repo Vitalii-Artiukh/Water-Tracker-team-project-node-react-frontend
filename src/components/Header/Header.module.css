@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfo > *:nth-child(2) {
+  margin-left: 8px;
+}
+
+.dropDownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.userFullInfo {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 16px 32px 40px;
+  }
+
+  .signIn {
+    line-height: 1.33333;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    padding: 16px 112px 0;
+  }
+
+  .signIn {
+    font-size: 20px;
+  }
+}
