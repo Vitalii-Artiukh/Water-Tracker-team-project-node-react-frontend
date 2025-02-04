@@ -14,11 +14,8 @@
   padding: 8px;
   cursor: pointer;
 }
-
-.dropDownText {
-  color: var(--primary-color-blue);
-  display: flex;
-  align-items: center;
+.userFullInfo {
+  position: relative;
 }
 
 @media (min-width: 768px) {

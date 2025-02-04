@@ -4,7 +4,7 @@ import css from './UserLogoModal.module.css';
 const UserLogoModal = () => {
   return (
     <ul className={css.dropDownMenu}>
-      <li className={css.dropDownItem}>
+      <li>
         <button type="button" className={css.dropDownText}>
           <Icon
             name="icon-settings"
@@ -16,7 +16,7 @@ const UserLogoModal = () => {
           Setting
         </button>
       </li>
-      <li className={css.dropDownItem}>
+      <li>
         <button type="button" className={css.dropDownText}>
           <Icon
             name="icon-logout"

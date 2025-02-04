@@ -20,7 +20,7 @@ const Header = () => {
       <header className={css.header}>
         <Logo></Logo>
         {isLoggedIn ? (
-          <div>
+          <div className={css.userFullInfo}>
             <UserLogo toggleDropdown={toggleDropdown}></UserLogo>
             {isOpen && <UserLogoModal></UserLogoModal>}
           </div>
