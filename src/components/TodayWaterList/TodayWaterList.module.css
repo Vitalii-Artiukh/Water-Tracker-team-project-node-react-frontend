@@ -19,7 +19,8 @@
   gap: 12px;
   flex-direction: column;
   width: auto;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
+  scroll-behavior: smooth;
 }
 
 .list::-webkit-scrollbar {
@@ -27,7 +28,7 @@
 }
 
 .list::-webkit-scrollbar-track {
-  background: #d7e3ff;
+  background: var(--secondary-color-light-blue200);
   border-radius: 8px;
   width: 4px;
   border-top: 8px solid transparent;
@@ -37,9 +38,19 @@
 
 .list::-webkit-scrollbar-thumb {
   width: 4px;
-  background: #9ebbff;
+  background: transparent;
   border-radius: 8px;
 }
+
+.container:hover > .list::-webkit-scrollbar-thumb {
+  background: var(--secondary-color-light-blue300);
+}
+
+/* .container:hover > .list::-webkit-scrollbar-track {
+  width: 4px;
+  background-color: var(--secondary-color-light-blue200);
+  border-radius: 8px;
+} */
 
 .button {
   display: inline-flex;
@@ -53,6 +64,7 @@
   color: var(--primary-color-blue);
   border: none;
   background-color: transparent;
+  margin-top: 12px;
 }
 
 .svg {
