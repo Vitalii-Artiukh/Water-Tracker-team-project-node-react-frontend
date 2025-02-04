@@ -1,0 +1,40 @@
+.dropDownMenu {
+  position: absolute;
+  left: 0%;
+  margin-top: 12px;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  z-index: 1000;
+  width: 118px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.dropDownText {
+  color: var(--primary-color-blue);
+  width: 86px;
+}
+.dropDownText {
+  display: flex;
+  cursor: pointer;
+
+  align-items: center;
+}
+@media (min-width: 768px) {
+  /* .dropDownMenu {
+    top: 60%;
+    left: 65%;
+  } */
+}
+
+@media (min-width: 1440px) {
+  /* .dropDownMenu {
+    top: 90%;
+    left: 76%;
+  } */
+}
