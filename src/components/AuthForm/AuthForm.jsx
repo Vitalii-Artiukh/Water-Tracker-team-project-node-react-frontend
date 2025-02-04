@@ -32,16 +32,20 @@ const initialValues = {
 
 const AuthForm = ({ onSubmit, title, type }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
     <Formik
       initialValues={initialValues[type]}
       validationSchema={validationSchemas[type]}
-      enableReinitialize={true}
       onSubmit={onSubmit}
     >
       {({ isSubmitting, errors, touched }) => (
@@ -100,7 +104,7 @@ const AuthForm = ({ onSubmit, title, type }) => {
               <span>Repeat password</span>
               <div className={css.passwordField}>
                 <Field
-                  type={showPassword ? "text" : "password"}
+                  type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
                   className={`${css.input} ${
                     errors.confirmPassword && touched.confirmPassword
@@ -111,11 +115,11 @@ const AuthForm = ({ onSubmit, title, type }) => {
                 />
                 <button
                   type="button"
-                  onClick={togglePasswordVisibility}
+                  onClick={toggleConfirmPasswordVisibility}
                   className={css.eyeButton}
                 >
                   <Icon
-                    name={showPassword ? "icon-eye" : "icon-eye-slash"}
+                    name={showConfirmPassword ? "icon-eye" : "icon-eye-slash"}
                     width={16}
                     height={16}
                   />

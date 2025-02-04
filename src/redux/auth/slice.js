@@ -30,7 +30,7 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
         // state.user = action.payload.user;
@@ -54,7 +54,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, state => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoggedIn = false;
         state.token = null;
         state.user = Object.keys(state.user).reduce((acc, key) => {
@@ -71,7 +71,7 @@ const authSlice = createSlice({
         // IF AVATAR URL
         state.user.avatarUrl = action.payload;
       })
-      .addCase(refreshUser.pending, state => {
+      .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
@@ -85,7 +85,7 @@ const authSlice = createSlice({
         };
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
       }),
 });
