@@ -1,5 +1,5 @@
-import Icon from "../ui/Icon";
-import css from "./UserLogoModal.module.css";
+import Icon from '../ui/Icon';
+import css from './UserLogoModal.module.css';
 
 const UserLogoModal = () => {
   return (

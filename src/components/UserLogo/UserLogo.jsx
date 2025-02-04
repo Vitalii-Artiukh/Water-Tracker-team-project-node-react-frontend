@@ -1,6 +1,6 @@
-import { useAuthSelector } from "../../hooks/useAuthSelector";
-import Icon from "../ui/Icon";
-import css from "./UserLogo.module.css";
+import { useAuthSelector } from '../../hooks/useAuthSelector';
+import Icon from '../ui/Icon';
+import css from './UserLogo.module.css';
 
 const UserLogo = ({ toggleDropdown }) => {
   const { user } = useAuthSelector();

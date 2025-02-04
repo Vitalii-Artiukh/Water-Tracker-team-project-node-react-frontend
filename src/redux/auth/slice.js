@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import {
   logout,
   refreshUser,
@@ -6,10 +6,10 @@ import {
   signUp,
   updateUserAvatar,
   updateUserData,
-} from "./operations.js";
+} from './operations.js';
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     user: {
       name: null,
@@ -21,7 +21,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    currentTheme: "light",
+    currentTheme: 'light',
   },
 
   reducers: {
@@ -36,7 +36,7 @@ const authSlice = createSlice({
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: "woman",
+          gender: 'woman',
           dailyNorm: 1500,
           avatarUrl: null,
         };
@@ -47,7 +47,7 @@ const authSlice = createSlice({
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: "woman",
+          gender: 'woman',
           dailyNorm: 1500,
           avatarUrl: null,
         };
@@ -79,7 +79,7 @@ const authSlice = createSlice({
         // state.user = action.payload.user;
         state.user = {
           ...action.payload.user,
-          gender: "woman",
+          gender: 'woman',
           dailyNorm: 1500,
           avatarUrl: null,
         };
