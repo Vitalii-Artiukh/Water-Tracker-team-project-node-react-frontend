@@ -1,4 +1,7 @@
 import Header from '@components/Header/Header.jsx';
+import Container from '@components/ui/Container/Container';
+import Section from '@components/ui/Section/Section.jsx';
+import Loader from '@components/ui/Loader/Loader.jsx';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -8,9 +11,13 @@ const SharedLayout = () => {
       <Header />
 
       <main>
-        <Suspense fallback={<p>...Loading</p>}>
-          <Outlet />
-        </Suspense>
+        <Section>
+          <Container>
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
+          </Container>
+        </Section>
       </main>
     </>
   );

@@ -1,23 +1,29 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAuthSelector } from '../../hooks/useAuthSelector';
 
 import SharedLayout from '@components/ui/SharedLayout';
 import PrivateRoute from '@components/PrivateRoute';
 import RestrictedRoute from '@components/RestrictedRoute.jsx';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
-const SigninPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
-const WaterPage = lazy(() => import('../../pages/WaterPage/WaterPage'));
 
 function App() {
+  const dispatch = useDispatch();
   const { isRefreshing } = useAuthSelector();
+
+  useEffect(() => {
+    dispatch(authOperations.refreshUser());
+  }, [dispatch]);
   return (
     <>
       {isRefreshing ? (
-        <p>...Loading</p>
+        <p style={{ fontSize: '60px' }}>...Loading</p>
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
@@ -50,16 +56,6 @@ function App() {
               element={
                 <RestrictedRoute
                   component={<SignupPage />}
-                  redirectTo="/home"
-                />
-              }
-            />
-
-            <Route
-              path="/water"
-              element={
-                <RestrictedRoute
-                  component={<WaterPage />}
                   redirectTo="/home"
                 />
               }

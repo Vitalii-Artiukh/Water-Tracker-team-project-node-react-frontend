@@ -1,13 +1,15 @@
-import AddWater from "../../components/Water/AddWater.jsx";
+import DailyNorma from "../../components/DailyNorma/DailyNorma";
+import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
+
+import css from "./HomePage.module.css";
 
 const HomePage = () => {
-
-
   return (
     <>
-      <p>HOME</p>
-
-        <AddWater/>
+      <DailyNorma />
+      <WaterRatioPanel />
+      {/* <p>Today Water List</p>
+      <p>Month Stats Table</p> */}
     </>
   );
 };
