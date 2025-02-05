@@ -1,6 +1,6 @@
 .dropDownMenu {
   position: absolute;
-  left: 0%;
+  left: 50%;
   margin-top: 12px;
   transform: translateX(-50%);
   background: white;
@@ -15,26 +15,28 @@
   gap: 16px;
   align-items: center;
 }
-.dropDownText {
+.dropDownButton {
   color: var(--primary-color-blue);
   width: 86px;
-}
-.dropDownText {
   display: flex;
   cursor: pointer;
-
   align-items: center;
+  gap: 8px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
+
 @media (min-width: 768px) {
-  /* .dropDownMenu {
+  .dropDownMenu {
     top: 60%;
-    left: 65%;
-  } */
+    left: 50%;
+  }
 }
 
 @media (min-width: 1440px) {
-  /* .dropDownMenu {
+  .dropDownMenu {
     top: 90%;
-    left: 76%;
-  } */
+    left: 50%;
+  }
 }

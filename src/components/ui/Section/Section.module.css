@@ -1,56 +1,67 @@
 /* ========== SECTION WELCOME ========*/
 .sectionWelcome {
-  background-image: url('../../../assets/images/welcome/backgr_welcome_tablet_1x.png');
+  background-image: image-set(
+      url("../../../assets/images/signin/bubbles_signin_mobile_1x.png") 1x,
+      url("../../../assets/images/signin/bubbles_signin_mobile_2x.png") 2x
+    ),
+    image-set(
+      url("../../../assets/images/welcome/background_wave_desktop_1x.png") 1x,
+      url("../../../assets/images/welcome/background_wave_desktop_2x.png") 2x
+    );
   background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: auto;
-}
-
-@media screen and (min-resolution: 192dpi) {
-  .sectionWelcome {
-    background-image: url(../../../assets/images/welcome/backgr_welcome_mobile_2x.png);
-    background-size: 320px;
-  }
+  background-position: center top, left calc(50% + 590px) bottom;
+  background-size: 320px, 3200px 1150px;
 }
 
 @media screen and (min-width: 768px) {
   .sectionWelcome {
-    background-image: url(../../../assets/images/welcome/backgr_welcome_tablet_1x.png);
-    background-size: auto;
-  }
-  @media screen and (min-resolution: 192dpi) {
-    .sectionWelcome {
-      background-image: url(../../../assets/images/welcome/backgr_welcome_tablet_2x.png);
-      background-size: 768px;
-    }
+    background-image: image-set(
+        url("../../../assets/images/home/bottle_home_tablet_1x.png") 1x,
+        url("../../../assets/images/home/bottle_home_tablet_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/welcome/bubbles_welcome_tablet_1x.png") 1x,
+        url("../../../assets/images/welcome/bubbles_welcome_tablet_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/welcome/background_wave_desktop_1x.png") 1x,
+        url("../../../assets/images/welcome/background_wave_desktop_2x.png") 2x
+      );
+    background-size: 518px, 768px, 2664px 800px;
+    background-position: right calc(50% - 263px) bottom 50px, center top -70px,
+      left calc(50% + 350px) bottom;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .sectionWelcome {
-    background-image: url(../../../assets/images/bubbles_desktop_any_1x.png),
-      url(../../../assets/images/welcome/backgr_welcome_desktop_1x.png);
-    background-size: auto, auto;
-    background-position: center center, center bottom;
-  }
-  @media screen and (min-resolution: 192dpi) {
-    .sectionWelcome {
-      background-image: url(../../../assets/images/bubbles_desktop_any_2x.png),
-        url(../../../assets/images/welcome/backgr_welcome_desktop_2x.png);
-      background-size: 1404px, 1440px;
-    }
+    background-image: image-set(
+        url("../../../assets/images/signin/bottle_signin_tablet_1x.png") 1x,
+        url("../../../assets/images/signin/bottle_signin_tablet_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/bubbles_desktop_any_1x.png") 1x,
+        url("../../../assets/images/bubbles_desktop_any_2x.png") 2x
+      ),
+      image-set(
+        url("../../../assets/images/welcome/background_wave_desktop_1x.png") 1x,
+        url("../../../assets/images/welcome/background_wave_desktop_2x.png") 2x
+      );
+    background-size: 330px, 1404px, 100% 432px;
+    background-position: right calc(50% - 460px) bottom 30px, center center,
+      center bottom;
   }
 }
 
 /* ========== SECTION HOME ========*/
 .sectionHome {
   background-image: image-set(
-      url('../../../assets/images/home/bottle_home_mobile_1x.png') 1x,
-      url('../../../assets/images/home/bottle_home_mobile_2x.png') 2x
+      url("../../../assets/images/home/bottle_home_mobile_1x.png") 1x,
+      url("../../../assets/images/home/bottle_home_mobile_2x.png") 2x
     ),
     image-set(
-      url('../../../assets/images/home/bubbles_home_mobile_1x.png') 1x,
-      url('../../../assets/images/home/bubbles_home_mobile_2x.png') 2x
+      url("../../../assets/images/home/bubbles_home_mobile_1x.png") 1x,
+      url("../../../assets/images/home/bubbles_home_mobile_2x.png") 2x
     );
   background-size: 280px 208px, auto;
   background-position: left 50% top 104px, left 50% top 52px;
@@ -64,12 +75,12 @@
 @media screen and (min-width: 768px) {
   .sectionHome {
     background-image: image-set(
-        url('../../../assets/images/home/bottle_home_tablet_1x.png') 1x,
-        url('../../../assets/images/home/bottle_home_tablet_2x.png') 2x
+        url("../../../assets/images/home/bottle_home_tablet_1x.png") 1x,
+        url("../../../assets/images/home/bottle_home_tablet_2x.png") 2x
       ),
       image-set(
-        url('../../../assets/images/home/bubbles_home_tablet_1x.png') 1x,
-        url('../../../assets/images/home/bubbles_home_tablet_2x.png') 2x
+        url("../../../assets/images/home/bubbles_home_tablet_1x.png") 1x,
+        url("../../../assets/images/home/bubbles_home_tablet_2x.png") 2x
       );
     background-position: left 50% top 38px, left 50% top 24px;
     background-size: 518px 386px, auto;
@@ -83,13 +94,12 @@
 @media screen and (min-width: 1440px) {
   .sectionHome {
     background-image: image-set(
-        url('../../../assets/images/home/bottle_home_desktop_1x.png') 1x,
-        url('../../../assets/images/home/bottle_home_desktop_2x.png') 2x
+        url("../../../assets/images/home/bottle_home_desktop_1x.png") 1x,
+        url("../../../assets/images/home/bottle_home_desktop_2x.png") 2x
       ),
       image-set(
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
-
       );
     background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
     background-size: 738px 548px, auto;
@@ -102,53 +112,54 @@
 
 .sectionAuth {
   background-image: image-set(
-      url('../../../assets/images/signin/bottle_signin_mobile_1x.png') 1x,
-      url('../../../assets/images/signin/bottle_signin_mobile_2x.png') 2x
+      url("../../../assets/images/signin/bottle_signin_mobile_1x.png") 1x,
+      url("../../../assets/images/signin/bottle_signin_mobile_2x.png") 2x
     ),
     image-set(
-      url('../../../assets/images/signin/bubbles_signin_mobile_1x.png') 1x,
-      url('../../../assets/images/signin/bubbles_signin_mobile_2x.png') 2x
+      url("../../../assets/images/signin/bubbles_signin_mobile_1x.png") 1x,
+      url("../../../assets/images/signin/bubbles_signin_mobile_2x.png") 2x
     );
-  height: calc(100vh - 60px);
-
+  height: calc(89vh);
+  padding-top: 24px;
   background-size: 280px 210px, auto;
-  background-position: left 50% bottom 0, left 50% top 22px;
+  background-position: left 50% top 350px, left 50% top 22px;
   background-repeat: no-repeat;
 }
 
 @media screen and (min-width: 768px) {
   .sectionAuth {
     background-image: image-set(
-        url('../../../assets/images/signin/bottle_signin_tablet_1x.png') 1x,
-        url('../../../assets/images/signin/bottle_signin_tablet_2x.png') 2x
+        url("../../../assets/images/signin/bottle_signin_tablet_1x.png") 1x,
+        url("../../../assets/images/signin/bottle_signin_tablet_2x.png") 2x
       ),
       image-set(
-        url('../../../assets/images/signin/bubbles_signin_tablet_1x.png') 1x,
-        url('../../../assets/images/signin/bubbles_signin_tablet_2x.png') 2x
+        url("../../../assets/images/signin/bubbles_signin_tablet_1x.png") 1x,
+        url("../../../assets/images/signin/bubbles_signin_tablet_2x.png") 2x
       );
-    height: calc(100vh - 40px);
+    height: calc(100vh - 64px);
     padding-top: 40px;
+    background-size: 656px 548px, auto;
+    background-position: left calc(50% + 60px) top 30px,
+      left calc(50%) bottom -85px;
 
-    background-size: auto, auto;
-    background-position: left calc(100%) top 50px, left 50% top -60px;
     background-repeat: no-repeat;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .sectionHome {
+  .sectionAuth {
+    height: calc(100vh - 76px);
+
     background-image: image-set(
-        url('../../../assets/images/home/bottle_home_desktop_1x.png') 1x,
-        url('../../../assets/images/home/bottle_home_desktop_2x.png') 2x
+        url('../../../assets/images/signin/bottle_signin_desktop_1x.png') 1x,
+        url('../../../assets/images/signin/bottle_signin_desktop_2x.png') 2x
       ),
       image-set(
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
-
       );
-    background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
-    background-size: 738px 548px, auto;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    background-position: left calc(50% - 310px) top 6px, left calc(50%) top 34px;
+    background-size: 916px 680px, auto;
+    padding-top: 162px;
   }
 }

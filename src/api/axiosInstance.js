@@ -2,8 +2,7 @@ import axios from 'axios';
 import { store } from '../redux/store.js';
 
 const api = axios.create({
-  baseURL: 'https://connections-api.goit.global',
-  timeout: 5000,
+  baseURL: 'https://project-group-05-backend.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -1,12 +1,13 @@
 .userInfo {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .avatarPlaceholder {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: var(--secondary-color-red);
+  background-color: var(--secondary-color-light-blue300);
   color: white;
   display: flex;
   align-items: center;
@@ -15,14 +16,25 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-.button {
+.userName {
+  margin-right: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: right;
+  color: var(--primary-color-black);
+}
+.buttonDropDownMenu {
   background-color: transparent;
   border: none;
   display: flex;
   align-items: center;
   cursor: pointer;
-  display: inline-block;
 }
 
 @media (min-width: 768px) {
+  .userName {
+    font-size: 18px;
+    line-height: 1.33333;
+  }
 }
