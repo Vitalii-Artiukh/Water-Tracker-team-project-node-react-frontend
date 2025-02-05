@@ -91,6 +91,9 @@
   border-radius: 10px;
   padding: 6px 76px;
   width: 280px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
   background-color: var(--primary-color-blue);
   font-weight: 500;
@@ -107,6 +110,10 @@
 
 .btn:active {
   box-shadow: none;
+}
+
+.iconPlus {
+  color: #ffffff;
 }
 
 /* ========== TABLET ========*/

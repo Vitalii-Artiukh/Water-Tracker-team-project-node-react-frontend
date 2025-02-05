@@ -1,15 +1,18 @@
-// import { useAuthSelector } from "../../hooks/useAuthSelector";
-// import { useWaterSelector } from "../../hooks/useWaterSelector";
+import { useAuthSelector } from "../../hooks/useAuthSelector";
+import { useWaterSelector } from "../../hooks/useWaterSelector";
+import { selectUserDailyNorm } from "../../redux/auth/selectors";
+import Icon from "../ui/Icon";
 
 import css from "./WaterRatioPanel.module.css";
 
-const WaterRatioPanel = () => {
-  //   const { waterServings } = useWaterSelector(); // [] item
-  //   const { currentServing } = useWaterSelector(); // порція
-  //   const { user } = useAuthSelector(); // user {... dailyNorm}
+const WaterRatioPanel = ({onOpenModal}) => {
+    const { waterServings } = useWaterSelector(); // [] item
+    const { currentServing } = useWaterSelector(); // порція
+    const { user } = useAuthSelector(); // user {... dailyNorm}
+    const {dailyNorm} = useAuthSelector(selectUserDailyNorm);
 
   //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
-  const waterProgress = Math.round((880 / 1500) * 100);
+  const waterProgress = Math.round((880 / dailyNorm) * 100);
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
   return (
@@ -65,8 +68,9 @@ const WaterRatioPanel = () => {
       <button
         className={css.btn}
         type="button"
-        onClick={() => console.log("Add Water")}
+        onClick={onOpenModal}
       >
+        <Icon className={css.iconPlus} name={"icon-plus-small-v2"} stroke={"#ffffff"} fill={"#ffffff"}/>
         Add Water
       </button>
     </div>
