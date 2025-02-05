@@ -1,6 +1,7 @@
 import { useAuthSelector } from "../../hooks/useAuthSelector";
 import { useWaterSelector } from "../../hooks/useWaterSelector";
 import { selectUserDailyNorm } from "../../redux/auth/selectors";
+import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon";
 import ModalContainer from "../ui/ModalContainer/ModalContainer";
 
@@ -71,14 +72,16 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
           </div>
         </div>
       </div>
-      <button
+      <Button className={css.btnAdd} onClick={onOpen}><Icon className={css.iconPlus} name={"icon-plus-circle"} stroke={"#ffffff"} fill={"#ffffff"}/>
+        Add Water</Button>
+      {/* <button
         className={css.btn}
         type="button"
         onClick={onOpen}
       >
         <Icon className={css.iconPlus} name={"icon-plus-circle"} stroke={"#ffffff"} fill={"#ffffff"}/>
         Add Water
-      </button>
+      </button> */}
       {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />}
     </div>
   );
