@@ -125,10 +125,11 @@
         url('../../../assets/images/signin/bubbles_signin_tablet_1x.png') 1x,
         url('../../../assets/images/signin/bubbles_signin_tablet_2x.png') 2x
       );
-    height: calc(100vh - 160px);
+    height: calc(100vh - 64px);
     padding-top: 40px;
     background-size: 656px 548px, auto;
-    background-position: left 140px top 30px, left 50% top 22px;
+    background-position: left calc(50% + 60px) top 30px,
+      left calc(50%) bottom -85px;
 
     background-repeat: no-repeat;
   }
@@ -136,7 +137,7 @@
 
 @media screen and (min-width: 1440px) {
   .sectionAuth {
-    height: calc(100vh);
+    height: calc(100vh - 76px);
 
     background-image: image-set(
         url('../../../assets/images/signin/bottle_signin_desktop_1x.png') 1x,
@@ -146,7 +147,7 @@
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
       );
-    background-position: left calc(50% - 310px) top 6px, left 60% top 34px;
+    background-position: left calc(50% - 310px) top 6px, left calc(50%) top 34px;
     background-size: 916px 680px, auto;
     padding-top: 162px;
   }
