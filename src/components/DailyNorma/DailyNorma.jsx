@@ -4,7 +4,7 @@ import { useAuthSelector } from "../../hooks/useAuthSelector";
 import { selectUserDailyNorm } from "../../redux/auth/selectors";
 import ModalContainer from "../ui/ModalContainer/ModalContainer";
 
-const DailyNorma = ({onOpenModal, isOpenModal, onCloseModal}) => {
+const DailyNorma = ({onOpen, isOpen, onClose}) => {
   // const dispatch = useDispatch();
   const {dailyNorm} = useAuthSelector(selectUserDailyNorm);
 
@@ -19,12 +19,12 @@ const DailyNorma = ({onOpenModal, isOpenModal, onCloseModal}) => {
         <button
           className={css.btn}
           type="button"
-          onClick={onOpenModal}
+          onClick={onOpen}
         >
           Edit
         </button>
-        {isOpenModal && <ModalContainer isOpen={isOpenModal} onCloseModal={onCloseModal} />}
       </div>
+      {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />}
     </div>
   );
 };

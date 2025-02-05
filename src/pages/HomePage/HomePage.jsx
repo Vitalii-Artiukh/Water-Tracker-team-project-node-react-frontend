@@ -5,21 +5,21 @@ import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 // import css from "./HomePage.module.css";
 
 const HomePage = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const onOpenModal = () => {
-    setIsOpenModal(true)
+  const onOpen = () => {
+    setIsOpen(true)
   };
 
-  const onCloseModal = () => {
-    setIsOpenModal(false)
+  const onClose = () => {
+    setIsOpen(false)
   };
 
 
   return (
     <>
-      <DailyNorma onOpenModal={onOpenModal} isOpen={isOpenModal} onClose={onCloseModal}/>
-      <WaterRatioPanel onOpenModal={onOpenModal} isOpen={isOpenModal} onClose={onCloseModal}/>
+      <DailyNorma onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
+      <WaterRatioPanel onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
       {/* <p>Today Water List</p>
       <p>Month Stats Table</p> */}
     </>
