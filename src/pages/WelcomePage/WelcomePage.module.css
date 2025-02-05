@@ -1,0 +1,22 @@
+.wrapper {
+  padding-top: 24px;
+  padding-bottom: 40px;
+  background-color: #ffffff00;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding-top: 40px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    display: flex;
+    gap: 81px;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 140px 0 294px 0;
+  }
+}

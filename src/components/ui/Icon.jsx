@@ -7,7 +7,7 @@ const Icon = ({
 }) => {
   return (
     <svg width={width} height={height} fill={fill} stroke={stroke}>
-      <use href={`/public/sprite.svg#${name}`}></use>
+      <use href={`/sprite.svg#${name}`}></use>
     </svg>
   );
 };

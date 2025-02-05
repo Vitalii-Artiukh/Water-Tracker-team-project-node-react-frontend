@@ -5,9 +5,9 @@ export const signUp = createAsyncThunk(
   'auth/signUp',
   async (userCredits, thunkAPI) => {
     try {
-      await api.post('/users/signup', userCredits);
+      await api.post('/auth/signup', userCredits);
 
-      const { data } = await api.post('/users/login', userCredits);
+      const { data } = await api.post('/auth/login', userCredits);
 
       return data;
     } catch (error) {
@@ -20,7 +20,7 @@ export const signIn = createAsyncThunk(
   'auth/signIn',
   async (userCredits, thunkAPI) => {
     try {
-      const { data } = await api.post('/users/login', userCredits);
+      const { data } = await api.post('/auth/login', userCredits);
 
       return data;
     } catch (error) {
@@ -31,7 +31,7 @@ export const signIn = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.post('/users/logout');
+    await api.post('/auth/logout');
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -41,9 +41,9 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const { data } = await api.patch('/auth', userData);
+      const { data } = await api.patch('/user/update', userData);
 
-      return data;
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -57,7 +57,7 @@ export const updateUserAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append('avatar', file);
 
-      const { data } = api.post('auth/avatar', formData, {
+      const { data } = api.post('user/update-avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -80,7 +80,7 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      const { data } = await api.get('/users/current');
+      const { data } = await api.get('/user/current');
 
       return data;
     } catch (error) {
