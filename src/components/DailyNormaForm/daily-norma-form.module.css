@@ -1,51 +1,11 @@
-.title {
-  font-weight: 500;
-  font-size: 26px;
-  margin-bottom: 24px;
+.buttonWrapper {
+  text-align: right;
 }
-
-.formulaWrapper {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
+.waterDay {
+  margin-bottom: 26px;
 }
-
-@media (max-width: 420px) {
-  .formulaWrapper {
-    gap: 12px;
-  }
-}
-
-.formula {
+.waterDayValue {
   font-size: 18px;
+  font-weight: 700;
   color: var(--primary-color-blue);
-}
-
-.formulaComment {
-  border: 1px solid var(--secondary-color-light-blue200);
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 24px;
-  font-size: 12px;
-  line-height: 16px;
-  color: #8f8f8f;
-  box-sizing: border-box;
-}
-
-.formulaCommentStar {
-  color: var(--primary-color-blue);
-}
-button {
-  width: 100px;
-  padding: 10px;
-  background-color: var(--primary-color-blue);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  align-self: flex-end;
-}
-button:hover {
-  background-color: var(--primary-color-blue);
 }

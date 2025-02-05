@@ -20,14 +20,6 @@ const DailyNormaFormHeading = () => {
         of active sports, or another type of activity commensurate in terms of
         loads (in the absence of these, you must set 0)
       </p>
-      <div className="radio-group">
-        <label className="radio-label">
-          <input type="radio" name="gender" value="woman" checked /> For woman
-        </label>
-        <label className="radio-label">
-          <input type="radio" name="gender" value="man" /> For man
-        </label>
-      </div>
     </>
   );
 };

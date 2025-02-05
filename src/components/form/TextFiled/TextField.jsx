@@ -15,7 +15,7 @@ const TextField = ({ label, bold, error, ...props }) => {
       )}
       <Field
         id={id}
-        className={clsx(styles.fied, error && styles.error)}
+        className={clsx(styles.field, error && styles.error)}
         {...props}
       />
       {error && <p className={styles.errorText}>Error text</p>}

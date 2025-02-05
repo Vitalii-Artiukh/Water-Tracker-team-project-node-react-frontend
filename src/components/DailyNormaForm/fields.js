@@ -19,4 +19,18 @@ export const fields = {
     placeholder: "water you will drink",
     bold: true,
   },
+  gender: {
+    title: "Calculate your rate:",
+    name: "gender",
+    items: [
+      {
+        value: "woman",
+        label: "For woman",
+      },
+      {
+        value: "man",
+        label: "For man",
+      },
+    ],
+  },
 };
