@@ -5,7 +5,7 @@ const UserLogoModal = () => {
   return (
     <ul className={css.dropDownMenu}>
       <li>
-        <button type="button" className={css.dropDownText}>
+        <button type="button" className={css.dropDownButton}>
           <Icon
             name="icon-settings"
             fill="transparent"
@@ -17,7 +17,7 @@ const UserLogoModal = () => {
         </button>
       </li>
       <li>
-        <button type="button" className={css.dropDownText}>
+        <button type="button" className={css.dropDownButton}>
           <Icon
             name="icon-logout"
             fill="transparent"
