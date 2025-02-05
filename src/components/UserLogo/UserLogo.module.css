@@ -6,7 +6,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: var(--secondary-color-red);
+  background-color: var(--secondary-color-light-blue300);
   color: white;
   display: flex;
   align-items: center;
@@ -15,7 +15,10 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-.button {
+.userName {
+  margin-right: 8px;
+}
+.buttonDropDownMenu {
   background-color: transparent;
   border: none;
   display: flex;

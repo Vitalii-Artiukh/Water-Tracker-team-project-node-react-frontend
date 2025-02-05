@@ -33,24 +33,14 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
-        // state.user = action.payload.user;
-        state.user = {
-          ...action.payload.user,
-          gender: "woman",
-          dailyNorm: 1500,
-          avatarUrl: null,
-        };
+        const { _id, ...userData } = action.payload.user;
+        state.user = userData;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        // state.user = action.payload.user;
-        state.user = {
-          ...action.payload.user,
-          gender: "woman",
-          dailyNorm: 1500,
-          avatarUrl: null,
-        };
+        const { _id, ...userData } = action.payload.user;
+        state.user = userData;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -63,26 +53,19 @@ const authSlice = createSlice({
         }, {});
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
-        state.user = action.payload;
+        const { _id, ...userData } = action.payload;
+        state.user = userData;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        // IF USER
-        // state.user = action.payload
-        // IF AVATAR URL
-        state.user.avatarUrl = action.payload;
+        state.user.avatarUrl = action.payload.avatar;
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        // state.user = action.payload.user;
-        state.user = {
-          ...action.payload.user,
-          gender: "woman",
-          dailyNorm: 1500,
-          avatarUrl: null,
-        };
+        const { _id, ...userData } = action.payload;
+        state.user = userData;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state) => {
