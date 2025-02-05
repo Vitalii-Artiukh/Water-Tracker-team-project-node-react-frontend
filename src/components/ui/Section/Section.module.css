@@ -125,7 +125,7 @@
         url('../../../assets/images/signin/bubbles_signin_tablet_1x.png') 1x,
         url('../../../assets/images/signin/bubbles_signin_tablet_2x.png') 2x
       );
-    height: 84vh;
+    height: calc(100vh - 160px);
     padding-top: 40px;
     background-size: 656px 548px, auto;
     background-position: left 140px top 30px, left 50% top 22px;
@@ -136,7 +136,7 @@
 
 @media screen and (min-width: 1440px) {
   .sectionAuth {
-    height: 90vh;
+    height: calc(100vh);
 
     background-image: image-set(
         url('../../../assets/images/signin/bottle_signin_desktop_1x.png') 1x,
