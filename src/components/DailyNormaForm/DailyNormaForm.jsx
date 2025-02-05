@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import DailyNormaFormHeading from "./DailyNormaFormHeading/DailyNormaFormHeading";
 
 import TextField from "../form/TextFiled/TextField";
+import Button from "../Button/Button";
 
 import { fields } from "./fields";
 
@@ -19,9 +20,7 @@ const DailyNormaForm = () => {
             <TextField {...fields.weight} />
             <TextField {...fields.time} />
             <TextField {...fields.water} />
-            <button type="submit" className="save-button">
-              Save
-            </button>
+            <Button>Save</Button>
           </Form>
         )}
       </Formik>
