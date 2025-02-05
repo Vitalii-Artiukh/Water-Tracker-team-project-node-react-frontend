@@ -28,9 +28,9 @@ const UserLogo = ({ toggleDropdown }) => {
         <Icon
           name="icon-chevron-down"
           fill="#407bff"
-          stroke="#407bff"
-          width={28}
-          height={28}
+          stroke="transperent"
+          width={21}
+          height={21}
         ></Icon>
       </button>
     </div>
