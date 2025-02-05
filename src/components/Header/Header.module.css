@@ -1,6 +1,8 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
 }
 
 .userInfo > *:nth-child(2) {
@@ -20,7 +22,7 @@
 
 @media (min-width: 768px) {
   .header {
-    padding: 16px 32px 40px;
+    padding-top: 16px;
   }
 
   .signIn {
@@ -30,7 +32,7 @@
 
 @media (min-width: 1440px) {
   .header {
-    padding: 16px 112px 0;
+    padding-top: 16px;
   }
 
   .signIn {
