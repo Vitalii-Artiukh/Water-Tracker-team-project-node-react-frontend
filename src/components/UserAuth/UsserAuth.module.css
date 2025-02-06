@@ -9,3 +9,10 @@
   line-height: 1.25;
   color: var(--primary-color-blue);
 }
+
+@media (min-width: 768px) {
+  .signIn {
+    font-size: 18px;
+    line-height: 1.33333;
+  }
+}

@@ -3,7 +3,7 @@
   gap: 4px;
   align-items: center;
 }
-.text {
+.textLogo {
   font-weight: 700;
   font-size: 12px;
   text-transform: uppercase;
@@ -11,10 +11,6 @@
   width: 58px;
 }
 @media (min-width: 768px) {
-  .text {
-    font-size: 14px;
-    width: 80px;
-  }
 }
 @media (min-width: 1440px) {
 }
