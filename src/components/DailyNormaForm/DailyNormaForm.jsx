@@ -1,12 +1,8 @@
 import { Formik, Form } from "formik";
 
-import DailyNormaFormHeading from "./DailyNormaFormHeading/DailyNormaFormHeading";
-
-import TextField from "../form/TextFiled/TextField";
-import RadioGroup from "../form/RadioGroup/RadioGroup";
+import TextField from "../ui/TextFiled/TextField";
+import RadioGroup from "../ui/RadioGroup/RadioGroup";
 import Button from "../ui/Button/Button";
-
-import { fields } from "./fields";
 
 import styles from "./daily-norma-form.module.css";
 const calcDailyNorma = ({ gender, weight, time }) => {
@@ -18,7 +14,23 @@ const calcDailyNorma = ({ gender, weight, time }) => {
 const DailyNormaForm = () => {
   return (
     <div>
-      <DailyNormaFormHeading />
+      <h3 className={styles.title}>My daily norma</h3>
+      <div className={styles.formulaWrapper}>
+        <p>
+          For girl:
+          <span className={styles.formula}>V=(M*0,03) + (T*0,4)</span>
+        </p>
+        <p>
+          For man:
+          <span className={styles.formula}>V=(M*0,04) + (T*0,6)</span>
+        </p>
+      </div>
+      <p className={styles.formulaComment}>
+        <span className={styles.formulaCommentStar}>*</span> V is the volume of
+        the water norm in liters per day, M is your body weight, T is the time
+        of active sports, or another type of activity commensurate in terms of
+        loads (in the absence of these, you must set 0)
+      </p>
 
       <Formik
         initialValues={{ gender: "woman", weight: "0", time: "0", water: "0" }}
@@ -47,3 +59,39 @@ const DailyNormaForm = () => {
 };
 
 export default DailyNormaForm;
+const fields = {
+  weight: {
+    label: "Your weight in kilograms:",
+    name: "weight",
+    type: "text",
+    placeholder: "weight in kilograms",
+  },
+  time: {
+    label:
+      "The time of active participation in sports or other activities with a high physical. load in hours:",
+    name: "time",
+    type: "text",
+    placeholder: "time of active",
+  },
+  water: {
+    label: "Write down how much water you will drink:",
+    name: "water",
+    type: "text",
+    placeholder: "water you will drink",
+    bold: true,
+  },
+  gender: {
+    title: "Calculate your rate:",
+    name: "gender",
+    items: [
+      {
+        value: "woman",
+        label: "For woman",
+      },
+      {
+        value: "man",
+        label: "For man",
+      },
+    ],
+  },
+};
