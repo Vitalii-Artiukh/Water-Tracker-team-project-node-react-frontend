@@ -1,23 +1,30 @@
 .ReactModal__Body,
 .ReactModal__Html {
   overflow: hidden;
+  opacity: 1;
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 24px 13px;
-  width: 280px;
-  height: 188px;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: var(--primary-color-white);
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
+  object-fit: cover;
+  /* overflow: hidden; */
   border-radius: 10px;
   z-index: 999;
+  /* opacity: 0;
+  pointer-events: none; */
+  transition: opacity 1200 ease-in-out;
 }
+
+/* .modalOpacity {
+  opacity: 1;
+  pointer-events: all;
+} */
 
 .modalText {
   color: var(--primary-color-black);

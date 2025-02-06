@@ -1,4 +1,3 @@
-import { useCallback, useEffect } from "react";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import MonthStatsListItem from "../MonthStatsListItem/MonthStatsListItem";
 import css from "./MonthStatsList.module.css";
@@ -13,7 +12,7 @@ const MonthStatsList = ({
   const onShowModal = (e) => {
     const el = e.target;
     const elHeight = el.closest("li").offsetHeight;
-    const elWidth = el.closest("li").offsetWidth;
+    const listWidth = el.closest("ul").offsetWidth;
     const cords = el.getBoundingClientRect();
     const currentDay = Number(el.childNodes[0].data);
 
@@ -22,15 +21,11 @@ const MonthStatsList = ({
     setModalData({
       ...modalData,
       cords: cords,
-      currentElWidth: elWidth,
+      listWidth: listWidth,
       currentElHeight: elHeight,
       currentDay: currentDay,
     });
   };
-
-  const onCloseModal = useCallback(() => {
-    setIsShowModal(false);
-  }, [setIsShowModal]);
 
   return (
     <>
@@ -41,11 +36,14 @@ const MonthStatsList = ({
           </li>
         ))}
       </ul>
-      <DaysGeneralStats
-        isOpen={isOpen}
-        modalData={modalData}
-        onCloseModal={onCloseModal}
-      />
+      {isOpen && (
+        <DaysGeneralStats
+          isOpen={isOpen}
+          modalData={modalData}
+          // onCloseModal={onCloseModal}
+          setIsShowModal={setIsShowModal}
+        />
+      )}
     </>
   );
 };
