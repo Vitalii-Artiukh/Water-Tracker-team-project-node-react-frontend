@@ -1,5 +1,6 @@
 import {useState} from "react";
 import moment from "moment";
+import ModalContainer from "../../components/ui/ModalContainer/ModalContainer.jsx";
 
 
 const WaterPage = () => {
@@ -34,37 +35,39 @@ const WaterPage = () => {
 
     return (
         <>
-            <div>
+            <ModalContainer isOpen={true}>
                 <div>
-                    <div className='form-title'>Add form</div>
-                    <div className='form-title'>X</div>
-                </div>
-
-                <div className='form-item'>
-                    <p>Choose a value : </p>
                     <div>
-                        Amount of water
-                        <button onClick={decreaseAmountOfWater}>-</button>
+                        <div className='form-title'>Add form</div>
+                        <div className='form-title'>X</div>
+                    </div>
+
+                    <div className='form-item'>
+                        <p>Choose a value : </p>
+                        <div>
+                            Amount of water
+                            <button onClick={decreaseAmountOfWater}>-</button>
+                            {amountOfWater} ml
+                            <button onClick={increaseAmountOfWater}>+</button>
+                        </div>
+                    </div>
+                    <div className='form-item'>
+                        <p>Recording time:</p>
+                        <input type="text" value={time} onChange={(e) => {
+                            setTime(e.target.value)
+                        }}/>
+                    </div>
+                    <div className='form-item'>
+                        <p>Enter the value of the water used:</p>
+                        <input type="number" onChange={setAmountOfWaterFromInput} value={amountOfWater}/>
+                    </div>
+
+                    <div>
                         {amountOfWater} ml
-                        <button onClick={increaseAmountOfWater}>+</button>
+                        <button onClick={save}>Save</button>
                     </div>
                 </div>
-                <div className='form-item'>
-                    <p>Recording time:</p>
-                    <input type="text" value={time} onChange={(e)=>{
-                        setTime(e.target.value)
-                    }}/>
-                </div>
-                <div className='form-item'>
-                    <p>Enter the value of the water used:</p>
-                    <input type="number" onChange={setAmountOfWaterFromInput} value={amountOfWater}/>
-                </div>
-
-                <div>
-                    {amountOfWater} ml
-                    <button onClick={save}>Save</button>
-                </div>
-            </div>
+            </ModalContainer>
         </>
     );
 };
