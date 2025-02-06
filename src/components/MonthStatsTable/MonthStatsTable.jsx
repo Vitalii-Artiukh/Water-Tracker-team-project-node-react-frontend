@@ -39,28 +39,6 @@ const MonthStatsTable = () => {
     setMonth((prev) => prev - 1);
   };
 
-  const onShowModal = (e) => {
-    const el = e.target;
-    const elHeight = el.closest("li").offsetHeight;
-    const elWidth = el.closest("li").offsetWidth;
-    const cords = el.getBoundingClientRect();
-    const currentDay = Number(el.childNodes[0].data);
-
-    setIsShowModal(true);
-
-    setModalData({
-      ...modalData,
-      cords: cords,
-      currentElWidth: elWidth,
-      currentElHeight: elHeight,
-      currentDay: currentDay,
-    });
-  };
-
-  const onCloseModal = () => {
-    setIsShowModal(false);
-  };
-
   return (
     <div className={css.container}>
       <MonthStatsBar
@@ -73,10 +51,10 @@ const MonthStatsTable = () => {
       />
       <MonthStatsList
         days={days}
-        onShowModal={onShowModal}
-        onCLoseModal={onCloseModal}
-        modalData={modalData}
         isOpen={isShowModal}
+        modalData={modalData}
+        setModalData={setModalData}
+        setIsShowModal={setIsShowModal}
       />
     </div>
   );

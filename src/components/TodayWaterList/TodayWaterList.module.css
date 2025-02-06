@@ -45,12 +45,6 @@
   background: var(--secondary-color-light-blue300);
 }
 
-/* .container:hover > .list::-webkit-scrollbar-track {
-  width: 4px;
-  background-color: var(--secondary-color-light-blue200);
-  border-radius: 8px;
-} */
-
 .button {
   display: inline-flex;
   justify-content: space-between;

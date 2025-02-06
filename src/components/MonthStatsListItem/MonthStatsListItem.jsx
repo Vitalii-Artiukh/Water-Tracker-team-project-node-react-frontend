@@ -1,14 +1,6 @@
-import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import css from "./MonthStatsListItem.module.css";
 
-const MonthStatsListItem = ({
-  day,
-  onShowModal,
-  isOpen,
-  modalData,
-  onCLoseModal,
-}) => {
-  const { currentDay } = modalData;
+const MonthStatsListItem = ({ day, onShowModal }) => {
   return (
     <>
       <div className={css.wrapper}>
@@ -16,14 +8,6 @@ const MonthStatsListItem = ({
           {day}
         </div>
         <span className={css.text}>100%</span>
-
-        {currentDay === day && (
-          <DaysGeneralStats
-            isOpen={isOpen}
-            modalData={modalData}
-            onCLoseModal={onCLoseModal}
-          />
-        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import ReactModal from "react-modal";
 import { useMatchMedia } from "../../hooks/useMatchMedia";
 import css from "./DaysGeneralStats.module.css";
+import { useEffect } from "react";
 
 const customStyles = {
   overlay: {
@@ -27,48 +28,40 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-const DaysGeneralStats = ({ modalData }) => {
+const DaysGeneralStats = ({ isOpen, onCloseModal, modalData }) => {
   const { isMobile, isTablet } = useMatchMedia();
-  const { overlay, content } = customStyles;
+  const { content } = customStyles;
   const { cords, currentElHeight } = modalData;
-
-  const styles = {
-    top: 0 - 188 - 14 + "px",
-  };
 
   if (cords && currentElHeight) {
     if (isMobile) {
-      overlay.top =
-        modalData.cords.top -
-        parseInt(content.height) -
-        modalData.currentElHeight +
-        "px";
+      cords.top > parseInt(content.height) + 14
+        ? (content.top = cords.top - parseInt(content.height) - 14 + "px")
+        : (content.top = cords.top + currentElHeight + 14 + "px");
     }
     if (isTablet) {
       console.log(modalData.cords.left);
     }
   }
 
+  useEffect(() => {
+    const onCloseByScroll = () => {
+      window.addEventListener("scroll", onCloseModal);
+    };
+
+    onCloseByScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onCloseModal);
+    };
+  }, [onCloseModal]);
+
   return (
-    // <ReactModal
-    //   isOpen={isOpen}
-    //   onRequestClose={onCloseModal}
-    //   style={customStyles}
-    //   bodyOpenClassName={css.ReactModal__Body}
-    // >
-    //   <p style={{ color: "var(--primary-color-blue)" }}>5, April</p>
-    //   <p className={css.modalText}>
-    //     Daily norma: <span className={css.modalSpan}>1.5 L</span>
-    //   </p>
-    //   <p className={css.modalText}>
-    //     Fulfillment of the daily norm:{" "}
-    //     <span className={css.modalSpan}>100%</span>
-    //   </p>
-    //   <p className={css.modalText}>
-    //     How many servings of water: <span className={css.modalSpan}>6</span>
-    //   </p>
-    // </ReactModal>
-    <div className={css.modal} style={{ ...styles }}>
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={onCloseModal}
+      style={customStyles}
+    >
       <p style={{ color: "var(--primary-color-blue)" }}>5, April</p>
       <p className={css.modalText}>
         Daily norma: <span className={css.modalSpan}>1.5 L</span>
@@ -80,7 +73,7 @@ const DaysGeneralStats = ({ modalData }) => {
       <p className={css.modalText}>
         How many servings of water: <span className={css.modalSpan}>6</span>
       </p>
-    </div>
+    </ReactModal>
   );
 };
 
