@@ -7,14 +7,7 @@ const SignupPage = () => {
 
   const handleSubmit = async (values) => {
     const { confirmPassword, ...formData } = values;
-
-    console.log("Форма отправлена", formData);
-    try {
-      await dispatch(signUp(formData)).unwrap();
-    } catch (error) {
-      console.error("Ошибка регистрации:", error);
-      alert(`Ошибка регистрации: ${error.message}`);
-    }
+    dispatch(signUp(formData));
   };
 
   return <AuthForm title="Sign Up" type="signUp" onSubmit={handleSubmit} />;
