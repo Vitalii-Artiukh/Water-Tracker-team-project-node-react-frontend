@@ -16,6 +16,8 @@ export const MONTHS = {
 export const getDayMonthDate = date => {
   const [_, month, day] = date.split('-');
 
+  if (!month || !day) return;
+
   const formattedMonth = Object.entries(MONTHS).find(
     ([_, value]) => value === month
   );
