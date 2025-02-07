@@ -57,7 +57,7 @@ export const updateUserAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append('avatar', file);
 
-      const { data } = api.post('user/update-avatar', formData, {
+      const { data } = api.post('/user/update-avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

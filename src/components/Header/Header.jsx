@@ -10,10 +10,10 @@ import UserLogoModal from '../UserLogoModal/UserLogoModal';
 
 const Header = () => {
   const { isLoggedIn } = useAuthSelector();
-  const [isOpen, setIsOpen] = useState();
+  const [isOpenUserModal, setIsOpenUserModal] = useState(false);
 
   const toggleDropdown = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpenUserModal((prev) => !prev);
   };
   return (
     <Container>
@@ -21,8 +21,13 @@ const Header = () => {
         <Logo />
         {isLoggedIn ? (
           <div className={css.userFullInfo}>
-            <UserLogo toggleDropdown={toggleDropdown}></UserLogo>
-            {isOpen && <UserLogoModal />}
+            <UserLogo
+              toggleDropdown={toggleDropdown}
+              isOpenUserModal={isOpenUserModal}
+            ></UserLogo>
+            {isOpenUserModal && (
+              <UserLogoModal setIsOpenUserModal={setIsOpenUserModal} />
+            )}
           </div>
         ) : (
           <UserAuth />

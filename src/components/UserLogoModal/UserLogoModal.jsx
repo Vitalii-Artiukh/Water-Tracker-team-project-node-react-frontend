@@ -3,10 +3,13 @@ import Icon from '../ui/Icon';
 import css from './UserLogoModal.module.css';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
-const UserLogoModal = () => {
+const UserLogoModal = ({ setIsOpenUserModal }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const openLogoutModal = () => setIsLogoutModalOpen(true);
+  const openLogoutModal = () => {
+    setIsOpenUserModal(false);
+    setIsLogoutModalOpen(true);
+  };
   const closeLogoutModal = () => setIsLogoutModalOpen(false);
 
   return (
