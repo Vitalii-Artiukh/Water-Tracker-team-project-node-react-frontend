@@ -23,7 +23,7 @@ const addWaterSchema = yup.object().shape({
   time: yup
     .string()
     .required()
-    .matches(/[0-9]{1,2}/g, "Time must match the following pattern hh"),
+    .matches(/^(0|[1-9]|1[0-8])$/g, "Time must match the following pattern hh"),
   gender: yup
     .string()
     .required()
