@@ -8,16 +8,6 @@
   border-bottom: 1px solid var(--secondary-color-light-blue200);
 }
 
-/* .item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: var(--secondary-color-light-blue200);
-  width: 254px;
-  height: 0.5px;
-} */
-
 .waterStatsPanel {
   display: flex;
   align-items: center;
@@ -40,6 +30,13 @@
   font-size: 12px;
   line-height: 2;
   color: var(--primary-color-black);
+}
+
+.button {
+  padding: 0;
+  border: transparent;
+  background: transparent;
+  cursor: pointer;
 }
 
 .svg {

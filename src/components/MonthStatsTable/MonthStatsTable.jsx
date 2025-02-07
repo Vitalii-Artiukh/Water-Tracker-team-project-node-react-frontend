@@ -12,8 +12,9 @@ const MonthStatsTable = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [modalData, setModalData] = useState({
     cords: null,
-    listWidth: null,
     currentElHeight: null,
+    currentElWidth: null,
+    listCords: null,
     currentDay: null,
   });
 

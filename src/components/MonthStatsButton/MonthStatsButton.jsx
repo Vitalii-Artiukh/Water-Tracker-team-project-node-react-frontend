@@ -11,9 +11,6 @@ const MonthStatsButton = ({ rotate, handleClick }) => {
       }}
       onClick={handleClick}
     >
-      {/* <svg width={14} height={14}>
-        <use href={"/public/sprite.svg#icon-chevron-left"}></use>
-      </svg> */}
       <Icon name={"icon-chevron-left"} width={14} height={14} />
     </button>
   );

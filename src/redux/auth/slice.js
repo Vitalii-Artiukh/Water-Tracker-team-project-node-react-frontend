@@ -19,7 +19,7 @@ const authSlice = createSlice({
       avatarUrl: null,
     },
     token: null,
-    isLoggedIn: true,
+    isLoggedIn: false,
     isRefreshing: false,
     currentTheme: "light",
   },

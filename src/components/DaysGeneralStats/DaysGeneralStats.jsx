@@ -4,27 +4,47 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 import css from "./DaysGeneralStats.module.css";
 
 const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal }) => {
-  const { isMobile, isTablet } = useMatchMedia();
-  const ref = useRef(null);
+  const { isMobile, isTablet, isDesktop } = useMatchMedia();
+  const targetRef = useRef(null);
 
-  const { cords, currentElHeight } = modalData;
+  const { cords, listCords, currentElHeight, currentElWidth, currentDay } =
+    modalData;
 
   const styles = {
-    width: "280px",
     height: "188px",
   };
 
+  const popupRange = 14;
+
   if (cords && currentElHeight) {
     if (isMobile) {
+      styles.width = "280px";
       styles.left = "50%";
       styles.transform = "translateX(-50%)";
 
       cords.top > parseInt(styles.height) + 14
-        ? (styles.top = cords.top - parseInt(styles.height) - 14 + "px")
-        : (styles.top = cords.top + currentElHeight + 14 + "px");
+        ? (styles.top =
+            cords.top - parseInt(styles.height) - `${popupRange}` + "px")
+        : (styles.top = cords.top + currentElHeight + `${popupRange}` + "px");
     }
     if (isTablet) {
-      console.log(modalData.cords.left);
+      styles.width = "292px";
+      styles.transform = "translateX(0)";
+      styles.top = cords.top - parseInt(styles.height) + "px";
+
+      (currentDay <= 5) |
+      (currentDay >= 11 && currentDay <= 15) |
+      (currentDay >= 21 && currentDay <= 25) |
+      (currentDay === 31)
+        ? (styles.left = listCords.left - 3 + "px")
+        : (styles.left = listCords.right - parseInt(styles.width) - 6 + "px");
+    }
+    if (isDesktop) {
+      styles.width = "292px";
+      styles.transform = "translateX(0)";
+      styles.top = cords.top - parseInt(styles.height) + "px";
+      styles.left =
+        cords.left - parseInt(styles.width) + currentElWidth / 2 + "px";
     }
   }
 
@@ -34,7 +54,7 @@ const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal }) => {
     }
   }, [setIsShowModal, isOpen]);
 
-  useClickOutside(ref, () => {
+  useClickOutside(targetRef, () => {
     if (isOpen) setIsShowModal(false);
   });
 
@@ -51,7 +71,7 @@ const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal }) => {
   }, [onCloseModal]);
 
   return (
-    <div className={css.modal} style={{ ...styles }} ref={ref}>
+    <div className={css.modal} ref={targetRef} style={{ ...styles }}>
       <p style={{ color: "var(--primary-color-blue)" }}>5, April</p>
       <p className={css.modalText}>
         Daily norma: <span className={css.modalSpan}>1.5 L</span>

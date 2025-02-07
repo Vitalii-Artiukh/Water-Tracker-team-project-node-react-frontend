@@ -1,5 +1,6 @@
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import MonthStatsListItem from "../MonthStatsListItem/MonthStatsListItem";
+
 import css from "./MonthStatsList.module.css";
 
 const MonthStatsList = ({
@@ -11,9 +12,10 @@ const MonthStatsList = ({
 }) => {
   const onShowModal = (e) => {
     const el = e.target;
-    const elHeight = el.closest("li").offsetHeight;
-    const listWidth = el.closest("ul").offsetWidth;
     const cords = el.getBoundingClientRect();
+    const elHeight = el.closest("li").offsetHeight;
+    const elWidth = el.closest("li").offsetWidth;
+    const listCords = el.closest("ul").getBoundingClientRect();
     const currentDay = Number(el.childNodes[0].data);
 
     setIsShowModal(true);
@@ -21,9 +23,10 @@ const MonthStatsList = ({
     setModalData({
       ...modalData,
       cords: cords,
-      listWidth: listWidth,
       currentElHeight: elHeight,
+      currentElWidth: elWidth,
       currentDay: currentDay,
+      listCords: listCords,
     });
   };
 
@@ -40,7 +43,6 @@ const MonthStatsList = ({
         <DaysGeneralStats
           isOpen={isOpen}
           modalData={modalData}
-          // onCloseModal={onCloseModal}
           setIsShowModal={setIsShowModal}
         />
       )}

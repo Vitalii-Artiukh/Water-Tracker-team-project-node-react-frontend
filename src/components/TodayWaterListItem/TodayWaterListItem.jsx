@@ -12,8 +12,12 @@ const TodayWaterListItem = () => {
         <span className={css.itemTextTime}>14:00 PM</span>
       </div>
       <div className={css.iconsPanel}>
-        <Icon name={"icon-edit"} width={16} height={16} />
-        <Icon name={"icon-trash"} width={16} height={16} />
+        <button type="button" className={css.button}>
+          <Icon name={"icon-edit"} width={16} height={16} />
+        </button>
+        <button type="button" className={css.button}>
+          <Icon name={"icon-trash"} width={16} height={16} />
+        </button>
       </div>
     </div>
   );
