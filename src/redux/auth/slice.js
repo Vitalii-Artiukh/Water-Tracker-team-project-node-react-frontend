@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   logout,
   refreshUser,
@@ -10,7 +10,7 @@ import {
 } from './operations.js';
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     user: {
       name: null,
@@ -22,7 +22,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    currentTheme: 'light',
+    currentTheme: "light",
   },
 
   reducers: {
@@ -31,7 +31,7 @@ const authSlice = createSlice({
     },
   },
 
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
         const { _id, avatar, ...userData } = action.payload.user;
@@ -51,7 +51,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, state => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoggedIn = false;
         state.token = null;
         state.user = Object.keys(state.user).reduce((acc, key) => {
@@ -84,7 +84,7 @@ const authSlice = createSlice({
         };
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
       }),
 });
