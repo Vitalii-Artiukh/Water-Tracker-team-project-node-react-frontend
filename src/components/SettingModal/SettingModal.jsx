@@ -63,15 +63,15 @@ const SettingModal = ({ isOpen, onClose }) => {
   const handleSubmit = async (values, actions) => {
     const updatedFields = {};
 
-    if (values.name !== user.name) {
+    if (values.name && values.name !== user.name) {
       updatedFields.name = values.name;
     }
 
-    if (values.email !== user.email) {
+    if (values.email && values.email !== user.email) {
       updatedFields.email = values.email;
     }
 
-    if (values.gender !== user.gender) {
+    if (values.gender && values.gender !== user.gender) {
       updatedFields.gender = values.gender;
     }
 
@@ -92,9 +92,9 @@ const SettingModal = ({ isOpen, onClose }) => {
       await dispatch(updateUserData(updatedFields)).unwrap();
       actions.resetForm();
       onClose();
-      toast.success("Data successfully updated!");
+      toast.success("User data successfully updated!");
     } catch (error) {
-      toast.error(error?.message || "Data update error!");
+      toast.error(error?.message || "User data update error!");
     }
   };
 
