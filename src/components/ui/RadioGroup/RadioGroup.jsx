@@ -1,8 +1,8 @@
-import styles from "./radio-group.module.css";
-import { Field } from "formik";
+import styles from './RadioGroup.module.css';
+import { Field } from 'formik';
 
 const RadioGroup = ({ title, name, items, onChange }) => {
-  const elements = items.map((item) => (
+  const elements = items.map(item => (
     <div className={styles.wrapper} key={item.value}>
       <Field name={name} value={item.value} type="radio" onChange={onChange} />
       <span>{item.label}</span>

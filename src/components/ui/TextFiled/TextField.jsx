@@ -1,8 +1,8 @@
-import { useId } from "react";
-import { Field } from "formik";
-import clsx from "clsx";
+import { useId } from 'react';
+import { Field } from 'formik';
+import clsx from 'clsx';
 
-import styles from "./text-field.module.css";
+import styles from './TextField.module.css';
 
 const TextField = ({ label, bold, error, ...props }) => {
   const id = useId();

@@ -1,3 +1,45 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 32px 12px;
+  max-width: 280px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 32px 24px;
+    max-width: 704px;
+  }
+}
+
+@media screen and (max-width: 1439.98px) {
+  .modal {
+    position: absolute;
+    top: 40px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    max-width: 592px;
+  }
+}
+
 .title {
   font-weight: 500;
   font-size: 26px;
@@ -50,12 +92,28 @@
   margin-bottom: 20px;
 }
 
-.buttonWrapper {
-  text-align: right;
+@media screen and (min-width: 768px) {
+  .saveBtn {
+    display: block;
+    max-width: 160px;
+    margin-left: auto;
+  }
 }
+
+.closeBtn {
+  position: absolute;
+  top: 34px;
+  right: 18px;
+
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .waterDay {
   margin-bottom: 26px;
 }
+
 .waterDayValue {
   font-size: 18px;
   font-weight: 700;

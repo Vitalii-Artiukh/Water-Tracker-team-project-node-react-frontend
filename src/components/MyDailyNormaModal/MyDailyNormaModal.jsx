@@ -1,17 +1,19 @@
-import { Formik, Form } from "formik";
-import * as yup from "yup";
+import * as yup from 'yup';
+import { Formik, Form } from 'formik';
+import { useState } from 'react';
 
-import TextField from "../ui/TextFiled/TextField";
-import RadioGroup from "../ui/RadioGroup/RadioGroup";
-import Button from "../ui/Button/Button";
+import styles from './MyDailyNormaModal.module.css';
+import TextField from '../ui/TextFiled/TextField';
+import RadioGroup from '../ui/RadioGroup/RadioGroup';
+import Button from '../ui/Button/Button';
+import Icon from '../ui/Icon.jsx';
+import ModalContainer from '../ui/ModalContainer/ModalContainer';
+import { fields } from './dailyNormaModalFields.js';
 
-import styles from "./my-daily-norma-modal.module.css";
-import ModalContainer from "../ui/ModalContainer/ModalContainer";
-import { useState } from "react";
 const calcDailyNorma = ({ gender, weight, time }) => {
   if (!weight || !time) return 0;
-  const weightCoef = gender === "woman" ? 0.03 : 0.04;
-  const timeCoef = gender === "woman" ? 0.04 : 0.06;
+  const weightCoef = gender === 'woman' ? 0.03 : 0.04;
+  const timeCoef = gender === 'woman' ? 0.4 : 0.6;
   return (weight * weightCoef + time * timeCoef).toFixed(2);
 };
 const addWaterSchema = yup.object().shape({
@@ -23,11 +25,11 @@ const addWaterSchema = yup.object().shape({
   time: yup
     .string()
     .required()
-    .matches(/^(0|[1-9]|1[0-8])$/g, "Time must match the following pattern hh"),
+    .matches(/^(0|[1-9]|1[0-8])$/g, 'Time must match the following pattern hh'),
   gender: yup
     .string()
     .required()
-    .oneOf(["man", "woman"], "Gender can be either man or women"),
+    .oneOf(['man', 'woman'], 'Gender can be either man or women'),
   water: yup
     .number()
     .required()
@@ -38,8 +40,16 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
   const [userIsTyping, setUserIsTyping] = useState(false);
 
   return (
-    <ModalContainer isOpen={isOpen} closeModal={closeModal}>
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={closeModal}
+      className={styles.modal}
+      overlayClassName={styles.overlay}
+    >
       <div>
+        <button type="button" className={styles.closeBtn} onClick={closeModal}>
+          <Icon name={'icon-x-mark'} />
+        </button>
         <h3 className={styles.title}>My daily norma</h3>
         <div className={styles.formulaWrapper}>
           <p>
@@ -60,45 +70,45 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
 
         <Formik
           initialValues={{
-            gender: "woman",
-            weight: "0",
-            time: "0",
-            water: "0",
+            gender: 'woman',
+            weight: '0',
+            time: '0',
+            water: '0',
           }}
           validationSchema={addWaterSchema}
-          onSubmit={(values) => {}}
+          // onSubmit={values => {}}
         >
           {({ values, errors, setFieldValue, setFieldError }) => (
             <Form>
               <RadioGroup
                 {...fields.gender}
-                onChange={(evt) => {
-                  setFieldValue("gender", evt.target.value);
-                  setFieldError("water", null);
+                onChange={evt => {
+                  setFieldValue('gender', evt.target.value);
+                  setFieldError('water', null);
                   setUserIsTyping(false);
                 }}
                 error={errors.gender}
               />
               <TextField
                 {...fields.weight}
-                onChange={(evt) => {
-                  setFieldValue("weight", evt.target.value);
-                  setFieldError("water", null);
+                onChange={evt => {
+                  setFieldValue('weight', evt.target.value);
+                  setFieldError('water', null);
                   setUserIsTyping(false);
                 }}
                 error={errors.weight}
               />
               <TextField
                 {...fields.time}
-                onChange={(evt) => {
-                  setFieldValue("time", evt.target.value);
-                  setFieldError("water", null);
+                onChange={evt => {
+                  setFieldValue('time', evt.target.value);
+                  setFieldError('water', null);
                   setUserIsTyping(false);
                 }}
                 error={errors.time}
               />
               <p className={styles.waterDay}>
-                The required amount of water in liters per day:{" "}
+                The required amount of water in liters per day:{' '}
                 <span className={styles.waterDayValue}>
                   {userIsTyping ? values.water : calcDailyNorma(values)} L
                 </span>
@@ -106,15 +116,13 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
               <TextField
                 {...fields.water}
                 error={errors.water}
-                onChange={(evt) => {
-                  setFieldValue("water", evt.target.value);
+                onChange={evt => {
+                  setFieldValue('water', evt.target.value);
                   setUserIsTyping(true);
                 }}
                 value={userIsTyping ? values.water : calcDailyNorma(values)}
               />
-              <div className={styles.buttonWrapper}>
-                <Button width="160px">Save</Button>
-              </div>
+              <Button className={styles.saveBtn}>Save</Button>
             </Form>
           )}
         </Formik>
@@ -124,39 +132,3 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
 };
 
 export default MyDailyNormaModal;
-const fields = {
-  weight: {
-    label: "Your weight in kilograms:",
-    name: "weight",
-    type: "text",
-    placeholder: "weight in kilograms",
-  },
-  time: {
-    label:
-      "The time of active participation in sports or other activities with a high physical. load in hours:",
-    name: "time",
-    type: "text",
-    placeholder: "time of active",
-  },
-  water: {
-    label: "Write down how much water you will drink:",
-    name: "water",
-    type: "text",
-    placeholder: "water you will drink",
-    bold: true,
-  },
-  gender: {
-    title: "Calculate your rate:",
-    name: "gender",
-    items: [
-      {
-        value: "woman",
-        label: "For woman",
-      },
-      {
-        value: "man",
-        label: "For man",
-      },
-    ],
-  },
-};
