@@ -24,3 +24,9 @@ export const getDayMonthDate = date => {
 
   return `${Number(day)}, ${formattedMonth[0]}`;
 };
+
+export const getTodayDate = () => {
+  const todayDate = new Date().toISOString().split('T')[0];
+
+  return todayDate;
+};
