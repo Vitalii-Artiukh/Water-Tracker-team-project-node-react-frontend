@@ -12,6 +12,7 @@ import { fields } from './dailyNormaModalFields.js';
 import { getTodayDate } from '../../utils/dateUtils.js';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/index.js';
+import toast from 'react-hot-toast';
 
 const calcDailyNorma = ({ gender, weight, time }) => {
   if (!weight || !time) return 0;
@@ -42,6 +43,23 @@ const addWaterSchema = yup.object().shape({
 const MyDailyNormaModal = ({ isOpen, closeModal }) => {
   const [userIsTyping, setUserIsTyping] = useState(false);
   const dispatch = useDispatch();
+
+  const handleSubmit = async values => {
+    try {
+      await dispatch(
+        authOperations.updateUserWaterRate({
+          date: getTodayDate(),
+          dailyNorm: Number(values.water) * 1000,
+        })
+      ).unwrap();
+
+      toast.success('Your Daily Norma successfully updated!');
+
+      closeModal();
+    } catch (error) {
+      toast.error(`Registration failed: ${error}`);
+    }
+  };
 
   return (
     <ModalContainer
@@ -75,19 +93,12 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
         <Formik
           initialValues={{
             gender: 'woman',
-            weight: '0',
+            weight: '20',
             time: '0',
             water: '0',
           }}
           validationSchema={addWaterSchema}
-          onSubmit={values => {
-            dispatch(
-              authOperations.updateUserWaterRate({
-                date: getTodayDate(),
-                dailyNorm: Number(values.water) * 1000,
-              })
-            );
-          }}
+          onSubmit={handleSubmit}
         >
           {({ values, errors, setFieldValue, setFieldError }) => (
             <Form>
