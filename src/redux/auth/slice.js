@@ -34,7 +34,7 @@ const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
-        const { _id, avatar, ...userData } = action.payload;
+        const { _id, avatar, ...userData } = action.payload.user;
         state.user = {
           ...userData,
           avatarUrl: avatar,
@@ -43,7 +43,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        const { _id, avatar, ...userData } = action.payload;
+        const { _id, avatar, ...userData } = action.payload.user;
         state.user = {
           ...userData,
           avatarUrl: avatar,
