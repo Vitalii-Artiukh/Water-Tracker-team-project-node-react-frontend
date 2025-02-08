@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "../ui/Icon";
 import css from "./UserLogoModal.module.css";
 import UserLogoutModal from "../UserLogoutModal/UserLogoutModal";
-import SettingModal from "../Modals/SettingModal/SettingModal";
+import SettingModal from "../SettingModal/SettingModal";
 
 const UserLogoModal = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
