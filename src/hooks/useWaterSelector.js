@@ -2,13 +2,19 @@ import { useSelector } from 'react-redux';
 import { waterSelectors } from '../redux';
 
 export const useWaterSelector = () => {
-  const waterServings = useSelector(waterSelectors.selectWaterServings);
+  const monthStats = useSelector(waterSelectors.selectMonthStats);
+  const dailyRecords = useSelector(waterSelectors.selectDailyRecords);
   const currentServing = useSelector(waterSelectors.selectCurrentServing);
-  const isLoading = useSelector(waterSelectors.selectIsLoading);
+  const error = useSelector(waterSelectors.selectError);
+  const { monthLoading, dailyLoading, entrieLoading } = useSelector(
+    waterSelectors.selectLoading
+  );
 
   return {
-    waterServings,
+    monthStats,
+    dailyRecords,
     currentServing,
-    isLoading,
+    error,
+    isLoading: monthLoading || dailyLoading || entrieLoading,
   };
 };
