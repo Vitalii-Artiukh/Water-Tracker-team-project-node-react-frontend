@@ -2,6 +2,8 @@
 // import { useWaterSelector } from "../../hooks/useWaterSelector";
 
 import css from "./WaterRatioPanel.module.css";
+import {useState} from "react";
+import WaterForm from "../WaterForm/WaterForm.jsx";
 
 const WaterRatioPanel = () => {
   //   const { waterServings } = useWaterSelector(); // [] item
@@ -9,6 +11,7 @@ const WaterRatioPanel = () => {
   //   const { user } = useAuthSelector(); // user {... dailyNorm}
 
   //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
+   const [showWaterForm,setShowWaterForm] = useState(false);
   const waterProgress = Math.round((880 / 1500) * 100);
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
@@ -65,10 +68,11 @@ const WaterRatioPanel = () => {
       <button
         className={css.btn}
         type="button"
-        onClick={() => console.log("Add Water")}
+        onClick={() => setShowWaterForm(true)}
       >
         Add Water
       </button>
+        <WaterForm showWaterForm={showWaterForm} setShowWaterForm={setShowWaterForm} />
     </div>
   );
 };

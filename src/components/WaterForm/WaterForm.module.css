@@ -1,0 +1,183 @@
+.modalHeader {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.23;
+}
+
+.closeBtn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: relative;
+}
+
+.closeBtn:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1px;
+    width: 60%;
+    height: 1px;
+    background-color: var(--secondary-color-light-blue300);
+}
+
+.closeBtn:where(:focus, :hover, :active) {
+    outline: none;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.11;
+    padding: 24px 0;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.buttonRound {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #357afe;
+    background-color: white;
+    color: #357afe;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buttonRound:hover {
+    background-color: #9EBBFF;
+    color: white;
+}
+.amountOfWaterLabel {
+    padding: 10px 20px;
+    background-color: #dbe7fe;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #357afe;
+    text-align: center;
+}
+
+.amountOfWaterLabel:hover {
+    background-color: #c5d9fd;
+}
+
+.buttonCircleContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.formTextLabel{
+    font-size: 16px;
+}
+
+.inputError {
+    border-color: var(--secondary-color-red);
+    color: var(--secondary-color-red);
+}
+
+.inputField {
+    padding: 12px 10px;
+    /*margin-top: 5px;*/
+    font-size: 16px;
+    border: 1px solid var(--secondary-color-light-blue200);
+    border-radius: 6px;
+    color: var(--primary-color-blue);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputField:active,.inputField:focus{
+    border: 1px solid #c5d9fd;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.labelTime {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.formItemBlock{
+    margin-bottom: 30px;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.smallButton {
+    color: #357afe;
+    font-size: 14px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.saveButton {
+    background: #357afe;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.saveButton:hover {
+    background: #285dcf;
+}
+
+@media (min-width: 768px) {
+    .modalContent {
+        width: 592px;
+    }
+    .buttonGroup {
+        flex-direction: row-reverse;
+        justify-content: end;
+    }
+    .logoutBtn,
+    .cancelBtn {
+        max-width: 160px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .buttonGroup {
+        justify-content: start;
+    }
+}
