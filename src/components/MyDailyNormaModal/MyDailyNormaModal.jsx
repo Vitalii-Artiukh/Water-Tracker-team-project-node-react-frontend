@@ -9,6 +9,9 @@ import Button from '../ui/Button/Button';
 import Icon from '../ui/Icon.jsx';
 import ModalContainer from '../ui/ModalContainer/ModalContainer';
 import { fields } from './dailyNormaModalFields.js';
+import { getTodayDate } from '../../utils/dateUtils.js';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/index.js';
 
 const calcDailyNorma = ({ gender, weight, time }) => {
   if (!weight || !time) return 0;
@@ -38,6 +41,7 @@ const addWaterSchema = yup.object().shape({
 });
 const MyDailyNormaModal = ({ isOpen, closeModal }) => {
   const [userIsTyping, setUserIsTyping] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <ModalContainer
@@ -76,7 +80,14 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
             water: '0',
           }}
           validationSchema={addWaterSchema}
-          // onSubmit={values => {}}
+          onSubmit={values => {
+            dispatch(
+              authOperations.updateUserWaterRate({
+                date: getTodayDate(),
+                dailyNorm: Number(values.water) * 1000,
+              })
+            );
+          }}
         >
           {({ values, errors, setFieldValue, setFieldError }) => (
             <Form>
@@ -122,7 +133,18 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
                 }}
                 value={userIsTyping ? values.water : calcDailyNorma(values)}
               />
-              <Button className={styles.saveBtn}>Save</Button>
+              <Button
+                type="submit"
+                className={styles.saveBtn}
+                onClick={() => {
+                  setFieldValue(
+                    'water',
+                    userIsTyping ? values.water : calcDailyNorma(values)
+                  );
+                }}
+              >
+                Save
+              </Button>
             </Form>
           )}
         </Formik>

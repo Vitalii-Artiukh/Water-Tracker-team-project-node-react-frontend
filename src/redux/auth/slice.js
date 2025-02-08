@@ -70,7 +70,6 @@ const authSlice = createSlice({
         state.user.avatarUrl = action.payload.avatar;
       })
       .addCase(updateUserWaterRate.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.user.dailyNorm = action.payload.dailyNorm;
       })
       .addCase(refreshUser.pending, state => {
