@@ -13,7 +13,7 @@
 
 .modal {
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: var(--primary-color-white);
   max-width: 90vw;
   max-height: 90vh;
   overflow-y: auto;

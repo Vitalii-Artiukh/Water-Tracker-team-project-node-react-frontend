@@ -2,11 +2,12 @@ import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useAuthSelector } from "../../hooks/useAuthSelector";
 
-import SharedLayout from "@components/ui/SharedLayout";
-import PrivateRoute from "@components/PrivateRoute";
-import RestrictedRoute from "@components/RestrictedRoute.jsx";
-import { useDispatch } from "react-redux";
-import { authOperations } from "../../redux";
+import SharedLayout from '@components/ui/SharedLayout';
+import Notification from '@components/ui/Notification';
+import PrivateRoute from '@components/PrivateRoute';
+import RestrictedRoute from '@components/RestrictedRoute.jsx';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux';
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
@@ -22,6 +23,7 @@ function App() {
   }, [dispatch]);
   return (
     <>
+      <Notification />
       {isRefreshing ? (
         <p style={{ fontSize: "60px" }}>...Loading</p>
       ) : (

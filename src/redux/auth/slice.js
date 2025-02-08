@@ -6,7 +6,8 @@ import {
   signUp,
   updateUserAvatar,
   updateUserData,
-} from "./operations.js";
+  updateUserWaterRate,
+} from './operations.js';
 
 const authSlice = createSlice({
   name: "auth",
@@ -33,14 +34,20 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(signUp.fulfilled, (state, action) => {
-        const { _id, ...userData } = action.payload.user;
-        state.user = userData;
+        const { _id, avatar, ...userData } = action.payload.user;
+        state.user = {
+          ...userData,
+          avatarUrl: avatar,
+        };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        const { _id, ...userData } = action.payload.user;
-        state.user = userData;
+        const { _id, avatar, ...userData } = action.payload.user;
+        state.user = {
+          ...userData,
+          avatarUrl: avatar,
+        };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -53,19 +60,28 @@ const authSlice = createSlice({
         }, {});
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
-        const { _id, ...userData } = action.payload;
-        state.user = userData;
+        const { _id, avatar, ...userData } = action.payload;
+        state.user = {
+          ...userData,
+          avatarUrl: avatar,
+        };
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatarUrl = action.payload.avatar;
       })
-      .addCase(refreshUser.pending, (state) => {
+      .addCase(updateUserWaterRate.fulfilled, (state, action) => {
+        state.user.dailyNorm = action.payload.dailyNorm;
+      })
+      .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        const { _id, ...userData } = action.payload;
-        state.user = userData;
+        const { _id, avatar, ...userData } = action.payload;
+        state.user = {
+          ...userData,
+          avatarUrl: avatar,
+        };
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state) => {
