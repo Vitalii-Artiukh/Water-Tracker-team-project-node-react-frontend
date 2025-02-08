@@ -76,7 +76,7 @@ const SettingModal = ({ isOpen, onClose }) => {
     }
 
     if (values.newPassword && values.oldPassword) {
-      updatedFields.oldPassword = values.oldPassword;
+      updatedFields.password = values.oldPassword;
       updatedFields.newPassword = values.newPassword;
     } else if (values.newPassword || values.oldPassword) {
       return;
