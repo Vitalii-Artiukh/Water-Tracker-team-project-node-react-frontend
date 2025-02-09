@@ -2,23 +2,31 @@ import { useEffect, useRef, useState } from 'react';
 import Icon from '../ui/Icon';
 import css from './UserLogoModal.module.css';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
+import SettingModal from '../SettingModal/SettingModal';
 
 const UserLogoModal = ({ setIsOpenUserModal }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
   const modalRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setTimeout(() => setIsOpenUserModal(false), 0);
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !isSettingModalOpen &&
+        !isLogoutModalOpen
+      ) {
+        setIsOpenUserModal(false);
       }
     };
 
-    document.addEventListener('mouseup', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('mouseup', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [setIsOpenUserModal]);
+  }, [setIsOpenUserModal, isSettingModalOpen, isLogoutModalOpen]);
 
   return (
     <>
@@ -28,6 +36,7 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              setIsSettingModalOpen(true);
             }}
             className={css.dropDownButton}
           >
@@ -66,6 +75,14 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
           isOpen={isLogoutModalOpen}
           onClose={() => {
             setIsLogoutModalOpen(false);
+          }}
+        />
+      )}
+      {isSettingModalOpen && (
+        <SettingModal
+          isOpen={isSettingModalOpen}
+          onClose={() => {
+            setIsSettingModalOpen(false);
           }}
         />
       )}
