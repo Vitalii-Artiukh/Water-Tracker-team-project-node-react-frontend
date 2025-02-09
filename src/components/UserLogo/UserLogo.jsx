@@ -1,30 +1,37 @@
 import { useAuthSelector } from '../../hooks/useAuthSelector';
 import Icon from '../ui/Icon';
 import css from './UserLogo.module.css';
+import clsx from 'clsx';
 
-const UserLogo = ({ toggleDropdown }) => {
+const UserLogo = ({ toggleDropdown, isOpenUserModal }) => {
   const { user } = useAuthSelector();
 
   return (
     <div className={css.userInfo}>
-      {user.name !== null ? (
-        <p className={css.userName}>{user.name}</p>
-      ) : (
-        <p>{user.email}</p>
-      )}
-      {user.avatarUrl ? (
-        <img src={user.avatarUrl} alt="User photo" />
-      ) : (
-        <p className={css.avatarPlaceholder}>
-          {user?.name?.charAt(0).toUpperCase() ||
-            user?.email?.charAt(0).toUpperCase()}
-        </p>
-      )}
       <button
         onClick={toggleDropdown}
-        className={css.buttonDropDownMenu}
+        className={clsx(css.buttonDropDownMenu, {
+          [css.open]: isOpenUserModal,
+        })}
         type="button"
       >
+        <p className={css.userName}>
+          {user?.name || user?.email.split('@')[0]}
+        </p>
+
+        {user.avatarUrl ? (
+          <img
+            src={user.avatarUrl}
+            className={css.userAvatar}
+            alt="User avatar"
+          />
+        ) : (
+          <p className={css.avatarPlaceholder}>
+            {user?.name?.charAt(0).toUpperCase() ||
+              user?.email?.charAt(0).toUpperCase()}
+          </p>
+        )}
+
         <Icon
           name="icon-chevron-down"
           fill="#407bff"
