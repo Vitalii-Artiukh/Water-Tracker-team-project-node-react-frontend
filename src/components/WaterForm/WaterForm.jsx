@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import moment from "moment";
 import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
 import css from "./WaterForm.module.css";
@@ -21,11 +21,27 @@ const validationSchemas = Yup.object({
 
 const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
 
+  const time = useMemo(() => moment().format('HH:mm'), [])
+
+  const timeOptions = useMemo(() => {
+    let now = moment();
+    let startOfDay = moment().startOf('day');
+    let timeArray = [];
+
+    for (let index = 1; now.isAfter(startOfDay); index++) {
+      timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
+      now.subtract(5, 'minutes');
+    }
+
+    return timeArray;
+  }, [])
+
   const [initialValues, setInitialValues] = useState({
     waterVolume: 50,
     time: moment().format('HH:mm'),
     entryId: null
   })
+
 
   useEffect(() => {
     if (waterEntry !== null) {
@@ -77,7 +93,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
             initialValues={initialValues}
             enableReinitialize={true}
             // validationSchema={validationSchemas}
-            onSubmit={(values, {setSubmitting}, actions) => {
+            onSubmit={(values, {setSubmitting}) => {
               let {time, waterVolume} = values;
               time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm')
               if (waterEntry != null) {
@@ -90,7 +106,6 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
               }
 
               handleVisibleForm()
-              actions.resetForm();
               setSubmitting(false);
               setWaterEntry(null)
             }}
@@ -137,13 +152,16 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
                   <div className={css.formItemBlock}>
                     <div className={css.label}>Recording time:</div>
                     <Field
-                      type="text"
+                      as="select"
                       name="time"
                       className={`${css.inputField} ${
                         errors.time && touched.time ? css.inputError : ""
                       }`}
                       placeholder="Recording Time"
-                    />
+                    >
+                      {timeOptions.map(item => (<option key={item.value} value={item.value}>{item.value}</option>))}
+
+                    </Field>
                     <ErrorMessage
                       className={css.errorMessage}
                       name="time"
