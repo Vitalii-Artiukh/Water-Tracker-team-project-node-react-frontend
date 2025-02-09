@@ -16,6 +16,12 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .userName {
   margin-right: 8px;
   font-weight: 400;
@@ -30,6 +36,14 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: transform var(--primary-transition);
+}
+
+.buttonDropDownMenu svg {
+  transition: transform var(--primary-transition);
+}
+.buttonDropDownMenu.open svg {
+  transform: rotate(-180deg);
 }
 
 @media (min-width: 768px) {
