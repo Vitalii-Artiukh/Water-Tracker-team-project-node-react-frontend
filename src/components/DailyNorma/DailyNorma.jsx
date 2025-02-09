@@ -12,7 +12,6 @@ const DailyNorma = ({ openModal }) => {
           Edit
         </button>
       </div>
-      {/* {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />} */}
     </div>
   );
 };

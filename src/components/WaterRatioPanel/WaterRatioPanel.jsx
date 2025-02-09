@@ -1,26 +1,21 @@
 import { useAuthSelector } from "../../hooks/useAuthSelector";
 import { useWaterSelector } from "../../hooks/useWaterSelector";
-import { selectUserDailyNorm } from "../../redux/auth/selectors";
 import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon";
-import ModalContainer from "../ui/ModalContainer/ModalContainer";
 
-import css from './WaterRatioPanel.module.css';
+import css from "./WaterRatioPanel.module.css";
 
-const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
-    // const { waterServings } = useWaterSelector(); // [] item
-    // const { currentServing } = useWaterSelector(); // порція
-    const { user } = useAuthSelector(); // user {... dailyNorm}
-    console.log('user: ', user);
-    
-    
-    const {dailyNorm} = useAuthSelector(selectUserDailyNorm);
-    console.log('dailyNorm: ', dailyNorm);
+const WaterRatioPanel = ({ onOpen, isOpen, onClose }) => {
+  const { user } = useAuthSelector();
+  console.log("user: ", user);
+  const { dailyRecords } = useWaterSelector();
+  console.log("dailyRecords: ", dailyRecords);
 
+  // const waterProgress = user.dailyNorm ? Math.round((dailyRecords.totalWater / user.dailyNorm) * 100) : Math.round((dailyRecords.totalWater / dailyRecords.totalWater.dailyNorm) * 100)
 
-  //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
-
-  const waterProgress = dailyNorm ? Math.round((1780 / dailyNorm) * 100) : Math.round((880 / 2000) * 100)
+  const waterProgress = Math.round(
+    (dailyRecords.totalWater / user.dailyNorm) * 100
+  );
 
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
@@ -34,7 +29,7 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
               className={css.ratioPanelFill}
               style={{
                 width: `${displayedPercentage}%`,
-                backgroundColor: '#9ebbff',
+                backgroundColor: "#9ebbff",
               }}
             >
               {displayedPercentage <= 100 && (
@@ -42,8 +37,8 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
                   className={css.percentNumber}
                   style={{
                     left: `${displayedPercentage}%`,
-                    transform: 'translateX(-50%)',
-                    color: '#407bff',
+                    transform: "translateX(-50%)",
+                    color: "#407bff",
                   }}
                 >
                   {`${displayedPercentage}%`}
@@ -60,12 +55,9 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
         </div>
         <div className={css.persentContainer}>
           <div className={css.markWrap}>
-            <div className={css.mark} style={{ left: '0%' }}></div>{' '}
-            {/* Смужка 0% */}
-            <div className={css.mark} style={{ left: '50%' }}></div>{' '}
-            {/* Смужка 50% */}
-            <div className={css.mark} style={{ left: '100%' }}></div>{' '}
-            {/* Смужка 100% */}
+            <div className={css.mark} style={{ left: "0%" }}></div>
+            <div className={css.mark} style={{ left: "50%" }}></div>
+            <div className={css.mark} style={{ left: "100%" }}></div>
           </div>
           <div className={css.percentWrap}>
             <p className={css.percent}>0%</p>
@@ -74,9 +66,10 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
           </div>
         </div>
       </div>
-      <Button className={css.btnAdd} onClick={onOpen}><Icon className={css.iconPlus} name={"icon-plus-circle"} />
-        Add Water</Button>
-      {/* {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />} */}
+      <Button className={css.btnAdd} onClick={onOpen}>
+        <Icon className={css.iconPlus} name={"icon-plus-circle"} />
+        Add Water
+      </Button>
     </div>
   );
 };
