@@ -160,7 +160,6 @@ const waterSlice = createSlice({
           });
         }
       })
-      .addCase(deleteWaterEntrie.rejected, handleEntrieRejected)
       .addCase(addWater.rejected, handleEntrieRejected)
       .addCase(addWater.pending,handleEntriePending)
       .addCase(addWater.fulfilled, (state, action) => state.dailyRecords = action.payload)
