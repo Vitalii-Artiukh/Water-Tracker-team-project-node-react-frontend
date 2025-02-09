@@ -53,6 +53,11 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
       return value;
     }
   )
+  
+  const closeModal = () =>{
+    handleVisibleForm();
+    setWaterEntry(null)
+  }
 
   return (
     <>
@@ -63,7 +68,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
               <h2 className={css.title}>
                 {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
               </h2>
-              <button className={css.closeBtn} onClick={handleVisibleForm} aria-label="Close">
+              <button className={css.closeBtn} onClick={closeModal} aria-label="Close">
                 <Icon name="icon-x-mark" width={24} height={24}/>
               </button>
             </div>
