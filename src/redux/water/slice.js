@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {signUp} from "../auth/operations.js";
+import {addWater} from "./operations.js";
 
 const handlePending = state => {
   state.loading = true;
@@ -13,6 +15,7 @@ const waterSlice = createSlice({
   initialState: {
     items: [],
     currentServing: null,
+    waterItem:null,
     loading: false,
   },
 
@@ -22,7 +25,11 @@ const waterSlice = createSlice({
     },
   },
 
-  extraReducers: builder => builder,
+  extraReducers: builder => builder
+      .addCase(addWater.fulfilled, (state, action) => {
+        const { entries } = action.payload;
+        state.water.items = entries;
+      }),
 });
 
 export const { setCurrentServing } = waterSlice.actions;

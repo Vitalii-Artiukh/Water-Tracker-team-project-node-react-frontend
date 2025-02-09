@@ -12,6 +12,7 @@ const WaterRatioPanel = () => {
 
   //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
    const [showWaterForm,setShowWaterForm] = useState(false);
+  const onCloseWaterForm = () => setShowWaterForm(false)
   const waterProgress = Math.round((880 / 1500) * 100);
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
@@ -72,7 +73,7 @@ const WaterRatioPanel = () => {
       >
         Add Water
       </button>
-        <WaterForm showWaterForm={showWaterForm} setShowWaterForm={setShowWaterForm} />
+        <WaterForm showWaterForm={showWaterForm} onClose={onCloseWaterForm} />
     </div>
   );
 };

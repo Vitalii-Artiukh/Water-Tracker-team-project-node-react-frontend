@@ -5,6 +5,9 @@ import css from "./WaterForm.module.css";
 import Icon from "../ui/Icon.jsx";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {useDispatch} from "react-redux";
+import {signIn} from "../../redux/auth/operations.js";
+import {addWater} from "../../redux/water/operations.js";
 
 
 const validationSchemas = Yup.object({
@@ -18,30 +21,31 @@ const validationSchemas = Yup.object({
         .required("Recording Time is required"),
 });
 
-const initialValues = {amountOfWater: 50, recordingTime: moment().format('HH:mm')};
+const initialValues = {waterVolume: 50, time: moment().format('HH:mm')};
 
 
-const WaterForm = ({showWaterForm,setShowWaterForm}) => {
-    const [amountOfWater, setAmountOfWater] = useState(initialValues.amountOfWater);
+const WaterForm = ({showWaterForm,onClose}) => {
+    const [waterVolume, setWaterVolume] = useState(initialValues.waterVolume);
+    const dispatch = useDispatch();
 
-    const decreaseAmountOfWater = () => {
-        setAmountOfWater(prevState => {
+    const decreaseWaterVolume = () => {
+        setWaterVolume(prevState => {
             const newValue = prevState - 50;
             return (newValue < 0) ? prevState : newValue;
         })
     }
 
-    const increaseAmountOfWater = () => setAmountOfWater(prevState => {
+    const increaseWaterVolume = () => setWaterVolume(prevState => {
             const newValue = prevState + 50;
             return (newValue > 1500) ? prevState : newValue;
         }
     )
 
-    const onSubmit = () => {
-        // console.log(amountOfWater, time)
+    const onSubmit = (values, actions) => {
+        console.log(values)
+        // dispatch(addWater({}));
+        actions.resetForm();
     }
-
-    const onClose = () => setShowWaterForm(false)
 
     return (
         <>
@@ -72,15 +76,15 @@ const WaterForm = ({showWaterForm,setShowWaterForm}) => {
 
                                         <div className={css.buttonCircleContainer}>
                                             <div>
-                                                <button className={css.buttonRound} onClick={decreaseAmountOfWater}>-
+                                                <button className={css.buttonRound} onClick={decreaseWaterVolume}>-
                                                 </button>
                                             </div>
                                             <div className={css.amountOfWaterLabel}>
-                                                {amountOfWater} ml
+                                                {waterVolume} ml
                                             </div>
 
                                             <div>
-                                                <div className={css.buttonRound} onClick={increaseAmountOfWater}>+
+                                                <div className={css.buttonRound} onClick={increaseWaterVolume}>+
                                                 </div>
                                             </div>
                                         </div>
@@ -90,9 +94,9 @@ const WaterForm = ({showWaterForm,setShowWaterForm}) => {
                                     <div className={css.label}>Recording time:</div>
                                     <Field
                                         type="text"
-                                        name="recordingTime"
+                                        name="time"
                                         className={`${css.inputField} ${
-                                            errors.recoddingTime && touched.recoddingTime ? css.inputError : ""
+                                            errors.time && touched.time ? css.inputError : ""
                                         }`}
                                         placeholder="Recording Time"
                                     />
@@ -108,10 +112,10 @@ const WaterForm = ({showWaterForm,setShowWaterForm}) => {
                                     </div>
                                     <Field
                                         type="text"
-                                        name="amountOfWater"
-                                        value={amountOfWater}
+                                        name="waterVolume"
+                                        value={waterVolume}
                                         className={`${css.inputField} ${
-                                            errors.recoddingTime && touched.recoddingTime ? css.inputError : ""
+                                            errors.waterVolume && touched.waterVolume ? css.inputError : ""
                                         }`}
                                         placeholder="Recording Time"
                                     />
@@ -123,8 +127,8 @@ const WaterForm = ({showWaterForm,setShowWaterForm}) => {
                                 </div>
 
                                 <div className={css.modalFooter}>
-                                    <div className={css.smallButton}>{amountOfWater} ml</div>
-                                    <button className={css.saveButton} type={onSubmit}>Save</button>
+                                    <div className={css.smallButton}>{waterVolume} ml</div>
+                                    <button className={css.saveButton} type='submit'>Save</button>
                                 </div>
                             </Form>
                         )}
