@@ -119,9 +119,8 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
 
                       <div className={css.buttonCircleContainer}>
                         <div>
-                          <button className={css.buttonRound}
-                                  onClick={() => decreaseWaterVolume(setFieldValue)}>-
-                          </button>
+                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>-
+                          </div>
                         </div>
                         <div className={css.amountOfWaterLabel}>
                           {waterVolume} ml
