@@ -147,7 +147,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
                     />
                     <ErrorMessage
                       className={css.errorMessage}
-                      name="password"
+                      name="time"
                       component="span"
                     />
                   </div>
@@ -169,7 +169,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
                     />
                     <ErrorMessage
                       className={css.errorMessage}
-                      name="password"
+                      name="waterVolume"
                       component="span"
                     />
                   </div>

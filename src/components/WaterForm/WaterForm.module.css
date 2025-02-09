@@ -190,6 +190,12 @@
     margin-top: 10px;
 }
 
+.errorMessage{
+    color: var(--secondary-color-red);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 @media (min-width: 768px) {
     .modalContent {
         width: 592px;
