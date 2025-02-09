@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axiosInstance.js';
+import { getTodayDate } from '../../utils/dateUtils.js';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -41,7 +42,7 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const { data } = await api.patch('/user/update', userData);
+      const { data } = await api.patch('/user', userData);
 
       return data.data;
     } catch (error) {
@@ -57,7 +58,7 @@ export const updateUserAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append('avatar', file);
 
-      const { data } = api.patch('user/update-avatar', formData, {
+      const { data } = api.patch('user/avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -73,10 +74,17 @@ export const updateUserAvatar = createAsyncThunk(
 export const updateUserWaterRate = createAsyncThunk(
   'auth/updateWaterRate',
   async (waterRateData, thunkAPI) => {
+    const todayDate = getTodayDate();
     try {
-      const { data } = await api.patch('/user/water-rate', waterRateData);
+      const { data } = await api.patch('/user/water-rate', {
+        date: todayDate,
+        dailyNorm: waterRateData,
+      });
 
-      return data;
+      return {
+        todayDate,
+        data,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
