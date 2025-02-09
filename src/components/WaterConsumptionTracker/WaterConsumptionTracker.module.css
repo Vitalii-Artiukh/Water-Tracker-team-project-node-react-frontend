@@ -58,6 +58,16 @@
   line-height: 1.25;
   color: #ffffff;
   cursor: pointer;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tryTrackerBtn:hover,
+.tryTrackerBtn:focus {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.tryTrackerBtn:active {
+  box-shadow: none;
 }
 
 @media screen and (min-width: 768px) {

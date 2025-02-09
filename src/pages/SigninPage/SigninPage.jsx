@@ -5,10 +5,8 @@ import AuthForm from '../../components/AuthForm/AuthForm';
 const SigninPage = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values) => {
     dispatch(signIn(values));
-
-    actions.resetForm();
   };
 
   return <AuthForm title="Sign In" type="signIn" onSubmit={handleSubmit} />;

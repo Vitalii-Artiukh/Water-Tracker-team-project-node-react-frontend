@@ -1,19 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '../ui/Icon';
 import css from './UserLogoModal.module.css';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
+import SettingModal from '../SettingModal/SettingModal';
 
-const UserLogoModal = () => {
+const UserLogoModal = ({ setIsOpenUserModal }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
-  const openLogoutModal = () => setIsLogoutModalOpen(true);
-  const closeLogoutModal = () => setIsLogoutModalOpen(false);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !isSettingModalOpen &&
+        !isLogoutModalOpen
+      ) {
+        setIsOpenUserModal(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setIsOpenUserModal, isSettingModalOpen, isLogoutModalOpen]);
 
   return (
     <>
-      <ul className={css.dropDownMenu}>
+      <ul className={css.dropDownMenu} ref={modalRef}>
         <li>
-          <button type="button" className={css.dropDownButton}>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsSettingModalOpen(true);
+            }}
+            className={css.dropDownButton}
+          >
             <Icon
               name="icon-settings"
               fill="transparent"
@@ -27,7 +53,10 @@ const UserLogoModal = () => {
         <li>
           <button
             type="button"
-            onClick={openLogoutModal}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsLogoutModalOpen(true);
+            }}
             className={css.dropDownButton}
           >
             <Icon
@@ -44,7 +73,17 @@ const UserLogoModal = () => {
       {isLogoutModalOpen && (
         <UserLogoutModal
           isOpen={isLogoutModalOpen}
-          onClose={closeLogoutModal}
+          onClose={() => {
+            setIsLogoutModalOpen(false);
+          }}
+        />
+      )}
+      {isSettingModalOpen && (
+        <SettingModal
+          isOpen={isSettingModalOpen}
+          onClose={() => {
+            setIsSettingModalOpen(false);
+          }}
         />
       )}
     </>
