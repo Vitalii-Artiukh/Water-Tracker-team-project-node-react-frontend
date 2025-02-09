@@ -1,0 +1,43 @@
+.updateAvatarWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 222px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.20;
+}
+
+.uploadAvatar {
+    display: flex;
+    gap: 8px;
+    height: 80px;
+    align-items: center;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+    font-size: 65px;
+    color: var(--primary-color-white);
+    background-color: var(--secondary-color-light-blue200);
+}
+
+.upload {
+    display: flex;
+    gap: 8px;
+    max-height: 18px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.18;
+    cursor: pointer;
+    stroke: var(--primary-color-blue);
+    color: var(--primary-color-blue);
+}
