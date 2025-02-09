@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useState} from "react";
 import moment from "moment";
 import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
-import css from "./WaterForm.module.css";
+import css from "./TodayListModal.module.css";
 import Icon from "../ui/Icon.jsx";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
@@ -19,7 +19,7 @@ const validationSchemas = Yup.object({
     .required("Recording Time is required"),
 });
 
-const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
+const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
 
   //const time = useMemo(() => moment().format('HH:mm'), [])
 
@@ -205,4 +205,4 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
   );
 };
 
-export default WaterForm;
+export default TodayListModal;

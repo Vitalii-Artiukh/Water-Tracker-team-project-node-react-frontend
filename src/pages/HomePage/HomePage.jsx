@@ -10,7 +10,7 @@ import { useWaterSelector } from "../../hooks/useWaterSelector";
 import { waterOperations } from "../../redux";
 
 import css from "./HomePage.module.css";
-import WaterForm from "../../components/WaterForm/WaterForm.jsx";
+import TodayListModal from "../../components/TodayListModal/TodayListModal.jsx";
 
 const HomePage = () => {
   const [isNormaModalOpen, setIsNormaModalOpen] = useState(false);
@@ -46,7 +46,7 @@ const HomePage = () => {
         setWaterEntry={setWaterEntry}
         openWaterModal={openWaterModal}
       />
-      <WaterForm
+      <TodayListModal
         showWaterForm={showWaterForm}
         handleVisibleForm={closeWaterModal}
         waterEntry={waterEntry}
