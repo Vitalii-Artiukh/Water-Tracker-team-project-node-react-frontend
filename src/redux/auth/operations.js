@@ -42,7 +42,7 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const { data } = await api.patch('/user/update', userData);
+      const { data } = await api.patch('/user', userData);
 
       return data.data;
     } catch (error) {
@@ -58,7 +58,7 @@ export const updateUserAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append('avatar', file);
 
-      const { data } = api.patch('user/update-avatar', formData, {
+      const { data } = api.patch('user/avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
