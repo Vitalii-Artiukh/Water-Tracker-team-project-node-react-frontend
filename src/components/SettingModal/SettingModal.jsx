@@ -86,8 +86,6 @@ const SettingModal = ({ isOpen, onClose }) => {
       return;
     }
 
-    console.log(updatedFields);
-
     try {
       await dispatch(updateUserData(updatedFields)).unwrap();
       actions.resetForm();
