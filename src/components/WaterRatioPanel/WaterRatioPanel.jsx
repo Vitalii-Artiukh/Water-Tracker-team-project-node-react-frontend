@@ -73,7 +73,7 @@ const WaterRatioPanel = () => {
       >
         Add Water
       </button>
-        <WaterForm showWaterForm={showWaterForm} onClose={onCloseWaterForm} />
+        <WaterForm showWaterForm={showWaterForm} openForm={onCloseWaterForm} />
     </div>
   );
 };

@@ -10,11 +10,11 @@ import {addWater} from "../../redux/water/operations.js";
 
 
 const validationSchemas = Yup.object({
-    amountOfWater: Yup.number()
+    waterVolume: Yup.number()
         .min(0)
         .max(1500)
         .required("Amount Of Water is required"),
-    recordingTime: Yup
+    time: Yup
         .string()
         .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:mm)")
         .required("Recording Time is required"),
@@ -23,28 +23,26 @@ const validationSchemas = Yup.object({
 const initialValues = {waterVolume: 50, time: moment().format('HH:mm')};
 
 
-const WaterForm = ({showWaterForm,onClose}) => {
+const WaterForm = ({showWaterForm, openForm}) => {
     const [waterVolume, setWaterVolume] = useState(initialValues.waterVolume);
     const dispatch = useDispatch();
 
-    const decreaseWaterVolume = () => {
+    const decreaseWaterVolume = (setFieldValue) => {
         setWaterVolume(prevState => {
             const newValue = prevState - 50;
-            return (newValue < 0) ? prevState : newValue;
+            const value = (newValue < 0) ? prevState : newValue;
+            setFieldValue('waterVolume', value)
+            return value;
         })
     }
 
-    const increaseWaterVolume = () => setWaterVolume(prevState => {
+    const increaseWaterVolume = (setFieldValue) => setWaterVolume(prevState => {
             const newValue = prevState + 50;
-            return (newValue > 1500) ? prevState : newValue;
+            const value = (newValue > 1500) ? prevState : newValue;
+            setFieldValue('waterVolume', value)
+            return value;
         }
     )
-
-    const onSubmit = (values, actions) => {
-        console.log(values)
-        dispatch(addWater(values));
-        actions.resetForm();
-    }
 
     return (
         <>
@@ -53,19 +51,28 @@ const WaterForm = ({showWaterForm,onClose}) => {
                     <div className={css.modalHeader}>
                         <div className={css.modalHeader}>
                             <h2 className={css.title}>Add water</h2>
-                            <button className={css.closeBtn} onClick={onClose} aria-label="Close">
+                            <button className={css.closeBtn} onClick={openForm} aria-label="Close">
                                 <Icon name="icon-x-mark" width={24} height={24}/>
                             </button>
                         </div>
                     </div>
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={validationSchemas}
-                        onSubmit={onSubmit}
-                    >
+                        // validationSchema={validationSchemas}
+                        onSubmit={(values, { setSubmitting },actions) => {
+                            let {time, waterVolume} = values;
+                            time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm')
+                            dispatch(addWater({time,waterVolume}));
+                            openForm()
+                            actions.resetForm();
+                            setSubmitting(false);
 
-                        {({isSubmitting, errors, touched}) => (
+                        }}
+                    >
+                        {({errors,isSubmitting, touched, setFieldValue}) => (
+
                             <Form className={css.form}>
+                                {isSubmitting}
                                 <div className={css.formItemBlock}>
                                     <p className={css.subtitle}>Choose a value : </p>
                                     <div>
@@ -75,7 +82,8 @@ const WaterForm = ({showWaterForm,onClose}) => {
 
                                         <div className={css.buttonCircleContainer}>
                                             <div>
-                                                <button className={css.buttonRound} onClick={decreaseWaterVolume}>-
+                                                <button className={css.buttonRound}
+                                                        onClick={() => decreaseWaterVolume(setFieldValue)}>-
                                                 </button>
                                             </div>
                                             <div className={css.amountOfWaterLabel}>
@@ -83,7 +91,8 @@ const WaterForm = ({showWaterForm,onClose}) => {
                                             </div>
 
                                             <div>
-                                                <div className={css.buttonRound} onClick={increaseWaterVolume}>+
+                                                <div className={css.buttonRound}
+                                                     onClick={() => increaseWaterVolume(setFieldValue)}>+
                                                 </div>
                                             </div>
                                         </div>
@@ -110,9 +119,11 @@ const WaterForm = ({showWaterForm,onClose}) => {
                                         <p>Enter the value of the water used:</p>
                                     </div>
                                     <Field
-                                        type="text"
+                                        type="number"
                                         name="waterVolume"
-                                        value={waterVolume}
+                                        onChange={(e) => {
+                                            setFieldValue("waterVolume", e.target.value);
+                                        }}
                                         className={`${css.inputField} ${
                                             errors.waterVolume && touched.waterVolume ? css.inputError : ""
                                         }`}
@@ -127,7 +138,7 @@ const WaterForm = ({showWaterForm,onClose}) => {
 
                                 <div className={css.modalFooter}>
                                     <div className={css.smallButton}>{waterVolume} ml</div>
-                                    <button className={css.saveButton} type='submit'>Save</button>
+                                    <button type="submit" className={css.saveButton} >Save</button>
                                 </div>
                             </Form>
                         )}
