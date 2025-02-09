@@ -8,17 +8,19 @@ import ModalContainer from "../ui/ModalContainer/ModalContainer";
 import css from "./WaterRatioPanel.module.css";
 
 const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
-    const { waterServings } = useWaterSelector(); // [] item
-    const { currentServing } = useWaterSelector(); // порція
+    // const { waterServings } = useWaterSelector(); // [] item
+    // const { currentServing } = useWaterSelector(); // порція
     const { user } = useAuthSelector(); // user {... dailyNorm}
     console.log('user: ', user);
+    
+    
     const {dailyNorm} = useAuthSelector(selectUserDailyNorm);
     console.log('dailyNorm: ', dailyNorm);
 
 
   //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
 
-  const waterProgress = dailyNorm ? Math.round((880 / dailyNorm) * 100) : Math.round((880 / 2000) * 100)
+  const waterProgress = dailyNorm ? Math.round((1780 / dailyNorm) * 100) : Math.round((880 / 2000) * 100)
 
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
@@ -72,7 +74,7 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
           </div>
         </div>
       </div>
-      <Button className={css.btnAdd} onClick={onOpen}><Icon className={css.iconPlus} name={"icon-plus-circle"} stroke={"#ffffff"} fill={"#ffffff"}/>
+      <Button className={css.btnAdd} onClick={onOpen}><Icon className={css.iconPlus} name={"icon-plus-circle"} />
         Add Water</Button>
       {/* <button
         className={css.btn}

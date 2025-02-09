@@ -8,7 +8,7 @@ const DailyNorma = ({onOpen, isOpen, onClose}) => {
   // const dispatch = useDispatch();
   const {dailyNorm} = useAuthSelector(selectUserDailyNorm);
 
-  const correctDailyNorm = dailyNorm / 1000;
+  const correctDailyNorm = (dailyNorm / 1000).toFixed(1);
   console.log('dailyNorm: ', dailyNorm);
 
   return (
@@ -16,6 +16,7 @@ const DailyNorma = ({onOpen, isOpen, onClose}) => {
       <h3 className={css.title}>My daily norma</h3>
       <div className={css.dailyNormaValue}>
         <p className={css.text}>{dailyNorm ? `${correctDailyNorm} L` : '2.0 L'}</p>
+        {/* <p className={css.text}>{`${correctDailyNorm} L`}</p> */}
         <button
           className={css.btn}
           type="button"
