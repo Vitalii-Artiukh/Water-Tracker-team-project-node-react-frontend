@@ -29,7 +29,7 @@ const waterSlice = createSlice({
       dailyNorm: 2000,
       totalWater: null,
       dailyNormProgress: null,
-      entires: [],
+      entries: [],
     },
     currentServing: null,
     loading: {

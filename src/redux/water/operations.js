@@ -8,7 +8,6 @@ export const fetchTodayWaterRecords = createAsyncThunk(
     const todayDate = getTodayDate();
     try {
       const { data } = await api.get(`/water/day/${todayDate}`);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -22,7 +21,6 @@ export const fetchWaterMonthStats = createAsyncThunk(
   async (yearMonth, thunkAPI) => {
     try {
       const { data } = await api.get(`/water/month/${yearMonth}`);
-      console.log(data);
 
       return data;
     } catch (error) {
