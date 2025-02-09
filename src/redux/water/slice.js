@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {signUp} from "../auth/operations.js";
 import {addWater} from "./operations.js";
 
 const handlePending = state => {
