@@ -21,7 +21,7 @@ const validationSchemas = Yup.object({
 
 const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
 
-  const time = useMemo(() => moment().format('HH:mm'), [])
+  //const time = useMemo(() => moment().format('HH:mm'), [])
 
   const timeOptions = useMemo(() => {
     let now = moment();
