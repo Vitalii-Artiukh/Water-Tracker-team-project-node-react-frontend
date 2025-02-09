@@ -15,7 +15,9 @@ const UserLogo = ({ toggleDropdown, isOpenUserModal }) => {
         })}
         type="button"
       >
-        <p className={css.userName}>{user?.name || user?.email}</p>
+        <p className={css.userName}>
+          {user?.name || user?.email.split('@')[0]}
+        </p>
 
         {user.avatarUrl ? (
           <img

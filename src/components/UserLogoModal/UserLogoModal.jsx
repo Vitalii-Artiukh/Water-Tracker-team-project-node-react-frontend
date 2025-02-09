@@ -1,20 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '../ui/Icon';
 import css from './UserLogoModal.module.css';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
 const UserLogoModal = ({ setIsOpenUserModal }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const modalRef = useRef(null);
 
   const openLogoutModal = () => {
-    setIsOpenUserModal(false);
     setIsLogoutModalOpen(true);
   };
   const closeLogoutModal = () => setIsLogoutModalOpen(false);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsOpenUserModal(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setIsOpenUserModal]);
 
   return (
     <>
-      <ul className={css.dropDownMenu}>
+      <ul className={css.dropDownMenu} ref={modalRef}>
         <li>
           <button type="button" className={css.dropDownButton}>
             <Icon
