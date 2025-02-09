@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axiosInstance.js';
+import { getTodayDate } from '../../utils/dateUtils.js';
 
-export const fetchWaterEntriesByDay = createAsyncThunk(
-  'water/fetchAllByDay',
-  async (date, thunkAPI) => {
+export const fetchTodayWaterRecords = createAsyncThunk(
+  'water/fetchAllForToday',
+  async (_, thunkAPI) => {
+    const todayDate = getTodayDate();
     try {
-      const { data } = await api.get(`/water/day/${date}`);
+      const { data } = await api.get(`/water/day/${todayDate}`);
       console.log(data);
 
       return data;
@@ -20,6 +22,7 @@ export const fetchWaterMonthStats = createAsyncThunk(
   async (yearMonth, thunkAPI) => {
     try {
       const { data } = await api.get(`/water/month/${yearMonth}`);
+      console.log(data);
 
       return data;
     } catch (error) {

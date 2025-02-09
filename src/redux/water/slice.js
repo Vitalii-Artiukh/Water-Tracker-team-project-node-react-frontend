@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addWaterEntrie,
   deleteWaterEntrie,
-  fetchWaterEntriesByDay,
+  fetchTodayWaterRecords,
   fetchWaterMonthStats,
   updateWaterEntrie,
 } from './operations.js';
 import { adaptDailyRecordForMonthStats } from '../../utils/adaptDailyRecordForMonthStats.js';
 import { adaptEntrieResForDailyRecord } from '../../utils/adaptEntrieResForDailyRecord.js';
+import { updateUserWaterRate } from '../auth/operations.js';
+import { getDayMonthDate } from '../../utils/dateUtils.js';
 
 const handleEntriePending = state => {
   state.loading.entrieLoading = true;
@@ -46,19 +48,20 @@ const waterSlice = createSlice({
 
   extraReducers: builder =>
     builder
-      .addCase(fetchWaterEntriesByDay.pending, state => {
+      .addCase(fetchTodayWaterRecords.pending, state => {
         state.loading.dailyLoading = true;
       })
-      .addCase(fetchWaterEntriesByDay.fulfilled, (state, action) => {
+      .addCase(fetchTodayWaterRecords.fulfilled, (state, action) => {
         state.dailyRecords = {
           date: action.payload.date,
           dailyNorm: action.payload.dailyNorm,
           totalWater: action.payload.totalWater,
           dailyNormProgress: action.payload.percentage,
-          entires: action.payload.entires,
+          entries: action.payload.entries,
         };
+        state.loading.dailyLoading = false;
       })
-      .addCase(fetchWaterEntriesByDay.rejected, (state, action) => {
+      .addCase(fetchTodayWaterRecords.rejected, (state, action) => {
         state.loading.dailyLoading = false;
         state.error = action.payload;
       })
@@ -66,7 +69,9 @@ const waterSlice = createSlice({
         state.loading.monthLoading = true;
       })
       .addCase(fetchWaterMonthStats.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.monthStats = action.payload;
+        state.loading.monthLoading = false;
       })
       .addCase(fetchWaterMonthStats.rejected, (state, action) => {
         state.loading.monthLoading = false;
@@ -120,7 +125,40 @@ const waterSlice = createSlice({
           day.date === dayToUpdate.date ? dayToUpdate : day
         );
       })
-      .addCase(deleteWaterEntrie.rejected, handleEntrieRejected),
+      .addCase(deleteWaterEntrie.rejected, handleEntrieRejected)
+      .addCase(updateUserWaterRate.fulfilled, (state, action) => {
+        const { todayDate } = action.payload;
+        const { dailyNorm } = action.payload.data;
+        const totalWater = state.dailyRecords.totalWater;
+
+        const dailyNormProgress =
+          dailyNorm > 0
+            ? `${Math.round((totalWater / dailyNorm) * 100)}%`
+            : '0%';
+
+        state.dailyRecords.dailyNorm = dailyNorm;
+        state.dailyRecords.dailyNormProgress = dailyNormProgress;
+
+        const formattedDate = getDayMonthDate(todayDate);
+
+        const isDailyRecordExist = state.monthStats.some(
+          day => day.date === formattedDate
+        );
+
+        if (isDailyRecordExist) {
+          state.monthStats = state.monthStats.map(day => {
+            if (day.date === formattedDate) {
+              return {
+                ...day,
+                dailyNorma: dailyNorm,
+                percentage: dailyNormProgress,
+              };
+            }
+
+            return day;
+          });
+        }
+      }),
 });
 
 export const { setCurrentServing } = waterSlice.actions;

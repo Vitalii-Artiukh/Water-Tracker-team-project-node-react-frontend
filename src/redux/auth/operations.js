@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api/axiosInstance.js';
+import { getTodayDate } from '../../utils/dateUtils.js';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -73,10 +74,17 @@ export const updateUserAvatar = createAsyncThunk(
 export const updateUserWaterRate = createAsyncThunk(
   'auth/updateWaterRate',
   async (waterRateData, thunkAPI) => {
+    const todayDate = getTodayDate();
     try {
-      const { data } = await api.patch('/user/water-rate', waterRateData);
+      const { data } = await api.patch('/user/water-rate', {
+        date: todayDate,
+        dailyNorm: waterRateData,
+      });
 
-      return data;
+      return {
+        todayDate,
+        data,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
