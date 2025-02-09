@@ -6,8 +6,7 @@ import Icon from "../ui/Icon.jsx";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
-// import {signIn} from "../../redux/auth/operations.js";
-// import {addWater} from "../../redux/water/operations.js";
+import {addWater} from "../../redux/water/operations.js";
 
 
 const validationSchemas = Yup.object({
@@ -43,7 +42,7 @@ const WaterForm = ({showWaterForm,onClose}) => {
 
     const onSubmit = (values, actions) => {
         console.log(values)
-        // dispatch(addWater({}));
+        dispatch(addWater(values));
         actions.resetForm();
     }
 
