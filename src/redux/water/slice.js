@@ -69,7 +69,7 @@ const waterSlice = createSlice({
         state.loading.monthLoading = true;
       })
       .addCase(fetchWaterMonthStats.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         state.monthStats = action.payload;
         state.loading.monthLoading = false;
       })

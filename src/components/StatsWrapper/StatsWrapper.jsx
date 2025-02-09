@@ -2,10 +2,10 @@ import MonthStatsTable from "../MonthStatsTable/MonthStatsTable";
 import TodayWaterList from "../TodayWaterList/TodayWaterList";
 import css from "./StatsWrapper.module.css";
 
-const StatsWrapper = () => {
+const StatsWrapper = ({ dailyRecords }) => {
   return (
     <div className={css.container}>
-      <TodayWaterList />
+      <TodayWaterList dailyRecords={dailyRecords} />
       <MonthStatsTable />
     </div>
   );
