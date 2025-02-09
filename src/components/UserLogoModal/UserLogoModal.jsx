@@ -24,7 +24,13 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
     <>
       <ul className={css.dropDownMenu} ref={modalRef}>
         <li>
-          <button type="button" className={css.dropDownButton}>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className={css.dropDownButton}
+          >
             <Icon
               name="icon-settings"
               fill="transparent"
