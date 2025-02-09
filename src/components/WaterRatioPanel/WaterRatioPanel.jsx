@@ -5,19 +5,19 @@ import Icon from "../ui/Icon";
 
 import css from "./WaterRatioPanel.module.css";
 
-const WaterRatioPanel = ({ onOpen, isOpen, onClose }) => {
+const WaterRatioPanel = ({ onOpen, isOpen, onClose, dailyRecords }) => {
   const { user } = useAuthSelector();
   console.log("user: ", user);
-  const { dailyRecords } = useWaterSelector();
   console.log("dailyRecords: ", dailyRecords);
 
   // const waterProgress = user.dailyNorm ? Math.round((dailyRecords.totalWater / user.dailyNorm) * 100) : Math.round((dailyRecords.totalWater / dailyRecords.totalWater.dailyNorm) * 100)
 
-  const waterProgress = Math.round(
-    (dailyRecords.totalWater / user.dailyNorm) * 100
-  );
+  // const waterProgress = Math.round(
+  //   (dailyRecords.totalWater / user.dailyNorm) * 100
+  // );
 
-  const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
+  // const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
+  const displayedPercentage = dailyRecords.dailyNormProgress >= 100 ? 100 : dailyRecords.dailyNormProgress;
 
   return (
     <div className={`${css.waterRatioPanelСontainer}`}>

@@ -30,7 +30,7 @@ const HomePage = () => {
       <MyDailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
       <div>
         <DailyNorma openModal={openModal} />
-        <WaterRatioPanel />
+        <WaterRatioPanel dailyRecords={dailyRecords}/>
       </div>
       <StatsWrapper dailyRecords={dailyRecords} />
     </div>
