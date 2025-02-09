@@ -118,7 +118,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
                       waterEntry &&
                       <div className={css.editBlockLabel}>
                         <svg className={css.svg}>
-                          <use href={"/public/sprite.svg#icon-glass"}></use>
+                          <use href={"/sprite.svg#icon-glass"}></use>
                         </svg>
                         <span className={css.itemTextWater}>{waterEntry.waterVolume} ml</span>
                         <span className={css.itemTextTime}>{waterEntry.time} PM</span>
