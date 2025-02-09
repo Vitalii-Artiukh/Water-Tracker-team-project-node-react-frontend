@@ -10,6 +10,7 @@ import { useWaterSelector } from "../../hooks/useWaterSelector";
 import { waterOperations } from "../../redux";
 
 import css from "./HomePage.module.css";
+import WaterForm from "../../components/WaterForm/WaterForm.jsx";
 
 const HomePage = () => {
   const [isNormaModalOpen, setIsNormaModalOpen] = useState(false);
@@ -25,14 +26,32 @@ const HomePage = () => {
   const openModal = () => setIsNormaModalOpen(true);
   const closeModal = () => setIsNormaModalOpen(false);
 
+
+  const [showWaterForm,setShowWaterForm] = useState(false);
+  const [waterEntry,setWaterEntry] = useState(null);
+  const closeWaterModal = () => setShowWaterForm(false)
+  const openWaterModal = () => setShowWaterForm(true)
+
   return (
     <div className={css.pageWrapper}>
       <MyDailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
       <div>
         <DailyNorma openModal={openModal} />
-        <WaterRatioPanel />
+        <WaterRatioPanel
+          openWaterModal={openWaterModal}
+        />
       </div>
-      <StatsWrapper dailyRecords={dailyRecords} />
+      <StatsWrapper
+        dailyRecords={dailyRecords}
+        setWaterEntry={setWaterEntry}
+        openWaterModal={openWaterModal}
+      />
+      <WaterForm
+        showWaterForm={showWaterForm}
+        handleVisibleForm={closeWaterModal}
+        waterEntry={waterEntry}
+        setWaterEntry={setWaterEntry}
+      />
     </div>
   );
 };
