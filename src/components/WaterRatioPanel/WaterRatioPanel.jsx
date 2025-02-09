@@ -1,14 +1,7 @@
-// import { useAuthSelector } from "../../hooks/useAuthSelector";
-// import { useWaterSelector } from "../../hooks/useWaterSelector";
+import css from "./WaterRatioPanel.module.css";
 
-import css from './WaterRatioPanel.module.css';
+const WaterRatioPanel = ({openWaterModal}) => {
 
-const WaterRatioPanel = () => {
-  //   const { waterServings } = useWaterSelector(); // [] item
-  //   const { currentServing } = useWaterSelector(); // порція
-  //   const { user } = useAuthSelector(); // user {... dailyNorm}
-
-  //   const waterProgress = Math.round((currentServing / user.dailyNorm) * 100);
   const waterProgress = Math.round((880 / 1500) * 100);
   const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
@@ -62,9 +55,14 @@ const WaterRatioPanel = () => {
           </div>
         </div>
       </div>
-      <button className={css.btn} type="button">
+      <button
+        className={css.btn}
+        type="button"
+        onClick={openWaterModal}
+      >
         Add Water
       </button>
+
     </div>
   );
 };

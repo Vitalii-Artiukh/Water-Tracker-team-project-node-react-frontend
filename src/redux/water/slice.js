@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addWaterEntrie,
-  deleteWaterEntrie,
-  fetchTodayWaterRecords,
-  fetchWaterMonthStats,
-  updateWaterEntrie,
+    addWaterEntrie,
+    deleteWaterEntrie,
+    fetchTodayWaterRecords,
+    fetchWaterMonthStats,
+    updateWaterEntrie,
 } from './operations.js';
 import { adaptDailyRecordForMonthStats } from '../../utils/adaptDailyRecordForMonthStats.js';
 import { adaptEntrieResForDailyRecord } from '../../utils/adaptEntrieResForDailyRecord.js';
@@ -157,7 +157,7 @@ const waterSlice = createSlice({
             return day;
           });
         }
-      }),
+      })
 });
 
 export const { setCurrentServing } = waterSlice.actions;

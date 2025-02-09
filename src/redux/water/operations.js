@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../api/axiosInstance.js';
+import api from "../../api/axiosInstance.js";
 import { getTodayDate } from '../../utils/dateUtils.js';
 
 export const fetchTodayWaterRecords = createAsyncThunk(
