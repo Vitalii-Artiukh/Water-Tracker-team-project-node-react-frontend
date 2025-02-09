@@ -1,18 +1,17 @@
 import * as yup from 'yup';
-import { Formik, Form } from 'formik';
+import { fields } from './dailyNormaModalFields.js';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
+import { authOperations } from '../../redux/index.js';
 
 import styles from './MyDailyNormaModal.module.css';
+import toast from 'react-hot-toast';
+import Icon from '../ui/Icon.jsx';
+import Button from '../ui/Button/Button';
 import TextField from '../ui/TextFiled/TextField';
 import RadioGroup from '../ui/RadioGroup/RadioGroup';
-import Button from '../ui/Button/Button';
-import Icon from '../ui/Icon.jsx';
 import ModalContainer from '../ui/ModalContainer/ModalContainer';
-import { fields } from './dailyNormaModalFields.js';
-import { getTodayDate } from '../../utils/dateUtils.js';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../../redux/index.js';
-import toast from 'react-hot-toast';
 
 const calcDailyNorma = ({ gender, weight, time }) => {
   if (!weight || !time) return 0;
@@ -47,10 +46,7 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
   const handleSubmit = async values => {
     try {
       await dispatch(
-        authOperations.updateUserWaterRate({
-          date: getTodayDate(),
-          dailyNorm: Number(values.water) * 1000,
-        })
+        authOperations.updateUserWaterRate(Number(values.water) * 1000)
       ).unwrap();
 
       toast.success('Your Daily Norma successfully updated!');
