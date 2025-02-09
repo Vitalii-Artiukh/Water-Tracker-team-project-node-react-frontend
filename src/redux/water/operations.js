@@ -7,7 +7,7 @@ export const addWater = createAsyncThunk(
         try {
             const { data } = await api.post('/water', water);
 
-            return data.data;
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

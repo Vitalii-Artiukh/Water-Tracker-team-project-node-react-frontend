@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addWater,
   addWaterEntrie,
   deleteWaterEntrie,
   fetchWaterEntriesByDay,
@@ -120,7 +121,10 @@ const waterSlice = createSlice({
           day.date === dayToUpdate.date ? dayToUpdate : day
         );
       })
-      .addCase(deleteWaterEntrie.rejected, handleEntrieRejected),
+      .addCase(deleteWaterEntrie.rejected, handleEntrieRejected)
+      .addCase(addWater.rejected, handleEntrieRejected)
+      .addCase(addWater.pending,handleEntriePending)
+      .addCase(addWater.fulfilled, (state, action) => state.dailyRecords = action.payload)
 });
 
 export const { setCurrentServing } = waterSlice.actions;

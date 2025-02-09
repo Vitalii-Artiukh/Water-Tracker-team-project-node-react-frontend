@@ -23,7 +23,7 @@ const validationSchemas = Yup.object({
 const initialValues = {waterVolume: 50, time: moment().format('HH:mm')};
 
 
-const WaterForm = ({showWaterForm, openForm}) => {
+const WaterForm = ({showWaterForm, openForm }) => {
     const [waterVolume, setWaterVolume] = useState(initialValues.waterVolume);
     const dispatch = useDispatch();
 
