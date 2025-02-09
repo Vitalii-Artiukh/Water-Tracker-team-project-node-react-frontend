@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import moment from "moment";
 import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
 import css from "./WaterForm.module.css";
@@ -6,7 +6,7 @@ import Icon from "../ui/Icon.jsx";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
-import {addWater} from "../../redux/water/operations.js";
+import {addWater,updateWater} from "../../redux/water/operations.js";
 
 
 const validationSchemas = Yup.object({
@@ -20,10 +20,20 @@ const validationSchemas = Yup.object({
         .required("Recording Time is required"),
 });
 
-const initialValues = {waterVolume: 50, time: moment().format('HH:mm')};
+const WaterForm = ({showWaterForm, handleVisibleForm ,waterEntry = null  }) => {
 
+    const [initialValues, setInitialValues] = useState({
+        waterVolume: 50,
+        time: moment().format('HH:mm'),
+        entryId: null
+    })
 
-const WaterForm = ({showWaterForm, openForm }) => {
+    useEffect(() => {
+        if (waterEntry !== null) {
+            setInitialValues(waterEntry)
+        }
+    }, [waterEntry]);
+
     const [waterVolume, setWaterVolume] = useState(initialValues.waterVolume);
     const dispatch = useDispatch();
 
@@ -51,97 +61,105 @@ const WaterForm = ({showWaterForm, openForm }) => {
                     <div className={css.modalHeader}>
                         <div className={css.modalHeader}>
                             <h2 className={css.title}>Add water</h2>
-                            <button className={css.closeBtn} onClick={openForm} aria-label="Close">
+                            <button className={css.closeBtn} onClick={handleVisibleForm} aria-label="Close">
                                 <Icon name="icon-x-mark" width={24} height={24}/>
                             </button>
                         </div>
                     </div>
                     <Formik
                         initialValues={initialValues}
+                        enableReinitialize={true}
                         // validationSchema={validationSchemas}
                         onSubmit={(values, { setSubmitting },actions) => {
                             let {time, waterVolume} = values;
                             time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm')
-                            dispatch(addWater({time,waterVolume}));
-                            openForm()
+                            if (waterEntry != null) {
+                                dispatch(updateWater({time, waterVolume, entryId: waterEntry.entryId}));
+                            } else {
+                                dispatch(addWater({time, waterVolume}));
+                            }
+
+                            handleVisibleForm()
                             actions.resetForm();
                             setSubmitting(false);
 
                         }}
                     >
-                        {({errors,isSubmitting, touched, setFieldValue}) => (
-
-                            <Form className={css.form}>
-                                {isSubmitting}
-                                <div className={css.formItemBlock}>
-                                    <p className={css.subtitle}>Choose a value : </p>
-                                    <div>
-                                        <div className={css.formTextLabel}>
-                                            Amount of water:
-                                        </div>
-
-                                        <div className={css.buttonCircleContainer}>
-                                            <div>
-                                                <button className={css.buttonRound}
-                                                        onClick={() => decreaseWaterVolume(setFieldValue)}>-
-                                                </button>
-                                            </div>
-                                            <div className={css.amountOfWaterLabel}>
-                                                {waterVolume} ml
+                        {({errors,isSubmitting, touched, setFieldValue}) => {
+                            return (
+                                <Form className={css.form}>
+                                    {isSubmitting}
+                                    <div className={css.formItemBlock}>
+                                        <p className={css.subtitle}>Choose a value : </p>
+                                        <div>
+                                            <div className={css.formTextLabel}>
+                                                Amount of water:
                                             </div>
 
-                                            <div>
-                                                <div className={css.buttonRound}
-                                                     onClick={() => increaseWaterVolume(setFieldValue)}>+
+                                            <div className={css.buttonCircleContainer}>
+                                                <div>
+                                                    <button className={css.buttonRound}
+                                                            onClick={() => decreaseWaterVolume(setFieldValue)}>-
+                                                    </button>
+                                                </div>
+                                                <div className={css.amountOfWaterLabel}>
+                                                    {waterVolume} ml
+                                                </div>
+
+                                                <div>
+                                                    <div className={css.buttonRound}
+                                                         onClick={() => increaseWaterVolume(setFieldValue)}>+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className={css.formItemBlock}>
-                                    <div className={css.label}>Recording time:</div>
-                                    <Field
-                                        type="text"
-                                        name="time"
-                                        className={`${css.inputField} ${
-                                            errors.time && touched.time ? css.inputError : ""
-                                        }`}
-                                        placeholder="Recording Time"
-                                    />
-                                    <ErrorMessage
-                                        className={css.errorMessage}
-                                        name="password"
-                                        component="span"
-                                    />
-                                </div>
-                                <div className={css.formItemBlock}>
-                                    <div className={css.labelTime}>
-                                        <p>Enter the value of the water used:</p>
+                                    <div className={css.formItemBlock}>
+                                        <div className={css.label}>Recording time:</div>
+                                        <Field
+                                            type="text"
+                                            name="time"
+                                            className={`${css.inputField} ${
+                                                errors.time && touched.time ? css.inputError : ""
+                                            }`}
+                                            placeholder="Recording Time"
+                                        />
+                                        <ErrorMessage
+                                            className={css.errorMessage}
+                                            name="password"
+                                            component="span"
+                                        />
                                     </div>
-                                    <Field
-                                        type="number"
-                                        name="waterVolume"
-                                        onChange={(e) => {
-                                            setFieldValue("waterVolume", e.target.value);
-                                        }}
-                                        className={`${css.inputField} ${
-                                            errors.waterVolume && touched.waterVolume ? css.inputError : ""
-                                        }`}
-                                        placeholder="Recording Time"
-                                    />
-                                    <ErrorMessage
-                                        className={css.errorMessage}
-                                        name="password"
-                                        component="span"
-                                    />
-                                </div>
+                                    <div className={css.formItemBlock}>
+                                        <div className={css.labelTime}>
+                                            <p>Enter the value of the water used:</p>
+                                        </div>
+                                        <Field
+                                            type="number"
+                                            name="waterVolume"
+                                            onChange={(e) => {
+                                                setFieldValue("waterVolume", e.target.value);
+                                                setWaterVolume(e.target.value);
+                                            }}
+                                            className={`${css.inputField} ${
+                                                errors.waterVolume && touched.waterVolume ? css.inputError : ""
+                                            }`}
+                                            placeholder="Recording Time"
+                                        />
+                                        <ErrorMessage
+                                            className={css.errorMessage}
+                                            name="password"
+                                            component="span"
+                                        />
+                                    </div>
 
-                                <div className={css.modalFooter}>
-                                    <div className={css.smallButton}>{waterVolume} ml</div>
-                                    <button type="submit" className={css.saveButton} >Save</button>
-                                </div>
-                            </Form>
-                        )}
+                                    <div className={css.modalFooter}>
+                                        <div className={css.smallButton}>{waterVolume} ml</div>
+                                        <button type="submit" className={css.saveButton}>Save</button>
+                                    </div>
+                                </Form>
+                            );
+                        }}
                     </Formik>
                 </div>
             </ModalContainer>
