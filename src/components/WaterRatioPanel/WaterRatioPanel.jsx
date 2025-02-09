@@ -5,7 +5,7 @@ import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon";
 import ModalContainer from "../ui/ModalContainer/ModalContainer";
 
-import css from "./WaterRatioPanel.module.css";
+import css from './WaterRatioPanel.module.css';
 
 const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
     // const { waterServings } = useWaterSelector(); // [] item
@@ -34,7 +34,7 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
               className={css.ratioPanelFill}
               style={{
                 width: `${displayedPercentage}%`,
-                backgroundColor: "#9ebbff",
+                backgroundColor: '#9ebbff',
               }}
             >
               {displayedPercentage <= 100 && (
@@ -42,8 +42,8 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
                   className={css.percentNumber}
                   style={{
                     left: `${displayedPercentage}%`,
-                    transform: "translateX(-50%)",
-                    color: "#407bff",
+                    transform: 'translateX(-50%)',
+                    color: '#407bff',
                   }}
                 >
                   {`${displayedPercentage}%`}
@@ -60,11 +60,11 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
         </div>
         <div className={css.persentContainer}>
           <div className={css.markWrap}>
-            <div className={css.mark} style={{ left: "0%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '0%' }}></div>{' '}
             {/* Смужка 0% */}
-            <div className={css.mark} style={{ left: "50%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '50%' }}></div>{' '}
             {/* Смужка 50% */}
-            <div className={css.mark} style={{ left: "100%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '100%' }}></div>{' '}
             {/* Смужка 100% */}
           </div>
           <div className={css.percentWrap}>
@@ -76,15 +76,7 @@ const WaterRatioPanel = ({onOpen, isOpen, onClose}) => {
       </div>
       <Button className={css.btnAdd} onClick={onOpen}><Icon className={css.iconPlus} name={"icon-plus-circle"} />
         Add Water</Button>
-      {/* <button
-        className={css.btn}
-        type="button"
-        onClick={onOpen}
-      >
-        <Icon className={css.iconPlus} name={"icon-plus-circle"} stroke={"#ffffff"} fill={"#ffffff"}/>
-        Add Water
-      </button> */}
-      {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />}
+      {/* {isOpen && <ModalContainer isOpen={isOpen} onClose={onClose} />} */}
     </div>
   );
 };
