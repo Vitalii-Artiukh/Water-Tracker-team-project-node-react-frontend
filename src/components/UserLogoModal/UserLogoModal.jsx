@@ -7,20 +7,16 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const modalRef = useRef(null);
 
-  const openLogoutModal = () => {
-    setIsLogoutModalOpen(true);
-  };
-  const closeLogoutModal = () => setIsLogoutModalOpen(false);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsOpenUserModal(false);
+        setTimeout(() => setIsOpenUserModal(false), 0);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mouseup', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mouseup', handleClickOutside);
     };
   }, [setIsOpenUserModal]);
 
@@ -42,7 +38,10 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
         <li>
           <button
             type="button"
-            onClick={openLogoutModal}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsLogoutModalOpen(true);
+            }}
             className={css.dropDownButton}
           >
             <Icon
@@ -59,7 +58,9 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
       {isLogoutModalOpen && (
         <UserLogoutModal
           isOpen={isLogoutModalOpen}
-          onClose={closeLogoutModal}
+          onClose={() => {
+            setIsLogoutModalOpen(false);
+          }}
         />
       )}
     </>
