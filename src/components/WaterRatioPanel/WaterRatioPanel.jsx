@@ -14,9 +14,10 @@ const WaterRatioPanel = ({ onOpen, isOpen, onClose, dailyRecords }) => {
 
   // const waterProgress = Math.round(
   //   (dailyRecords.totalWater / user.dailyNorm) * 100
-  // );
-
+  // // );
+  // const waterProgress = Math.round((880 / 1500) * 100);
   // const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
+  
   const displayedPercentage = dailyRecords.dailyNormProgress >= 100 ? 100 : dailyRecords.dailyNormProgress;
 
   return (

@@ -101,7 +101,7 @@
         url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
         url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
       );
-    background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
+    background-position: left calc(50% - 310px) top 44px, left 50% top 54px;
     background-size: 738px 548px, auto;
     padding-top: 20px;
     padding-bottom: 40px;
