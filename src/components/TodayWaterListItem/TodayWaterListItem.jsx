@@ -6,7 +6,7 @@ const TodayWaterListItem = () => {
     <div className={css.item}>
       <div className={css.waterStatsPanel}>
         <svg className={css.svg}>
-          <use href={"/public/sprite.svg#icon-glass"}></use>
+          <use href="/sprite.svg#icon-glass"></use>
         </svg>
         <span className={css.itemTextWater}>200 ml</span>
         <span className={css.itemTextTime}>14:00 PM</span>

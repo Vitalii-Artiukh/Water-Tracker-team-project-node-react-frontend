@@ -1,15 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   addWaterEntrie,
   deleteWaterEntrie,
   fetchWaterEntriesByDay,
   fetchWaterMonthStats,
   updateWaterEntrie,
-} from './operations.js';
-import { adaptDailyRecordForMonthStats } from '../../utils/adaptDailyRecordForMonthStats.js';
-import { adaptEntrieResForDailyRecord } from '../../utils/adaptEntrieResForDailyRecord.js';
+} from "./operations.js";
+import { adaptDailyRecordForMonthStats } from "../../utils/adaptDailyRecordForMonthStats.js";
+import { adaptEntrieResForDailyRecord } from "../../utils/adaptEntrieResForDailyRecord.js";
 
-const handleEntriePending = state => {
+const handleEntriePending = (state) => {
   state.loading.entrieLoading = true;
 };
 
@@ -19,7 +19,7 @@ const handleEntrieRejected = (state, action) => {
 };
 
 const waterSlice = createSlice({
-  name: 'water',
+  name: "water",
   initialState: {
     monthStats: [],
     dailyRecords: {
@@ -44,9 +44,9 @@ const waterSlice = createSlice({
     },
   },
 
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
-      .addCase(fetchWaterEntriesByDay.pending, state => {
+      .addCase(fetchWaterEntriesByDay.pending, (state) => {
         state.loading.dailyLoading = true;
       })
       .addCase(fetchWaterEntriesByDay.fulfilled, (state, action) => {
@@ -62,7 +62,7 @@ const waterSlice = createSlice({
         state.loading.dailyLoading = false;
         state.error = action.payload;
       })
-      .addCase(fetchWaterMonthStats.pending, state => {
+      .addCase(fetchWaterMonthStats.pending, (state) => {
         state.loading.monthLoading = true;
       })
       .addCase(fetchWaterMonthStats.fulfilled, (state, action) => {
@@ -81,11 +81,11 @@ const waterSlice = createSlice({
         const dayToUpdate = adaptDailyRecordForMonthStats(action.payload);
 
         const isDailyRecordExist = state.monthStats.some(
-          day => day.date === dayToUpdate.date
+          (day) => day.date === dayToUpdate.date
         );
 
         if (isDailyRecordExist) {
-          state.monthStats = state.monthStats.map(day =>
+          state.monthStats = state.monthStats.map((day) =>
             day.date === dayToUpdate.date ? dayToUpdate : day
           );
         } else {
@@ -101,7 +101,7 @@ const waterSlice = createSlice({
 
         const dayToUpdate = adaptDailyRecordForMonthStats(action.payload);
 
-        state.monthStats = state.monthStats.map(day =>
+        state.monthStats = state.monthStats.map((day) =>
           day.date === dayToUpdate.date ? dayToUpdate : day
         );
       })
@@ -116,7 +116,7 @@ const waterSlice = createSlice({
           action.payload.updatedWaterRecord
         );
 
-        state.monthStats = state.monthStats.map(day =>
+        state.monthStats = state.monthStats.map((day) =>
           day.date === dayToUpdate.date ? dayToUpdate : day
         );
       })
