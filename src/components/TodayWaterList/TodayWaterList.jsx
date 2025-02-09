@@ -1,7 +1,8 @@
 import TodayWaterListItem from "../TodayWaterListItem/TodayWaterListItem";
 import css from "./TodayWaterList.module.css";
 
-const TodayWaterList = () => {
+const TodayWaterList = ({ dailyRecords }) => {
+  console.log(dailyRecords);
   return (
     <div className={css.container}>
       <h3 className={css.subtitle}>Today</h3>
