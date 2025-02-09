@@ -26,7 +26,7 @@ const WaterRatioPanel = () => {
               className={css.ratioPanelFill}
               style={{
                 width: `${displayedPercentage}%`,
-                backgroundColor: "#9ebbff",
+                backgroundColor: '#9ebbff',
               }}
             >
               {displayedPercentage <= 100 && (
@@ -34,8 +34,8 @@ const WaterRatioPanel = () => {
                   className={css.percentNumber}
                   style={{
                     left: `${displayedPercentage}%`,
-                    transform: "translateX(-50%)",
-                    color: "#407bff",
+                    transform: 'translateX(-50%)',
+                    color: '#407bff',
                   }}
                 >
                   {`${displayedPercentage}%`}
@@ -52,11 +52,11 @@ const WaterRatioPanel = () => {
         </div>
         <div className={css.persentContainer}>
           <div className={css.markWrap}>
-            <div className={css.mark} style={{ left: "0%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '0%' }}></div>{' '}
             {/* Смужка 0% */}
-            <div className={css.mark} style={{ left: "50%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '50%' }}></div>{' '}
             {/* Смужка 50% */}
-            <div className={css.mark} style={{ left: "100%" }}></div>{" "}
+            <div className={css.mark} style={{ left: '100%' }}></div>{' '}
             {/* Смужка 100% */}
           </div>
           <div className={css.percentWrap}>
