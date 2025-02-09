@@ -53,7 +53,7 @@ const WaterForm = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}
       return value;
     }
   )
-  
+
   const closeModal = () =>{
     handleVisibleForm();
     setWaterEntry(null)
