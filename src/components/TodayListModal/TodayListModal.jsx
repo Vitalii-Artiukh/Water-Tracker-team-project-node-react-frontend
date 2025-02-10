@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import moment from "moment";
 import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
 import css from "./TodayListModal.module.css";
@@ -11,7 +11,7 @@ import TodayListModalHeaderLabel from "../TodayListModalHeaderLabel/TodayListMod
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
-    .min(0)
+    .min(1)
     .max(1500)
     .required("Amount Of Water is required"),
   time: Yup
