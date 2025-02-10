@@ -1,12 +1,12 @@
 import {useEffect, useMemo, useState} from "react";
-import moment from "moment";
-import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
-import css from "./TodayListModal.module.css";
-import Icon from "../ui/Icon.jsx";
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import * as Yup from "yup";
 import {useDispatch} from "react-redux";
+import * as Yup from "yup";
+import moment from "moment";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
+import Icon from "../ui/Icon.jsx";
 import {addWaterEntrie, updateWaterEntrie} from "../../redux/water/operations.js";
+import css from "./TodayListModal.module.css";
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
@@ -77,17 +77,17 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
   return (
     <>
-      <ModalContainer isOpen={showWaterForm}>
+      <ModalContainer isOpen={showWaterForm} onClose={handleVisibleForm} className={css.modal} overlayClassName={css.overlay}>
         <div className={css.modalContent}>
           <div className={css.modalHeader}>
-            <div className={css.modalHeader}>
+            {/* <div className={css.modalHeader}> */}
               <h2 className={css.title}>
                 {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
               </h2>
               <button className={css.closeBtn} onClick={closeModal} aria-label="Close">
-                <Icon name="icon-x-mark" width={24} height={24}/>
+                <Icon name="icon-x-mark"/>
               </button>
-            </div>
+            {/* </div> */}
           </div>
           <Formik
             initialValues={initialValues}
@@ -128,13 +128,13 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                       {waterEntry ? 'Correct entered data:' : 'Choose a value:'}
                     </p>
                     <div>
-                      <div className={css.formTextLabel}>
+                      <p className={css.formTextLabel}>
                         Amount of water:
-                      </div>
+                      </p>
 
                       <div className={css.buttonCircleContainer}>
                         <div>
-                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>-
+                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}><Icon name="icon-minus-small"/>
                           </div>
                         </div>
                         <div className={css.amountOfWaterLabel}>
@@ -143,14 +143,14 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
                         <div>
                           <div className={css.buttonRound}
-                               onClick={() => increaseWaterVolume(setFieldValue)}>+
+                               onClick={() => increaseWaterVolume(setFieldValue)}><Icon name="icon-plus-small"/>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className={css.formItemBlock}>
-                    <div className={css.label}>Recording time:</div>
+                    <p className={css.formTextLabel}>Recording time:</p>
                     <Field
                       as="select"
                       name="time"
@@ -169,9 +169,9 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                     />
                   </div>
                   <div className={css.formItemBlock}>
-                    <div className={css.labelTime}>
-                      <p>Enter the value of the water used:</p>
-                    </div>
+                    {/* <div className={css.labelTime}> */}
+                      <p className={css.labelTime}>Enter the value of the water used:</p>
+                    {/* </div> */}
                     <Field
                       type="number"
                       name="waterVolume"
@@ -192,7 +192,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                   </div>
 
                   <div className={css.modalFooter}>
-                    <div className={css.smallButton}>{waterVolume} ml</div>
+                    <p className={css.smallButton}>{waterVolume} ml</p>
                     <button type="submit" className={css.saveButton}>Save</button>
                   </div>
                 </Form>
