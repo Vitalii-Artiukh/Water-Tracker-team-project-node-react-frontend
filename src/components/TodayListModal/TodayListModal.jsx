@@ -11,7 +11,7 @@ import TodayListModalHeaderLabel from "../TodayListModalHeaderLabel/TodayListMod
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
-    .min(0)
+    .min(50)
     .max(1500)
     .required("Amount Of Water is required"),
   time: Yup
@@ -34,6 +34,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
     }
 
     timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
+
     timeArray.sort((a, b) => moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm')))
     timeArray.filter((item, index, self) => index === self.findIndex(t => t.key === item.key));
 
@@ -60,7 +61,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
   const decreaseWaterVolume = (setFieldValue) => {
     setWaterVolume(prevState => {
       const newValue = prevState - 50;
-      const value = (newValue < 0) ? prevState : newValue;
+      const value = (newValue <= 50) ? prevState : newValue;
       setFieldValue('waterVolume', value)
       return value;
     })
