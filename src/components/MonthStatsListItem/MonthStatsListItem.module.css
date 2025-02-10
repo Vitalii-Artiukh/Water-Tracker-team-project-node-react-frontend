@@ -20,6 +20,18 @@
   cursor: pointer;
 }
 
+.completeBoxBorder {
+  border: 1px solid var(--primary-color-blue);
+}
+
+.alterBoxBorder {
+  border: 1px solid var(--secondary-color-orange);
+}
+
+.currentDay {
+  background-color: var(--secondary-color-light-blue200);
+}
+
 .text {
   width: 32px;
   text-align: center;

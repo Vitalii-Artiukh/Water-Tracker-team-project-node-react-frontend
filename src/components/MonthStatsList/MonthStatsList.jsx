@@ -1,15 +1,22 @@
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import MonthStatsListItem from "../MonthStatsListItem/MonthStatsListItem";
-
 import css from "./MonthStatsList.module.css";
 
 const MonthStatsList = ({
   days,
   isOpen,
   modalData,
+  monthStats,
   setIsShowModal,
   setModalData,
+  getCurrentMonth,
 }) => {
+  const getDayWithStats = (day) => {
+    return monthStats?.filter((dayStats) => {
+      if (Number(dayStats.date.split(",")[0]) === day) return dayStats;
+    });
+  };
+
   const onShowModal = (e) => {
     const el = e.target;
     const cords = el.getBoundingClientRect();
@@ -35,7 +42,13 @@ const MonthStatsList = ({
       <ul className={css.list}>
         {days.map((day) => (
           <li key={day} className={css.listItem}>
-            <MonthStatsListItem day={day} onShowModal={onShowModal} />
+            <MonthStatsListItem
+              day={day}
+              monthStats={monthStats}
+              getDayWithStats={getDayWithStats}
+              onShowModal={onShowModal}
+              getCurrentMonth={getCurrentMonth}
+            />
           </li>
         ))}
       </ul>
