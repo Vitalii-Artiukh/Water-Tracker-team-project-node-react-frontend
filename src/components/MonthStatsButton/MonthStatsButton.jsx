@@ -5,6 +5,7 @@ const MonthStatsButton = ({ rotate, handleClick }) => {
   return (
     <button
       type="button"
+      disabled={false}
       className={css.button}
       style={{
         transform: rotate,

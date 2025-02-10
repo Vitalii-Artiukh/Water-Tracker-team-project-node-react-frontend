@@ -1,3 +1,5 @@
+import { useState } from "react";
+import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 import Icon from "../ui/Icon";
 import css from "./TodayWaterListItem.module.css";
 
@@ -19,27 +21,47 @@ const formatIn12Hours = (time) => {
   return hours + ":" + minutes + " " + am;
 };
 
-const TodayWaterListItem = ({ entry }) => {
-  const { time, waterVolume } = entry;
+const TodayWaterListItem = ({ entry, openWaterModal, setWaterEntry }) => {
+  const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
+  const { time, waterVolume, _id } = entry;
+
+  const openModal = () => setOpenDeleteModal(true);
+  const closeModal = () => setOpenDeleteModal(false);
+
+  const editEntryHandler = () => {
+    openWaterModal();
+    setWaterEntry(entry);
+  };
 
   return (
-    <div className={css.item}>
-      <div className={css.waterStatsPanel}>
-        <svg className={css.svg}>
-          <use href="/sprite.svg#icon-glass"></use>
-        </svg>
-        <span className={css.itemTextWater}>{waterVolume} ml</span>
-        <span className={css.itemTextTime}>{formatIn12Hours(time)}</span>
+    <>
+      <div className={css.item}>
+        <div className={css.waterStatsPanel}>
+          <svg className={css.svg}>
+            <use href="/sprite.svg#icon-glass"></use>
+          </svg>
+          <span className={css.itemTextWater}>{waterVolume} ml</span>
+          <span className={css.itemTextTime}>{formatIn12Hours(time)}</span>
+        </div>
+        <div className={css.iconsPanel}>
+          <button
+            type="button"
+            className={css.button}
+            onClick={editEntryHandler}
+          >
+            <Icon name={"icon-edit"} width={16} height={16} />
+          </button>
+          <button type="button" className={css.button} onClick={openModal}>
+            <Icon name={"icon-trash"} width={16} height={16} />
+          </button>
+        </div>
       </div>
-      <div className={css.iconsPanel}>
-        <button type="button" className={css.button}>
-          <Icon name={"icon-edit"} width={16} height={16} />
-        </button>
-        <button type="button" className={css.button}>
-          <Icon name={"icon-trash"} width={16} height={16} />
-        </button>
-      </div>
-    </div>
+      <DeleteWaterModal
+        isOpen={isOpenDeleteModal}
+        onClose={closeModal}
+        id={_id}
+      />
+    </>
   );
 };
 

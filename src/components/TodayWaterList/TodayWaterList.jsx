@@ -1,7 +1,7 @@
 import TodayWaterListItem from "../TodayWaterListItem/TodayWaterListItem";
 import css from "./TodayWaterList.module.css";
 
-const TodayWaterList = ({ dailyRecords }) => {
+const TodayWaterList = ({ dailyRecords, openWaterModal, setWaterEntry }) => {
   const { entries } = dailyRecords;
 
   return (
@@ -11,7 +11,11 @@ const TodayWaterList = ({ dailyRecords }) => {
         <ul className={css.list}>
           {entries?.map((entry) => (
             <li key={entry._id}>
-              <TodayWaterListItem entry={entry} />
+              <TodayWaterListItem
+                entry={entry}
+                openWaterModal={openWaterModal}
+                setWaterEntry={setWaterEntry}
+              />
             </li>
           ))}
         </ul>
@@ -21,7 +25,7 @@ const TodayWaterList = ({ dailyRecords }) => {
           day.
         </p>
       )}
-      <button type="button" className={css.button}>
+      <button type="button" className={css.button} onClick={openWaterModal}>
         <svg className={css.svg}>
           <use href="/sprite.svg#icon-plus-small-v2"></use>
         </svg>

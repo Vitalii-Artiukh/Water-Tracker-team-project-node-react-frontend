@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import css from "./MonthStatsListItem.module.css";
+import { useWaterSelector } from "../../hooks/useWaterSelector";
 
 const MonthStatsListItem = ({
   day,
@@ -7,6 +8,8 @@ const MonthStatsListItem = ({
   onShowModal,
   getCurrentMonth,
 }) => {
+  const { isLoading } = useWaterSelector();
+
   const stats = getDayWithStats(day);
   const isCurrentDay =
     new Date().toISOString().split("T")[0] ===
@@ -18,10 +21,13 @@ const MonthStatsListItem = ({
         <div
           className={clsx(
             css.box,
-            parseInt(stats[0]?.percentage) < 100 &&
+            !isLoading &&
+              parseInt(stats[0]?.percentage) < 100 &&
               stats?.length > 0 &&
               css.alterBoxBorder,
-            parseInt(stats[0]?.percentage) >= 100 && css.completeBoxBorder,
+            !isLoading &&
+              parseInt(stats[0]?.percentage) >= 100 &&
+              css.completeBoxBorder,
             isCurrentDay && css.currentDay
           )}
           onClick={onShowModal}

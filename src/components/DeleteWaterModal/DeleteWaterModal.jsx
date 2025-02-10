@@ -5,12 +5,11 @@ import Icon from "../ui/Icon.jsx";
 import Button from "../ui/Button/Button.jsx";
 import css from "./DeleteWaterModal.module.css";
 
-
-const DeleteWaterModal = ({ isOpen, onClose }) => {
+const DeleteWaterModal = ({ isOpen, onClose, id }) => {
   const dispatch = useDispatch();
 
   const handleDeleteWater = () => {
-    dispatch(deleteWaterEntrie());
+    dispatch(deleteWaterEntrie(id));
     onClose();
   };
 
@@ -23,7 +22,9 @@ const DeleteWaterModal = ({ isOpen, onClose }) => {
             <Icon name="icon-x-mark" width={24} height={24} />
           </button>
         </div>
-        <p className={css.subtitle}>Are you sure you want to delete the entry?</p>
+        <p className={css.subtitle}>
+          Are you sure you want to delete the entry?
+        </p>
         <div className={css.buttonGroup}>
           <Button
             onClick={handleDeleteWater}
