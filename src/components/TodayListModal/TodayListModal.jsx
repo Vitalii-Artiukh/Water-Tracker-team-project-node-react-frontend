@@ -152,7 +152,8 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
                       <div className={css.buttonCircleContainer}>
                         <div>
-                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>-
+                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>
+                            <Icon name={"icon-minus-small"} stroke="#407bff"/>
                           </div>
                         </div>
                         <div className={css.amountOfWaterLabel}>
@@ -161,7 +162,8 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
                         <div>
                           <div className={css.buttonRound}
-                               onClick={() => increaseWaterVolume(setFieldValue)}>+
+                               onClick={() => increaseWaterVolume(setFieldValue)}>
+                            <Icon name={"icon-plus-small"} stroke="#407bff"/>
                           </div>
                         </div>
                       </div>
