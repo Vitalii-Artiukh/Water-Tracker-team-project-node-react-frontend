@@ -35,6 +35,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
     timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
     timeArray.sort((a, b) => moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm')))
+    timeArray.filter((item, index, self) => index === self.findIndex(t => t.key === item.key));
 
     return timeArray;
   }, [])
