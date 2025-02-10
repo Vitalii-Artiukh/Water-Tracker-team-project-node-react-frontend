@@ -87,7 +87,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
       return <TodayListModalHeaderLabel
         waterVolumeText={lastEntry.waterVolume + ' ml'}
         timeText={
-          moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm') + ' PM'
+          moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')
         }
       />
     }
@@ -136,7 +136,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                       waterEntry &&
                       <TodayListModalHeaderLabel
                         waterVolumeText={waterEntry.waterVolume + ' ml'}
-                        timeText={waterEntry.time + ' PM'}
+                        timeText={waterEntry.time}
                       />
                     }
                     {
