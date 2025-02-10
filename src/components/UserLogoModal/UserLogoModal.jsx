@@ -15,6 +15,7 @@ const UserLogoModal = ({ setIsOpenUserModal }) => {
       if (
         modalRef.current &&
         !modalRef.current.contains(event.target) &&
+        !event.target.closest('.userLogoButton') &&
         !isSettingModalOpen &&
         !isLogoutModalOpen
       ) {

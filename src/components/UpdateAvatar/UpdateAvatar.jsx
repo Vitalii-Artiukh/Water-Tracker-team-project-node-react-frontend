@@ -1,4 +1,4 @@
-import css from "../SettingModal/UpdateAvatar.module.css";
+import css from "../UpdateAvatar/UpdateAvatar.module.css";
 import Icon from "../ui/Icon";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";

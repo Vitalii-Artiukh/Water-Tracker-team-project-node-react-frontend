@@ -9,7 +9,7 @@
       url("../../../assets/images/welcome/background_wave_desktop_2x.png") 2x
     );
   background-repeat: no-repeat;
-  background-position: center top, left calc(50% + 590px) bottom;
+  background-position: center bottom 8px, left calc(50% + 590px) bottom;
   background-size: 320px, 3200px 1150px;
 }
 
@@ -48,8 +48,8 @@
         url("../../../assets/images/welcome/background_wave_desktop_2x.png") 2x
       );
     background-size: 330px, 1404px, 100% 432px;
-    background-position: right calc(50% - 460px) bottom 30px, center center,
-      center bottom;
+    background-position: right calc(50% - 460px) bottom 30px,
+      center bottom 109px, center bottom;
   }
 }
 
@@ -98,10 +98,10 @@
         url("../../../assets/images/home/bottle_home_desktop_2x.png") 2x
       ),
       image-set(
-        url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
-        url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
+        url("../../../assets/images/bubbles_desktop_any_1x.png") 1x,
+        url("../../../assets/images/bubbles_desktop_any_2x.png") 2x
       );
-    background-position: left calc(50% - 310px) top 6px, left 50% top 34px;
+    background-position: left calc(50% - 310px) top 44px, left 50% top 54px;
     background-size: 738px 548px, auto;
     padding-top: 20px;
     padding-bottom: 40px;
@@ -122,7 +122,7 @@
   height: calc(89vh);
   padding-top: 24px;
   background-size: 280px 210px, auto;
-  background-position: left 50% top 350px, left 50% top 22px;
+  background-position: left 50% bottom -20px, left 50% top 22px;
   background-repeat: no-repeat;
 }
 
@@ -151,12 +151,12 @@
     height: calc(100vh - 76px);
 
     background-image: image-set(
-        url('../../../assets/images/signin/bottle_signin_desktop_1x.png') 1x,
-        url('../../../assets/images/signin/bottle_signin_desktop_2x.png') 2x
+        url("../../../assets/images/signin/bottle_signin_desktop_1x.png") 1x,
+        url("../../../assets/images/signin/bottle_signin_desktop_2x.png") 2x
       ),
       image-set(
-        url('../../../assets/images/bubbles_desktop_any_1x.png') 1x,
-        url('../../../assets/images/bubbles_desktop_any_2x.png') 2x
+        url("../../../assets/images/bubbles_desktop_any_1x.png") 1x,
+        url("../../../assets/images/bubbles_desktop_any_2x.png") 2x
       );
     background-position: left calc(50% - 310px) top 6px, left calc(50%) top 34px;
     background-size: 916px 680px, auto;
