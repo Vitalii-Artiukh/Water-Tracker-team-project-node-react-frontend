@@ -1,9 +1,9 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/axiosInstance.js";
-import { getTodayDate } from "../../utils/dateUtils.js";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import api from '../../api/axiosInstance.js';
+import { getTodayDate } from '../../utils/dateUtils.js';
 
 export const fetchTodayWaterRecords = createAsyncThunk(
-  "water/fetchAllForToday",
+  'water/fetchAllForToday',
   async (_, thunkAPI) => {
     const todayDate = getTodayDate();
     try {
@@ -17,7 +17,7 @@ export const fetchTodayWaterRecords = createAsyncThunk(
 );
 
 export const fetchWaterMonthStats = createAsyncThunk(
-  "water/fetchMonthStats",
+  'water/fetchMonthStats',
   async (yearMonth, thunkAPI) => {
     try {
       const { data } = await api.get(`/water/month/${yearMonth}`);
@@ -30,10 +30,10 @@ export const fetchWaterMonthStats = createAsyncThunk(
 );
 
 export const addWaterEntrie = createAsyncThunk(
-  "water/addEntrie",
+  'water/addEntrie',
   async (entrieData, thunkAPI) => {
     try {
-      const { data } = await api.post("/water", entrieData);
+      const { data } = await api.post('/water', entrieData);
 
       return data;
     } catch (error) {
@@ -43,7 +43,7 @@ export const addWaterEntrie = createAsyncThunk(
 );
 
 export const updateWaterEntrie = createAsyncThunk(
-  "water/updateEntrie",
+  'water/updateEntrie',
   async ({ entrieId, entrieData }, thunkAPI) => {
     try {
       const { data } = await api.patch(`/water/${entrieId}`, entrieData);
@@ -56,7 +56,7 @@ export const updateWaterEntrie = createAsyncThunk(
 );
 
 export const deleteWaterEntrie = createAsyncThunk(
-  "water/deleteEntrie",
+  'water/deleteEntrie',
   async (entrieId, thunkAPI) => {
     try {
       const { data } = await api.delete(`/water/${entrieId}`);
