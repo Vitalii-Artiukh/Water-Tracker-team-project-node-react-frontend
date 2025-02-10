@@ -26,11 +26,10 @@ const HomePage = () => {
   const openModal = () => setIsNormaModalOpen(true);
   const closeModal = () => setIsNormaModalOpen(false);
 
-
-  const [showWaterForm,setShowWaterForm] = useState(false);
-  const [waterEntry,setWaterEntry] = useState(null);
-  const closeWaterModal = () => setShowWaterForm(false)
-  const openWaterModal = () => setShowWaterForm(true)
+  const [showWaterForm, setShowWaterForm] = useState(false);
+  const [waterEntry, setWaterEntry] = useState(null);
+  const closeWaterModal = () => setShowWaterForm(false);
+  const openWaterModal = () => setShowWaterForm(true);
 
   return (
     <div className={css.pageWrapper}>
@@ -38,6 +37,7 @@ const HomePage = () => {
       <div>
         <DailyNorma openModal={openModal} />
         <WaterRatioPanel
+          dailyRecords={dailyRecords}
           openWaterModal={openWaterModal}
         />
       </div>
