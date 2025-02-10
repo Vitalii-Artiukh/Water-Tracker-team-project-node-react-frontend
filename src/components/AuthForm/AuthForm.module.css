@@ -69,10 +69,11 @@
 }
 
 .link {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
   color: var(--primary-color-blue);
+}
+
+.link:hover {
+  color: var(--secondary-color-orange);
 }
 
 @media (min-width: 768px) {
