@@ -99,7 +99,6 @@ const TodayListModal = ({
   const increaseWaterVolume = setFieldValue => {
     setWaterVolume(prevState => {
       const newValue = prevState + 50;
-      console.log(prevState)
       const value = newValue > 1500 ? prevState : newValue;
       setFieldValue('waterVolume', value);
       return value;
