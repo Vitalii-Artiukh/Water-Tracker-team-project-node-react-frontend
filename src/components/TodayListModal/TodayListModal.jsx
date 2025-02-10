@@ -111,24 +111,14 @@ const TodayListModal = ({
   };
 
   const labelForCreate = entries => {
-    if (entries.length === 0) {
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={'Not notes yes'}
-          timeText={''}
-        />
-      );
-    } else {
-      const lastEntry = [...entries].sort(
-        (a, b) => new Date(b.time) - new Date(a.time)
-      )[0];
+    if (entries.length !== 0) {
+      const lastEntry = [...entries].sort((a, b) => new Date(b.time) - new Date(a.time))[0];
 
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={lastEntry.waterVolume + ' ml'}
-          timeText={moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
-        />
-      );
+      const timeText = moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm');
+
+      return <TodayListModalHeaderLabel waterVolumeText={lastEntry.waterVolume + ' ml'} timeText={timeText}/>;
+    } else {
+      return <TodayListModalHeaderLabel waterVolumeText={'Not notes yes'} timeText={''}/>;
     }
   };
 
