@@ -1,0 +1,64 @@
+.modalHeader {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .title {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.23;
+  }
+  
+  .closeBtn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: relative;
+  }
+  
+  .closeBtn:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1px;
+    width: 60%;
+    height: 1px;
+    background-color: var(--secondary-color-light-blue300);
+  }
+  
+  .closeBtn:where(:focus, :hover, :active) {
+    outline: none;
+  }
+  
+  .subtitle {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.11;
+    padding: 24px 0;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .modalContent {
+      width: 592px;
+    }
+    .buttonGroup {
+      flex-direction: row-reverse;
+      justify-content: end;
+    }
+    .deleteBtn,
+    .cancelBtn {
+      max-width: 160px;
+    }
+  }

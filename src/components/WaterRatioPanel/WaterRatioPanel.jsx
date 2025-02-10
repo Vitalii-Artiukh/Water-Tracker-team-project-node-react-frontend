@@ -5,7 +5,7 @@ import Icon from "../ui/Icon";
 
 import css from "./WaterRatioPanel.module.css";
 
-const WaterRatioPanel = ({ onOpen, isOpen, onClose, dailyRecords }) => {
+const WaterRatioPanel = ({ openWaterModal, dailyRecords }) => {
   const { user } = useAuthSelector();
   console.log("user: ", user);
   console.log("dailyRecords: ", dailyRecords);
@@ -19,6 +19,7 @@ const WaterRatioPanel = ({ onOpen, isOpen, onClose, dailyRecords }) => {
   // const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
   
   const displayedPercentage = dailyRecords.dailyNormProgress >= 100 ? 100 : dailyRecords.dailyNormProgress;
+
 
   return (
     <div className={`${css.waterRatioPanelСontainer}`}>
@@ -67,7 +68,7 @@ const WaterRatioPanel = ({ onOpen, isOpen, onClose, dailyRecords }) => {
           </div>
         </div>
       </div>
-      <Button className={css.btnAdd} onClick={onOpen}>
+      <Button className={css.btnAdd} onClick={openWaterModal}>
         <Icon className={css.iconPlus} name={"icon-plus-circle"} />
         Add Water
       </Button>
