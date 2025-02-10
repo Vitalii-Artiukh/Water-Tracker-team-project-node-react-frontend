@@ -9,6 +9,7 @@ const UserLogoutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem("dailyNormData");
     dispatch(logout());
     onClose();
   };
