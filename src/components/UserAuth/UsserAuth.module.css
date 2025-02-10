@@ -8,6 +8,10 @@
   font-size: 16px;
   line-height: 1.25;
   color: var(--primary-color-blue);
+  transition: color var(--primary-transition);
+}
+.signIn:hover {
+  color: var(--secondary-color-orange);
 }
 
 @media (min-width: 768px) {
