@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import moment from 'moment';
 import ModalContainer from '../ui/ModalContainer/ModalContainer.jsx';
 import css from './TodayListModal.module.css';
@@ -47,10 +47,17 @@ const TodayListModal = ({
       moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm'))
     );
 
+    if (waterEntry !== null) {
+      const waterEntryTime = moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm');
+      timeArray.push({key: waterEntryTime, value: waterEntryTime});
+    }
+
+    console.log(timeArray);
+
     return timeArray.filter(
       (item, index, self) => index === self.findIndex(t => t.key === item.key)
     );
-  }, []);
+  }, [waterEntry]);
 
   const [initialValues, setInitialValues] = useState({
     waterVolume: 50,
@@ -60,7 +67,8 @@ const TodayListModal = ({
 
   useEffect(() => {
     if (waterEntry !== null) {
-      setInitialValues(waterEntry);
+      const time = moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm');
+      setInitialValues({...waterEntry, time});
       setWaterVolume(waterEntry.waterVolume);
     }
   }, [waterEntry]);
@@ -160,7 +168,7 @@ const TodayListModal = ({
                     {waterEntry && (
                       <TodayListModalHeaderLabel
                         waterVolumeText={waterEntry.waterVolume + ' ml'}
-                        timeText={waterEntry.time}
+                        timeText={moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
                       />
                     )}
                     {waterEntry === null &&
