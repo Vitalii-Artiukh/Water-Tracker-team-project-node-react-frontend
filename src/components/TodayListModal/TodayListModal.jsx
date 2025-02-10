@@ -7,10 +7,11 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
 import {addWaterEntrie, updateWaterEntrie} from "../../redux/water/operations.js";
+import TodayListModalHeaderLabel from "../TodayListModalHeaderLabel/TodayListModalHeaderLabel.jsx";
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
-    .min(0)
+    .min(50)
     .max(1500)
     .required("Amount Of Water is required"),
   time: Yup
@@ -19,21 +20,25 @@ const validationSchemas = Yup.object({
     .required("Recording Time is required"),
 });
 
-const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
-
-  //const time = useMemo(() => moment().format('HH:mm'), [])
+const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry, dailyRecords}) => {
 
   const timeOptions = useMemo(() => {
     let now = moment();
     let startOfDay = moment().startOf('day');
+    let endOfDay = moment().endOf('day');
     let timeArray = [];
 
-    for (let index = 1; now.isAfter(startOfDay); index++) {
-      timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
-      now.subtract(5, 'minutes');
+    for (let index = 1; startOfDay.isBefore(endOfDay); index++) {
+      let indexTime = startOfDay.format('HH:mm');
+      timeArray.push({key: indexTime, value: indexTime});
+      startOfDay.add(5, 'minutes');
     }
+    const currentTime = now.format('HH:mm');
+    timeArray.push({key: currentTime, value: currentTime});
 
-    return timeArray;
+    timeArray.sort((a, b) => moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm')))
+
+    return timeArray.filter((item, index, self) => index === self.findIndex(t => t.key === item.key));
   }, [])
 
   const [initialValues, setInitialValues] = useState({
@@ -56,7 +61,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
   const decreaseWaterVolume = (setFieldValue) => {
     setWaterVolume(prevState => {
       const newValue = prevState - 50;
-      const value = (newValue < 0) ? prevState : newValue;
+      const value = (newValue <= 50) ? prevState : newValue;
       setFieldValue('waterVolume', value)
       return value;
     })
@@ -70,9 +75,28 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
     }
   )
 
-  const closeModal = () =>{
+  const closeModal = () => {
     handleVisibleForm();
     setWaterEntry(null)
+  }
+
+  const labelForCreate = (entries) => {
+    if (entries.length === 0) {
+      return <TodayListModalHeaderLabel
+        waterVolumeText={'Not notes yes'}
+        timeText={''}
+      />
+    } else {
+
+      const lastEntry = [...entries].sort((a, b) =>  new Date(b.time) - new Date(a.time))[0];
+
+      return <TodayListModalHeaderLabel
+        waterVolumeText={lastEntry.waterVolume + ' ml'}
+        timeText={
+          moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')
+        }
+      />
+    }
   }
 
   return (
@@ -92,7 +116,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
-            // validationSchema={validationSchemas}
+            validationSchema={validationSchemas}
             onSubmit={(values, {setSubmitting}) => {
               let {time, waterVolume} = values;
               time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm')
@@ -116,13 +140,13 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                   <div className={css.formItemBlock}>
                     {
                       waterEntry &&
-                      <div className={css.editBlockLabel}>
-                        <svg className={css.svg}>
-                          <use href={"/sprite.svg#icon-glass"}></use>
-                        </svg>
-                        <span className={css.itemTextWater}>{waterEntry.waterVolume} ml</span>
-                        <span className={css.itemTextTime}>{waterEntry.time} PM</span>
-                      </div>
+                      <TodayListModalHeaderLabel
+                        waterVolumeText={waterEntry.waterVolume + ' ml'}
+                        timeText={waterEntry.time}
+                      />
+                    }
+                    {
+                      waterEntry === null && labelForCreate(dailyRecords.entries)
                     }
                     <p className={css.subtitle}>
                       {waterEntry ? 'Correct entered data:' : 'Choose a value:'}
@@ -134,7 +158,8 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
                       <div className={css.buttonCircleContainer}>
                         <div>
-                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>-
+                          <div className={css.buttonRound} onClick={() => decreaseWaterVolume(setFieldValue)}>
+                            <Icon name={"icon-minus-small"} stroke="#407bff"/>
                           </div>
                         </div>
                         <div className={css.amountOfWaterLabel}>
@@ -143,7 +168,8 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
 
                         <div>
                           <div className={css.buttonRound}
-                               onClick={() => increaseWaterVolume(setFieldValue)}>+
+                               onClick={() => increaseWaterVolume(setFieldValue)}>
+                            <Icon name={"icon-plus-small"} stroke="#407bff"/>
                           </div>
                         </div>
                       </div>
@@ -154,9 +180,10 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                     <Field
                       as="select"
                       name="time"
-                      className={`${css.inputField} ${
+                      className={`${css.inputField} ${css.dropdown}  ${
                         errors.time && touched.time ? css.inputError : ""
                       }`}
+
                       placeholder="Recording Time"
                     >
                       {timeOptions.map(item => (<option key={item.value} value={item.value}>{item.value}</option>))}
@@ -175,7 +202,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                     <Field
                       type="number"
                       name="waterVolume"
-                      onChange={(e) => {
+                      onBlur={(e) => {
                         setFieldValue("waterVolume", e.target.value);
                         setWaterVolume(e.target.value);
                       }}
