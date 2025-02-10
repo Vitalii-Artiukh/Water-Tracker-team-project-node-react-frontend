@@ -68,21 +68,6 @@
   margin-top: 5px;
 }
 
-.btn {
-  width: 100%;
-  padding: 8px 30px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  background-color: #407bff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .link {
   font-weight: 400;
   font-size: 16px;
