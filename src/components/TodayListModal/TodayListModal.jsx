@@ -11,7 +11,7 @@ import TodayListModalHeaderLabel from "../TodayListModalHeaderLabel/TodayListMod
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
-    .min(1)
+    .min(0)
     .max(1500)
     .required("Amount Of Water is required"),
   time: Yup
