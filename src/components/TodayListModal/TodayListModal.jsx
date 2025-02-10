@@ -7,7 +7,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
 import {addWaterEntrie, updateWaterEntrie} from "../../redux/water/operations.js";
-import TodayListModalHeaderLabel from "./TodayListModalHeaderLabel.jsx";
+import TodayListModalHeaderLabel from "../TodayListModalHeaderLabel/TodayListModalHeaderLabel.jsx";
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
@@ -21,8 +21,6 @@ const validationSchemas = Yup.object({
 });
 
 const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry, dailyRecords}) => {
-
-  //const time = useMemo(() => moment().format('HH:mm'), [])
 
   const timeOptions = useMemo(() => {
     let now = moment();
@@ -112,7 +110,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
           <Formik
             initialValues={initialValues}
             enableReinitialize={true}
-            // validationSchema={validationSchemas}
+            validationSchema={validationSchemas}
             onSubmit={(values, {setSubmitting}) => {
               let {time, waterVolume} = values;
               time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm')

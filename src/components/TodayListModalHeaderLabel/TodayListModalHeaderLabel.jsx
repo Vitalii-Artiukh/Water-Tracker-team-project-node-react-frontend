@@ -1,4 +1,4 @@
-import css from "./TodayListModal.module.css";
+import css from "./TodayListModalHeaderLabel.module.css"
 
 const TodayListModalHeaderLabel = ({waterVolumeText,timeText })=>{
   return (
