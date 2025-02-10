@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import moment from "moment";
 import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
 import css from "./TodayListModal.module.css";
@@ -7,6 +7,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
 import {addWaterEntrie, updateWaterEntrie} from "../../redux/water/operations.js";
+import TodayListModalHeaderLabel from "./TodayListModalHeaderLabel.jsx";
 
 const validationSchemas = Yup.object({
   waterVolume: Yup.number()
@@ -19,7 +20,7 @@ const validationSchemas = Yup.object({
     .required("Recording Time is required"),
 });
 
-const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry}) => {
+const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry, dailyRecords}) => {
 
   //const time = useMemo(() => moment().format('HH:mm'), [])
 
@@ -70,9 +71,28 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
     }
   )
 
-  const closeModal = () =>{
+  const closeModal = () => {
     handleVisibleForm();
     setWaterEntry(null)
+  }
+
+  const labelForCreate = (entries) => {
+    if (entries.length === 0) {
+      return <TodayListModalHeaderLabel
+        waterVolumeText={'Not notes yes'}
+        timeText={''}
+      />
+    } else {
+
+      const lastEntry = [...entries].sort((a, b) =>  new Date(b.time) - new Date(a.time))[0];
+
+      return <TodayListModalHeaderLabel
+        waterVolumeText={lastEntry.waterVolume + ' ml'}
+        timeText={
+          moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm') + ' PM'
+        }
+      />
+    }
   }
 
   return (
@@ -116,13 +136,13 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                   <div className={css.formItemBlock}>
                     {
                       waterEntry &&
-                      <div className={css.editBlockLabel}>
-                        <svg className={css.svg}>
-                          <use href={"/sprite.svg#icon-glass"}></use>
-                        </svg>
-                        <span className={css.itemTextWater}>{waterEntry.waterVolume} ml</span>
-                        <span className={css.itemTextTime}>{waterEntry.time} PM</span>
-                      </div>
+                      <TodayListModalHeaderLabel
+                        waterVolumeText={waterEntry.waterVolume + ' ml'}
+                        timeText={waterEntry.time + ' PM'}
+                      />
+                    }
+                    {
+                      waterEntry === null && labelForCreate(dailyRecords.entries)
                     }
                     <p className={css.subtitle}>
                       {waterEntry ? 'Correct entered data:' : 'Choose a value:'}
