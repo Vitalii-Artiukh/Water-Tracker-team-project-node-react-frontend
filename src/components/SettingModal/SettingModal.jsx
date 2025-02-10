@@ -93,7 +93,7 @@ const SettingModal = ({ isOpen, onClose }) => {
       onClose();
       toast.success("User data successfully updated!");
     } catch (error) {
-      toast.error(error?.message || "User data update error!");
+      toast.error(error || "User data update error!");
     }
   };
 
