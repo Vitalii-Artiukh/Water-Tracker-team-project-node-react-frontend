@@ -114,7 +114,7 @@ const TodayListModal = ({
 
   return (
     <>
-      <ModalContainer isOpen={showWaterForm} onClose={handleVisibleForm} className={css.modal} overlayClassName={css.overlay}>
+      <ModalContainer isOpen={showWaterForm} onClose={closeModal} className={css.modal} overlayClassName={css.overlay}>
         <div className={css.modalContent}>
           <div className={css.modalHeader}>
             {/* <div className={css.modalHeader}> */}
@@ -126,7 +126,7 @@ const TodayListModal = ({
                 onClick={closeModal}
                 aria-label="Close"
               >
-                <Icon name="icon-x-mark" width={24} height={24} />
+                <Icon name="icon-x-mark"/>
               </button>
             {/* </div> */}
           </div>
@@ -160,7 +160,7 @@ const TodayListModal = ({
                     {waterEntry && (
                       <TodayListModalHeaderLabel
                         waterVolumeText={waterEntry.waterVolume + ' ml'}
-                        timeText={waterEntry.time}
+                        timeText={moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
                       />
                     )}
                     {waterEntry === null &&
