@@ -1,8 +1,8 @@
 .dropDownMenu {
   position: absolute;
-  left: 50%;
+  left: 100%;
   margin-top: 12px;
-  transform: translateX(-50%);
+  transform: translateX(-100%);
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -15,6 +15,7 @@
   gap: 16px;
   align-items: center;
 }
+
 .dropDownButton {
   color: var(--primary-color-blue);
   width: 86px;
@@ -30,13 +31,13 @@
 @media (min-width: 768px) {
   .dropDownMenu {
     top: 60%;
-    left: 50%;
+    left: 100%;
   }
 }
 
 @media (min-width: 1440px) {
   .dropDownMenu {
     top: 90%;
-    left: 50%;
+    left: 100%;
   }
 }
