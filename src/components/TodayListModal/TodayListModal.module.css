@@ -1,16 +1,3 @@
-/* .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.8);
-  } */
-
 .modal {
   position: absolute;
   top: 40px;
@@ -173,54 +160,31 @@
   width: 26px;
   height: 26px;
 }
-/* 
-.itemTextWater {
-  font-size: 18px;
-  line-height: 1.3;
-  color: var(--primary-color-blue);
-}
 
-.itemTextTime {
-  font-size: 12px;
-  line-height: 2;
-  color: var(--primary-color-black);
-}
-
-.editBlockLabel {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  max-width: 200px;
-  background-color: var(--secondary-color-light-blue100);
-  margin-top: 10px;
-} */
-
-.errorMessage{
-    color: var(--secondary-color-red);
-    font-size: 14px;
-    margin-top: 5px;
+.errorMessage {
+  color: var(--secondary-color-red);
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 .dropdown {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: white;
-    cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
 }
 
 .dropdown option {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 .dropdown option:checked {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 @media (min-width: 768px) {
