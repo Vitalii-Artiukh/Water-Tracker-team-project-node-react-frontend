@@ -10,228 +10,222 @@
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.8);
   } */
-  
-  .modal {
-    position: absolute;
-    top: 40px;
-    border-radius: 10px;
-    background-color: var(--primary-color-white);
-    max-width: 280px;
-    /* max-height: 90vh; */
-    overflow-y: auto;
-    padding: 24px 12px;
-  }
+
+.modal {
+  position: absolute;
+  top: 40px;
+  border-radius: 10px;
+  background-color: var(--primary-color-white);
+  width: 280px;
+  overflow-y: auto;
+  padding: 24px 12px;
+}
 
 .modalHeader {
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 24px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
 .title {
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.23;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23;
 }
 
 .closeBtn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
 }
 
-/* .closeBtn {
-    content: "";
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 1px;
-    width: 60%;
-    height: 1px;
-    background-color: var(--secondary-color-light-blue300);
-} */
-
-/* .closeBtn:where(:focus, :hover, :active) {
-    outline: none;
-} */
-
 .subtitle {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.11;
-    margin-bottom: 16px;;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  margin-bottom: 16px;
 }
 
 .formTextLabel {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .buttonGroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
 }
 
 .buttonRound {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #357afe;
-    background-color: transparent;
-    stroke: var(--primary-color-blue);
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: stroke var(--primary-transition), background-color var(--primary-transition);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #357afe;
+  background-color: transparent;
+  stroke: var(--primary-color-blue);
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: stroke var(--primary-transition),
+    background-color var(--primary-transition);
 }
 
 .buttonRound:hover {
-    background-color: var(--secondary-color-light-blue300);
-    stroke: var(--primary-color-white);
+  background-color: var(--secondary-color-light-blue300);
+  stroke: var(--primary-color-white);
 }
 .amountOfWaterLabel {
-    padding: 10px 20px;
-    background-color: var(--secondary-color-light-blue200);
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--primary-color-blue);
-    text-align: center;
+  padding: 10px 20px;
+  background-color: var(--secondary-color-light-blue200);
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color-blue);
+  text-align: center;
 }
 
-.amountOfWaterLabel:hover {
-    background-color: var(--secondary-color-light-blue200);
-}
-
-.buttonCircleContainer{
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.buttonCircleContainer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .inputError {
-    border-color: var(--secondary-color-red);
-    color: var(--secondary-color-red);
+  border-color: var(--secondary-color-red);
+  color: var(--secondary-color-red);
 }
 
 .inputField {
-    padding: 12px 10px;
-    font-size: 16px;
-    border: 1px solid var(--secondary-color-light-blue200);
-    border-radius: 6px;
-    color: var(--primary-color-blue);
-    outline: none;
-    width: 100%;
-    transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 12px 10px;
+  font-size: 16px;
+  border: 1px solid var(--secondary-color-light-blue200);
+  border-radius: 6px;
+  color: var(--primary-color-blue);
+  outline: transparent;
+  width: 100%;
+  transition: border var(--primary-transition);
 }
 
-.inputField:active,.inputField:focus{
-    border: 1px solid #c5d9fd;
+.inputField:active,
+.inputField:focus {
+  border: 1px solid #c5d9fd;
 }
 
 .labelTime {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
 }
 
-.formItemBlock{
-    margin-bottom: 24px;
+.formItemBlock {
+  margin-bottom: 24px;
 }
 
 .modalFooter {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
 }
 @media screen and (max-width: 767px) {
-    .modalFooter {
-        flex-direction: column;
-    }
-
+  .modalFooter {
+    flex-direction: column;
+  }
 }
 
 .smallButton {
-    color: var(--primary-color-blue);
-    font-weight: 700;
-font-size: 18px;
-line-height: 1.33;
+  color: var(--primary-color-blue);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.33;
 }
 
 .saveButton {
-    background: var(--primary-color-blue);
-    color: var(--primary-color-white);
-    width: 100%;
-    padding: 8px 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
+  background: var(--primary-color-blue);
+  color: var(--primary-color-white);
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+  width: 100%;
+  padding: 8px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: box-shadow var(--primary-transition);
 }
 
 .saveButton:hover {
-    background: #285dcf;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.saveButton:active {
+  box-shadow: none;
 }
 
 .svg {
-    width: 26px;
-    height: 26px;
+  width: 26px;
+  height: 26px;
 }
 
 .itemTextWater {
-    font-size: 18px;
-    line-height: 1.3;
-    color: var(--primary-color-blue);
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--primary-color-blue);
 }
 
 .itemTextTime {
-    font-size: 12px;
-    line-height: 2;
-    color: var(--primary-color-black);
+  font-size: 12px;
+  line-height: 2;
+  color: var(--primary-color-black);
 }
 
-.editBlockLabel{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    border-radius: 10px;
-    max-width: 200px;
-    background-color: var(--secondary-color-light-blue100);
-    margin-top: 10px;
+.editBlockLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 200px;
+  background-color: var(--secondary-color-light-blue100);
+  margin-top: 10px;
 }
 
-.errorMessage{
-    color: var(--secondary-color-red);
-    font-size: 14px;
-    margin-top: 5px;
+.errorMessage {
+  color: var(--secondary-color-red);
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 @media (min-width: 768px) {
-    .modal {
-        max-width: 592px;
-    }
-    .buttonGroup {
-        flex-direction: row-reverse;
-        justify-content: end;
-    }
-    .logoutBtn,
-    .cancelBtn {
-        max-width: 160px;
-    }
+  .modal {
+    width: 704px;
+    padding: 32px 24px;
+  }
+
+  .modalFooter {
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  .saveButton {
+    width: 160px;
+    padding: 10px 30px;
+  }
 }
 
 @media (min-width: 1440px) {
-    .buttonGroup {
-        justify-content: start;
-    }
+  .modal {
+    width: 592px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .buttonGroup {
+    justify-content: start;
+  }
 }
