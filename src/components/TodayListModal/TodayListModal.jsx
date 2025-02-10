@@ -179,9 +179,10 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                     <Field
                       as="select"
                       name="time"
-                      className={`${css.inputField} ${
+                      className={`${css.inputField} ${css.dropdown}  ${
                         errors.time && touched.time ? css.inputError : ""
                       }`}
+
                       placeholder="Recording Time"
                     >
                       {timeOptions.map(item => (<option key={item.value} value={item.value}>{item.value}</option>))}
