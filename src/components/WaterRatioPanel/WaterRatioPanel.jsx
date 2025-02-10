@@ -1,25 +1,11 @@
-import { useAuthSelector } from "../../hooks/useAuthSelector";
-import { useWaterSelector } from "../../hooks/useWaterSelector";
 import Button from "../ui/Button/Button";
 import Icon from "../ui/Icon";
 
 import css from "./WaterRatioPanel.module.css";
 
 const WaterRatioPanel = ({ openWaterModal, dailyRecords }) => {
-  const { user } = useAuthSelector();
-  console.log("user: ", user);
-  console.log("dailyRecords: ", dailyRecords);
-
-  // const waterProgress = user.dailyNorm ? Math.round((dailyRecords.totalWater / user.dailyNorm) * 100) : Math.round((dailyRecords.totalWater / dailyRecords.totalWater.dailyNorm) * 100)
-
-  // const waterProgress = Math.round(
-  //   (dailyRecords.totalWater / user.dailyNorm) * 100
-  // // );
-  // const waterProgress = Math.round((880 / 1500) * 100);
-  // const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
-  
-  const displayedPercentage = dailyRecords.dailyNormProgress >= 100 ? 100 : dailyRecords.dailyNormProgress;
-
+  const waterProgress = Number.parseInt(dailyRecords.dailyNormProgress);
+  const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
 
   return (
     <div className={`${css.waterRatioPanelСontainer}`}>
