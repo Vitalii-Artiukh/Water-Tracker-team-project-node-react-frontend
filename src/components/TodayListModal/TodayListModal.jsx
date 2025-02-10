@@ -193,7 +193,7 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
                     <Field
                       type="number"
                       name="waterVolume"
-                      onChange={(e) => {
+                      onBlur={(e) => {
                         setFieldValue("waterVolume", e.target.value);
                         setWaterVolume(e.target.value);
                       }}
