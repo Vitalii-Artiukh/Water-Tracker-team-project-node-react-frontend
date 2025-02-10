@@ -26,6 +26,19 @@
   padding: 0;
   background-color: transparent;
   border: none;
+  transition: color var(--primary-transition);
+}
+
+.dropDownButton svg {
+  transition: stroke var(--primary-transition);
+}
+
+.dropDownButton:hover {
+  color: var(--secondary-color-orange);
+}
+
+.dropDownButton:hover svg {
+  stroke: var(--secondary-color-orange);
 }
 
 @media (min-width: 768px) {
