@@ -1,7 +1,7 @@
 .drinkWrapper {
   padding: 24px 16px;
   border-radius: 10px;
-  background-color: #ecf2ff;
+  background-color: var(--secondary-color-light-blue100);
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
 }
 
@@ -24,7 +24,7 @@
 }
 
 .drinkItem::before {
-  background-color: #407bff;
+  background-color: var(--primary-color-blue);
   content: "";
   width: 8px;
   height: 8px;

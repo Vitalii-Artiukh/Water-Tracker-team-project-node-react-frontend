@@ -1,7 +1,10 @@
-import { useState } from "react";
-import css from "./MonthStatsTable.module.css";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useWaterSelector } from "../../hooks/useWaterSelector";
 import MonthStatsList from "../MonthStatsList/MonthStatsList";
 import MonthStatsBar from "../MonthStatsBar/MonthStatsBar";
+import { waterOperations } from "../../redux";
+import css from "./MonthStatsTable.module.css";
 
 const currentMonth = new Date().getMonth() + 1;
 const currentYear = new Date().getFullYear();
@@ -17,6 +20,18 @@ const MonthStatsTable = () => {
     listCords: null,
     currentDay: null,
   });
+
+  const dispatch = useDispatch();
+  const { monthStats } = useWaterSelector();
+
+  const getCurrentMonth = useCallback(
+    () => year.toString() + "-" + month?.toString().padStart(2, 0),
+    [year, month]
+  );
+
+  useEffect(() => {
+    dispatch(waterOperations.fetchWaterMonthStats(getCurrentMonth()));
+  }, [dispatch, getCurrentMonth]);
 
   const numberOfDays = new Date(year, month, 0).getDate();
   const days = [...Array(numberOfDays).keys()].map((i) => i + 1);
@@ -53,9 +68,11 @@ const MonthStatsTable = () => {
       <MonthStatsList
         days={days}
         isOpen={isShowModal}
+        monthStats={monthStats}
         modalData={modalData}
         setModalData={setModalData}
         setIsShowModal={setIsShowModal}
+        getCurrentMonth={getCurrentMonth}
       />
     </div>
   );

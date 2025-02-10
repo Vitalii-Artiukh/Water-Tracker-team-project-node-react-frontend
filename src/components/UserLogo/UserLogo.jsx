@@ -10,7 +10,7 @@ const UserLogo = ({ toggleDropdown, isOpenUserModal }) => {
     <div className={css.userInfo}>
       <button
         onClick={toggleDropdown}
-        className={clsx(css.buttonDropDownMenu, {
+        className={clsx(css.buttonDropDownMenu, 'userLogoButton', {
           [css.open]: isOpenUserModal,
         })}
         type="button"
