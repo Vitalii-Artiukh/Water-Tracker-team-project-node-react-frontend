@@ -172,7 +172,7 @@
   width: 26px;
   height: 26px;
 }
-
+/* 
 .itemTextWater {
   font-size: 18px;
   line-height: 1.3;
@@ -194,12 +194,32 @@
   max-width: 200px;
   background-color: var(--secondary-color-light-blue100);
   margin-top: 10px;
+} */
+
+.errorMessage{
+    color: var(--secondary-color-red);
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-.errorMessage {
-  color: var(--secondary-color-red);
-  font-size: 14px;
-  margin-top: 5px;
+.dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown option {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.dropdown option:checked {
+    background-color: #007bff;
+    color: white;
 }
 
 @media (min-width: 768px) {

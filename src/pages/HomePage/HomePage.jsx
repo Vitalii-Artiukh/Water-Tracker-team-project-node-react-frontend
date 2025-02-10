@@ -47,6 +47,7 @@ const HomePage = () => {
         openWaterModal={openWaterModal}
       />
       <TodayListModal
+        dailyRecords={dailyRecords}
         showWaterForm={showWaterForm}
         handleVisibleForm={closeWaterModal}
         waterEntry={waterEntry}
