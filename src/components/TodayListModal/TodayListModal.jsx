@@ -29,16 +29,16 @@ const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterE
     let timeArray = [];
 
     for (let index = 1; startOfDay.isBefore(endOfDay); index++) {
-      timeArray.push({key: startOfDay.format('HH:mm'), value: startOfDay.format('HH:mm')});
+      let indexTime = startOfDay.format('HH:mm');
+      timeArray.push({key: indexTime, value: indexTime});
       startOfDay.add(5, 'minutes');
     }
-
-    timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
+    const currentTime = now.format('HH:mm');
+    timeArray.push({key: currentTime, value: currentTime});
 
     timeArray.sort((a, b) => moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm')))
-    timeArray.filter((item, index, self) => index === self.findIndex(t => t.key === item.key));
 
-    return timeArray;
+    return timeArray.filter((item, index, self) => index === self.findIndex(t => t.key === item.key));
   }, [])
 
   const [initialValues, setInitialValues] = useState({
