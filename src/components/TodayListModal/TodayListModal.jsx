@@ -23,14 +23,18 @@ const validationSchemas = Yup.object({
 const TodayListModal = ({showWaterForm, handleVisibleForm, waterEntry, setWaterEntry, dailyRecords}) => {
 
   const timeOptions = useMemo(() => {
-    let now = moment().startOf('day');;
+    let now = moment();
+    let startOfDay = moment().startOf('day');
     let endOfDay = moment().endOf('day');
     let timeArray = [];
 
-    for (let index = 1; now.isBefore(endOfDay); index++) {
-      timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
-      now.add(5, 'minutes');
+    for (let index = 1; startOfDay.isBefore(endOfDay); index++) {
+      timeArray.push({key: startOfDay.format('HH:mm'), value: startOfDay.format('HH:mm')});
+      startOfDay.add(5, 'minutes');
     }
+
+    timeArray.push({key: now.format('HH:mm'), value: now.format('HH:mm')});
+    timeArray.sort((a, b) => moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm')))
 
     return timeArray;
   }, [])
