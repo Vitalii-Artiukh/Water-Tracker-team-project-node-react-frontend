@@ -4,8 +4,21 @@ import Icon from "../ui/Icon";
 import css from "./WaterRatioPanel.module.css";
 
 const WaterRatioPanel = ({ openWaterModal, dailyRecords }) => {
+
   const waterProgress = Number.parseInt(dailyRecords.dailyNormProgress);
-  const displayedPercentage = waterProgress >= 100 ? 100 : waterProgress;
+  const displayedPercentage =() => {
+    let percents;
+    if(dailyRecords.dailyNormProgress === null)
+ {
+  percents = 0;
+    }else{
+      percents = waterProgress >= 100 ? 100 : waterProgress;
+    }
+    return percents;
+  }
+
+  
+  
 
   return (
     <div className={`${css.waterRatioPanelСontainer}`}>
@@ -16,27 +29,27 @@ const WaterRatioPanel = ({ openWaterModal, dailyRecords }) => {
             <div
               className={css.ratioPanelFill}
               style={{
-                width: `${displayedPercentage}%`,
+                width: `${displayedPercentage()}%`,
                 backgroundColor: "#9ebbff",
               }}
             >
-              {displayedPercentage <= 100 && (
+              {displayedPercentage() <= 100 && (
                 <p
                   className={css.percentNumber}
                   style={{
-                    left: `${displayedPercentage}%`,
+                    left: `${displayedPercentage()}%`,
                     transform: "translateX(-50%)",
                     color: "#407bff",
                   }}
                 >
-                  {`${displayedPercentage}%`}
+                  {`${displayedPercentage()}%`}
                 </p>
               )}
             </div>
             <div
               className={css.thumb}
               style={{
-                left: `${displayedPercentage}%`,
+                left: `${displayedPercentage()}%`,
               }}
             ></div>
           </div>
