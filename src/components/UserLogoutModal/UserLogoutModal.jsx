@@ -4,9 +4,18 @@ import ModalContainer from "../ui/ModalContainer/ModalContainer.jsx";
 import Icon from "../ui/Icon.jsx";
 import css from "./UserLogoutModal.module.css";
 import Button from "../ui/Button/Button.jsx";
+import { useEffect } from "react";
 
 const UserLogoutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   const handleLogout = () => {
     localStorage.removeItem("dailyNormData");
