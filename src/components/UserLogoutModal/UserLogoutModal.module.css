@@ -59,6 +59,7 @@
   }
   .logoutBtn,
   .cancelBtn {
+    font-size: 18px;
     max-width: 160px;
   }
 }
