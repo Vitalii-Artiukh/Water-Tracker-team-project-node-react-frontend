@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useWaterSelector } from "../../hooks/useWaterSelector";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 import Icon from "../ui/Icon";
+import clsx from "clsx";
 import css from "./TodayWaterListItem.module.css";
-import { useWaterSelector } from "../../hooks/useWaterSelector";
 
 const formatIn12Hours = (time) => {
   const splittedTime = time.split("T")[1];
@@ -48,14 +49,14 @@ const TodayWaterListItem = ({ entry, openWaterModal, setWaterEntry }) => {
         <div className={css.iconsPanel}>
           <button
             type="button"
-            className={css.button}
+            className={clsx(css.button, css.editButton)}
             onClick={editEntryHandler}
           >
             <Icon name={"icon-edit"} width={16} height={16} />
           </button>
           <button
             type="button"
-            className={css.button}
+            className={clsx(css.button, css.trashButton)}
             onClick={openModal}
             disabled={isLoading ? true : false}
           >

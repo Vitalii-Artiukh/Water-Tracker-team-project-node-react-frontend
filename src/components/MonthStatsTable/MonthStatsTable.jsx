@@ -14,7 +14,8 @@ const MonthStatsTable = () => {
   const [year, setYear] = useState(currentYear);
 
   const dispatch = useDispatch();
-  const { monthStats } = useWaterSelector();
+
+  const { sortedMonthStats } = useWaterSelector();
 
   const getCurrentMonth = useCallback(
     () => year.toString() + "-" + month?.toString().padStart(2, 0),
@@ -60,7 +61,7 @@ const MonthStatsTable = () => {
       <MonthStatsList
         days={days}
         month={month}
-        monthStats={monthStats}
+        monthStats={sortedMonthStats}
         getCurrentMonth={getCurrentMonth}
       />
     </div>

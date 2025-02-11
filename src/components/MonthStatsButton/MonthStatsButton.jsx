@@ -1,11 +1,14 @@
+import { useWaterSelector } from "../../hooks/useWaterSelector";
 import Icon from "../ui/Icon";
 import css from "./MonthStatsButton.module.css";
 
 const MonthStatsButton = ({ rotate, handleClick }) => {
+  const { isLoading } = useWaterSelector();
+
   return (
     <button
       type="button"
-      disabled={false}
+      disabled={isLoading ? true : false}
       className={css.button}
       style={{
         transform: rotate,
