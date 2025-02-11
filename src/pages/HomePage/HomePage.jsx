@@ -32,7 +32,9 @@ const HomePage = () => {
 
   return (
     <div className={css.pageWrapper}>
-      <DailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
+      {isNormaModalOpen && (
+        <DailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
+      )}
       <div>
         <DailyNorma openModal={openModal} />
         <WaterRatioPanel

@@ -5,7 +5,7 @@ export const adaptDailyRecordForMonthStats = dailyRecord => {
 
   return {
     date: formattedDate,
-    dailyNorma: dailyRecord.dailyNorm ?? 0,
+    dailyNorma: `${parseFloat((dailyRecord.dailyNorm / 1000).toFixed(2))} L`,
     percentage:
       dailyRecord.dailyNorm > 0
         ? `${Math.round(
