@@ -32,6 +32,7 @@
   color: #8baeff;
   background-color: transparent;
   border: transparent;
+  cursor: pointer;
   transition: color var(--primary-transition);
 }
 
