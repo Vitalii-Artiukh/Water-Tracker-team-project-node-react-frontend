@@ -9,6 +9,14 @@ import {
   updateUserWaterRate,
 } from './operations.js';
 
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = state => {
+  state.isLoading = false;
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -23,6 +31,7 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
     currentTheme: 'light',
+    isLoading: false,
   },
 
   reducers: {
@@ -33,6 +42,7 @@ const authSlice = createSlice({
 
   extraReducers: builder =>
     builder
+      .addCase(signUp.pending, handlePending)
       .addCase(signUp.fulfilled, (state, action) => {
         const { _id, avatar, ...userData } = action.payload.user;
         state.user = {
@@ -41,7 +51,10 @@ const authSlice = createSlice({
         };
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
+      .addCase(signUp.rejected, handleRejected)
+      .addCase(signIn.pending, handlePending)
       .addCase(signIn.fulfilled, (state, action) => {
         const { _id, avatar, ...userData } = action.payload.user;
         state.user = {
@@ -50,8 +63,12 @@ const authSlice = createSlice({
         };
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
+      .addCase(signIn.rejected, handleRejected)
+      .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, state => {
+        state.isLoading = false;
         state.isLoggedIn = false;
         state.token = null;
         state.user = Object.keys(state.user).reduce((acc, key) => {
@@ -59,19 +76,29 @@ const authSlice = createSlice({
           return acc;
         }, {});
       })
+      .addCase(logout.rejected, handleRejected)
+      .addCase(updateUserData.pending, handlePending)
       .addCase(updateUserData.fulfilled, (state, action) => {
         const { _id, avatar, ...userData } = action.payload;
         state.user = {
           ...userData,
           avatarUrl: avatar,
         };
+        state.isLoading = false;
       })
+      .addCase(updateUserData.rejected, handleRejected)
+      .addCase(updateUserAvatar.pending, handlePending)
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatarUrl = action.payload.avatar;
+        state.isLoading = false;
       })
+      .addCase(updateUserAvatar.rejected, handleRejected)
+      .addCase(updateUserWaterRate.pending, handlePending)
       .addCase(updateUserWaterRate.fulfilled, (state, action) => {
         state.user.dailyNorm = action.payload.data.dailyNorm;
+        state.isLoading = false;
       })
+      .addCase(updateUserWaterRate.rejected, handleRejected)
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })

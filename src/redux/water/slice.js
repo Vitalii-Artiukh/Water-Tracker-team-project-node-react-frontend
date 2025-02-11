@@ -54,7 +54,9 @@ const waterSlice = createSlice({
       .addCase(fetchTodayWaterRecords.fulfilled, (state, action) => {
         state.dailyRecords = {
           date: action.payload.date,
-          dailyNorm: action.payload.dailyNorm,
+          dailyNorm: `${parseFloat(
+            (action.payload.dailyNorm / 1000).toFixed(2)
+          )} L`,
           totalWater: action.payload.totalWater,
           dailyNormProgress: action.payload.percentage,
           entries: action.payload.entries,
@@ -156,7 +158,7 @@ const waterSlice = createSlice({
             if (day.date === formattedDate) {
               return {
                 ...day,
-                dailyNorma: dailyNorm,
+                dailyNorma: `${parseFloat((dailyNorm / 1000).toFixed(2))} L`,
                 percentage: dailyNormProgress,
               };
             }

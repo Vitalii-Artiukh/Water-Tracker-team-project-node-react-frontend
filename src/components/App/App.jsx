@@ -1,6 +1,6 @@
-import { lazy, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import { useAuthSelector } from "../../hooks/useAuthSelector";
+import { lazy, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { useAuthSelector } from '../../hooks/useAuthSelector';
 
 import SharedLayout from '@components/ui/SharedLayout';
 import Notification from '@components/ui/Notification';
@@ -8,15 +8,18 @@ import PrivateRoute from '@components/PrivateRoute';
 import RestrictedRoute from '@components/RestrictedRoute.jsx';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux';
+import Loader from '../ui/Loader/Loader.jsx';
+import { useWaterSelector } from '../../hooks/useWaterSelector.js';
 
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
-const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
-const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage"));
-const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage"));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
+const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuthSelector();
+  const { isRefreshing, isLoading: authLoading } = useAuthSelector();
+  const { isLoading: waterLoading } = useWaterSelector();
 
   useEffect(() => {
     dispatch(authOperations.refreshUser());
@@ -24,8 +27,9 @@ function App() {
   return (
     <>
       <Notification />
+      {(authLoading || waterLoading) && <Loader />}
       {isRefreshing ? (
-        <p style={{ fontSize: "60px" }}>...Loading</p>
+        <Loader />
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>

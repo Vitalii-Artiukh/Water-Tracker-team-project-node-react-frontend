@@ -7,6 +7,7 @@ export const useAuthSelector = () => {
   const isRefreshing = useSelector(authSelectors.selectIsRefreshing);
   const currentTheme = useSelector(authSelectors.selectCurrentTheme);
   const dailyNorm = useSelector(authSelectors.selectUserDailyNorm);
+  const isLoading = useSelector(authSelectors.selectLoading);
 
   return {
     user,
@@ -14,5 +15,6 @@ export const useAuthSelector = () => {
     isRefreshing,
     currentTheme,
     dailyNorm,
+    isLoading,
   };
 };

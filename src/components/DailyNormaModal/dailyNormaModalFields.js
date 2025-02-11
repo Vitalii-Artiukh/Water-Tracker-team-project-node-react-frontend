@@ -24,11 +24,11 @@ export const fields = {
     name: 'gender',
     items: [
       {
-        value: 'woman',
+        value: 'female',
         label: 'For woman',
       },
       {
-        value: 'man',
+        value: 'male',
         label: 'For man',
       },
     ],

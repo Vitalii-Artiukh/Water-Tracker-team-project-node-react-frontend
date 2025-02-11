@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import StatsWrapper from '../../components/StatsWrapper/StatsWrapper';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
-import MyDailyNormaModal from '../../components/MyDailyNormaModal/MyDailyNormaModal';
+import DailyNormaModal from '../../components/DailyNormaModal/DailyNormaModal';
 
 import { useWaterSelector } from '../../hooks/useWaterSelector';
 import { waterOperations } from '../../redux';
@@ -32,7 +32,9 @@ const HomePage = () => {
 
   return (
     <div className={css.pageWrapper}>
-      <MyDailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
+      {isNormaModalOpen && (
+        <DailyNormaModal isOpen={isNormaModalOpen} closeModal={closeModal} />
+      )}
       <div>
         <DailyNorma openModal={openModal} />
         <WaterRatioPanel
