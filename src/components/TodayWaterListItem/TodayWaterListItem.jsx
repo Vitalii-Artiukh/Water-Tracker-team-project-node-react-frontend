@@ -2,6 +2,7 @@ import { useState } from "react";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 import Icon from "../ui/Icon";
 import css from "./TodayWaterListItem.module.css";
+import { useWaterSelector } from "../../hooks/useWaterSelector";
 
 const formatIn12Hours = (time) => {
   const splittedTime = time.split("T")[1];
@@ -23,6 +24,7 @@ const formatIn12Hours = (time) => {
 
 const TodayWaterListItem = ({ entry, openWaterModal, setWaterEntry }) => {
   const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
+  const { isLoading } = useWaterSelector();
   const { time, waterVolume, _id } = entry;
 
   const openModal = () => setOpenDeleteModal(true);
@@ -51,7 +53,12 @@ const TodayWaterListItem = ({ entry, openWaterModal, setWaterEntry }) => {
           >
             <Icon name={"icon-edit"} width={16} height={16} />
           </button>
-          <button type="button" className={css.button} onClick={openModal}>
+          <button
+            type="button"
+            className={css.button}
+            onClick={openModal}
+            disabled={isLoading ? true : false}
+          >
             <Icon name={"icon-trash"} width={16} height={16} />
           </button>
         </div>

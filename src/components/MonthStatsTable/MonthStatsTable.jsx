@@ -12,14 +12,6 @@ const currentYear = new Date().getFullYear();
 const MonthStatsTable = () => {
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [modalData, setModalData] = useState({
-    cords: null,
-    currentElHeight: null,
-    currentElWidth: null,
-    listCords: null,
-    currentDay: null,
-  });
 
   const dispatch = useDispatch();
   const { monthStats } = useWaterSelector();
@@ -67,11 +59,8 @@ const MonthStatsTable = () => {
       />
       <MonthStatsList
         days={days}
-        isOpen={isShowModal}
+        month={month}
         monthStats={monthStats}
-        modalData={modalData}
-        setModalData={setModalData}
-        setIsShowModal={setIsShowModal}
         getCurrentMonth={getCurrentMonth}
       />
     </div>
