@@ -114,10 +114,10 @@ const TodayListModal = ({
 
   return (
     <>
-      <ModalContainer isOpen={showWaterForm}>
+      <ModalContainer isOpen={showWaterForm} onClose={closeModal} className={css.modal} overlayClassName={css.overlay}>
         <div className={css.modalContent}>
           <div className={css.modalHeader}>
-            <div className={css.modalHeader}>
+            {/* <div className={css.modalHeader}> */}
               <h2 className={css.title}>
                 {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
               </h2>
@@ -126,9 +126,9 @@ const TodayListModal = ({
                 onClick={closeModal}
                 aria-label="Close"
               >
-                <Icon name="icon-x-mark" width={24} height={24} />
+                <Icon name="icon-x-mark"/>
               </button>
-            </div>
+            {/* </div> */}
           </div>
           <Formik
             initialValues={initialValues}
@@ -160,7 +160,7 @@ const TodayListModal = ({
                     {waterEntry && (
                       <TodayListModalHeaderLabel
                         waterVolumeText={waterEntry.waterVolume + ' ml'}
-                        timeText={waterEntry.time}
+                        timeText={moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
                       />
                     )}
                     {waterEntry === null &&
@@ -169,7 +169,9 @@ const TodayListModal = ({
                       {waterEntry ? 'Correct entered data:' : 'Choose a value:'}
                     </p>
                     <div>
-                      <div className={css.formTextLabel}>Amount of water:</div>
+                      <p className={css.formTextLabel}>
+                        Amount of water:
+                      </p>
 
                       <div className={css.buttonCircleContainer}>
                         <div>
@@ -196,7 +198,7 @@ const TodayListModal = ({
                     </div>
                   </div>
                   <div className={css.formItemBlock}>
-                    <div className={css.label}>Recording time:</div>
+                    <p className={css.formTextLabel}>Recording time:</p>
                     <Field
                       as="select"
                       name="time"
@@ -218,9 +220,9 @@ const TodayListModal = ({
                     />
                   </div>
                   <div className={css.formItemBlock}>
-                    <div className={css.labelTime}>
-                      <p>Enter the value of the water used:</p>
-                    </div>
+                    {/* <div className={css.labelTime}> */}
+                      <p className={css.labelTime}>Enter the value of the water used:</p>
+                    {/* </div> */}
                     <Field
                       type="number"
                       name="waterVolume"
@@ -243,10 +245,8 @@ const TodayListModal = ({
                   </div>
 
                   <div className={css.modalFooter}>
-                    <div className={css.smallButton}>{waterVolume} ml</div>
-                    <button type="submit" className={css.saveButton}>
-                      Save
-                    </button>
+                    <p className={css.smallButton}>{waterVolume} ml</p>
+                    <button type="submit" className={css.saveButton}>Save</button>
                   </div>
                 </Form>
               );

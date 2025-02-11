@@ -1,14 +1,21 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useMatchMedia } from "../../hooks/useMatchMedia";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { months } from "../../constants";
 import css from "./DaysGeneralStats.module.css";
 
-const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal }) => {
+const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal, month }) => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   const targetRef = useRef(null);
 
-  const { cords, listCords, currentElHeight, currentElWidth, currentDay } =
-    modalData;
+  const {
+    cords,
+    listCords,
+    currentElHeight,
+    currentElWidth,
+    currentDay,
+    stats,
+  } = modalData;
 
   const styles = {
     height: "188px",
@@ -72,16 +79,20 @@ const DaysGeneralStats = ({ isOpen, modalData, setIsShowModal }) => {
 
   return (
     <div className={css.modal} ref={targetRef} style={{ ...styles }}>
-      <p style={{ color: "var(--primary-color-blue)" }}>5, April</p>
+      <p style={{ color: "var(--primary-color-blue)" }}>
+        {stats?.date ?? `${currentDay}, ${months[month]}`}
+      </p>
       <p className={css.modalText}>
-        Daily norma: <span className={css.modalSpan}>1.5 L</span>
+        Daily norma:{" "}
+        <span className={css.modalSpan}>{stats?.dailyNorma ?? "2 L"}</span>
       </p>
       <p className={css.modalText}>
         Fulfillment of the daily norm:{" "}
-        <span className={css.modalSpan}>100%</span>
+        <span className={css.modalSpan}>{stats?.percentage ?? "0%"}</span>
       </p>
       <p className={css.modalText}>
-        How many servings of water: <span className={css.modalSpan}>6</span>
+        How many servings of water:{" "}
+        <span className={css.modalSpan}>{stats?.entryCount ?? "0"}</span>
       </p>
     </div>
   );

@@ -1,39 +1,22 @@
+import { useState } from "react";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import MonthStatsListItem from "../MonthStatsListItem/MonthStatsListItem";
 import css from "./MonthStatsList.module.css";
 
-const MonthStatsList = ({
-  days,
-  isOpen,
-  modalData,
-  monthStats,
-  setIsShowModal,
-  setModalData,
-  getCurrentMonth,
-}) => {
+const MonthStatsList = ({ days, month, monthStats, getCurrentMonth }) => {
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [modalData, setModalData] = useState({
+    cords: null,
+    currentElHeight: null,
+    currentElWidth: null,
+    listCords: null,
+    currentDay: null,
+    stats: null,
+  });
+
   const getDayWithStats = (day) => {
     return monthStats?.filter((dayStats) => {
       if (Number(dayStats.date.split(",")[0]) === day) return dayStats;
-    });
-  };
-
-  const onShowModal = (e) => {
-    const el = e.target;
-    const cords = el.getBoundingClientRect();
-    const elHeight = el.closest("li").offsetHeight;
-    const elWidth = el.closest("li").offsetWidth;
-    const listCords = el.closest("ul").getBoundingClientRect();
-    const currentDay = Number(el.childNodes[0].data);
-
-    setIsShowModal(true);
-
-    setModalData({
-      ...modalData,
-      cords: cords,
-      currentElHeight: elHeight,
-      currentElWidth: elWidth,
-      currentDay: currentDay,
-      listCords: listCords,
     });
   };
 
@@ -46,17 +29,20 @@ const MonthStatsList = ({
               day={day}
               monthStats={monthStats}
               getDayWithStats={getDayWithStats}
-              onShowModal={onShowModal}
+              setIsShowModal={setIsShowModal}
               getCurrentMonth={getCurrentMonth}
+              modalData={modalData}
+              setModalData={setModalData}
             />
           </li>
         ))}
       </ul>
-      {isOpen && (
+      {isShowModal && (
         <DaysGeneralStats
-          isOpen={isOpen}
+          isOpen={isShowModal}
           modalData={modalData}
           setIsShowModal={setIsShowModal}
+          month={month}
         />
       )}
     </>
