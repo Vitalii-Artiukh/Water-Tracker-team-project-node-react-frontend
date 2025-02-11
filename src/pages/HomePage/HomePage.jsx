@@ -1,23 +1,24 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import DailyNorma from "../../components/DailyNorma/DailyNorma";
-import StatsWrapper from "../../components/StatsWrapper/StatsWrapper";
-import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
-import MyDailyNormaModal from "../../components/MyDailyNormaModal/MyDailyNormaModal";
+import DailyNorma from '../../components/DailyNorma/DailyNorma';
+import StatsWrapper from '../../components/StatsWrapper/StatsWrapper';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
+import MyDailyNormaModal from '../../components/MyDailyNormaModal/MyDailyNormaModal';
 
-import { useWaterSelector } from "../../hooks/useWaterSelector";
-import { waterOperations } from "../../redux";
+import { useWaterSelector } from '../../hooks/useWaterSelector';
+import { waterOperations } from '../../redux';
 
-import css from "./HomePage.module.css";
-import TodayListModal from "../../components/TodayListModal/TodayListModal.jsx";
+import css from './HomePage.module.css';
+import TodayListModal from '../../components/TodayListModal/TodayListModal.jsx';
 
 const HomePage = () => {
   const [isNormaModalOpen, setIsNormaModalOpen] = useState(false);
+  const [showWaterForm, setShowWaterForm] = useState(false);
+  const [waterEntry, setWaterEntry] = useState(null);
 
   const dispatch = useDispatch();
-
-  const { dailyRecords } = useWaterSelector();
+  const { sortedDailyRecords: dailyRecords } = useWaterSelector();
 
   useEffect(() => {
     dispatch(waterOperations.fetchTodayWaterRecords());
@@ -26,8 +27,6 @@ const HomePage = () => {
   const openModal = () => setIsNormaModalOpen(true);
   const closeModal = () => setIsNormaModalOpen(false);
 
-  const [showWaterForm, setShowWaterForm] = useState(false);
-  const [waterEntry, setWaterEntry] = useState(null);
   const closeWaterModal = () => setShowWaterForm(false);
   const openWaterModal = () => setShowWaterForm(true);
 
