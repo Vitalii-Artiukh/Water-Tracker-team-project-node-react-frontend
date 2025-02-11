@@ -65,6 +65,10 @@
   background-color: transparent;
   margin-top: 12px;
   cursor: pointer;
+  transition: color var(--primary-transition);
+  &:hover {
+    color: var(--secondary-color-orange);
+  }
 }
 
 .svg {
@@ -72,6 +76,12 @@
   height: 16px;
   fill: var(--primary-color-blue);
   stroke: var(--primary-color-blue);
+  transition: all var(--primary-transition);
+}
+
+.button:hover > .svg {
+  fill: var(--secondary-color-orange);
+  stroke: var(--secondary-color-orange);
 }
 
 @media screen and (min-width: 768px) {
@@ -86,11 +96,8 @@
   }
 
   .emptyListMsg {
-    /* display: flex; */
     font-size: 20px;
     text-align: center;
-    /* justify-content: space-around; */
-    /* width: 380px; */
   }
 
   .button {
@@ -108,5 +115,14 @@
 @media screen and (min-width: 1440px) {
   .container {
     width: 544px;
+  }
+
+  .button:focus {
+    color: var(--secondary-color-orange);
+  }
+
+  .button:focus > .svg {
+    fill: var(--secondary-color-orange);
+    stroke: var(--secondary-color-orange);
   }
 }

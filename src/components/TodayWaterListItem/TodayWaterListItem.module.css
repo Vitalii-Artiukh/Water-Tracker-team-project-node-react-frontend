@@ -33,6 +33,7 @@
 }
 
 .button {
+  position: relative;
   padding: 0;
   border: transparent;
   background: transparent;
@@ -42,6 +43,38 @@
 .svg {
   width: 26px;
   height: 26px;
+}
+
+.editButton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
+  width: 16px;
+  height: 1px;
+  border-radius: 1px;
+  transition: background-color var(--primary-transition);
+}
+
+.button:hover.editButton::after {
+  background-color: var(--secondary-color-light-blue300);
+}
+
+.trashButton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
+  width: 16px;
+  height: 1px;
+  border-radius: 1px;
+  transition: background-color var(--primary-transition);
+}
+
+.button:hover.trashButton::after {
+  background-color: var(--secondary-color-red);
 }
 
 @media screen and (min-width: 768px) {
@@ -59,5 +92,13 @@
 @media screen and (min-width: 1440px) {
   .item {
     width: 534px;
+  }
+
+  .button:focus.editButton::after {
+    background-color: var(--secondary-color-light-blue300);
+  }
+
+  .button:focus.trashButton::after {
+    background-color: var(--secondary-color-red);
   }
 }
