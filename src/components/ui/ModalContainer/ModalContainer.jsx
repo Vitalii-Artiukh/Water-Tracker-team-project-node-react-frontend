@@ -1,7 +1,7 @@
-import Modal from "react-modal";
-import css from "./ModalContainer.module.css";
+import Modal from 'react-modal';
+import css from './ModalContainer.module.css';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ModalContainer = ({
   isOpen = false,
@@ -15,7 +15,9 @@ const ModalContainer = ({
       isOpen={isOpen}
       className={className}
       overlayClassName={overlayClassName}
-      onRequestClose={onClose}>
+      onRequestClose={onClose}
+      bodyOpenClassName={css.ReactModal__Body}
+    >
       {children}
     </Modal>
   );
