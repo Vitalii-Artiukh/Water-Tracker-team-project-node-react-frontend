@@ -77,9 +77,6 @@ const DailyNormaModal = ({ isOpen, closeModal }) => {
         authOperations.updateUserWaterRate(Number(values.water) * 1000)
       ).unwrap();
 
-      console.log('field: ', Number(values.water).toFixed(2));
-      console.log('calc ', calcDailyNorma(values));
-
       const dataToSave =
         Number(values.water).toFixed(2) === calcDailyNorma(values)
           ? values
