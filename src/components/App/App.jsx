@@ -9,6 +9,7 @@ import RestrictedRoute from '@components/RestrictedRoute.jsx';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux';
 import Loader from '../ui/Loader/Loader.jsx';
+import { useWaterSelector } from '../../hooks/useWaterSelector.js';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
@@ -17,7 +18,8 @@ const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuthSelector();
+  const { isRefreshing, isLoading: authLoading } = useAuthSelector();
+  const { isLoading: waterLoading } = useWaterSelector();
 
   useEffect(() => {
     dispatch(authOperations.refreshUser());
@@ -25,6 +27,7 @@ function App() {
   return (
     <>
       <Notification />
+      {(authLoading || waterLoading) && <Loader />}
       {isRefreshing ? (
         <Loader />
       ) : (

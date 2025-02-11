@@ -1,47 +1,47 @@
-import css from "../SettingModal/SettingModal.module.css";
-import * as yup from "yup";
-import toast from "react-hot-toast";
-import Icon from "../ui/Icon";
-import ModalContainer from "../ui/ModalContainer/ModalContainer";
-import Button from "../../components/ui/Button/Button";
-import UpdateAvatar from "../UpdateAvatar/UpdateAvatar";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateUserData } from "../../redux/auth/operations";
-import { useAuthSelector } from "../../hooks/useAuthSelector";
+import css from '../SettingModal/SettingModal.module.css';
+import * as yup from 'yup';
+import toast from 'react-hot-toast';
+import Icon from '../ui/Icon';
+import ModalContainer from '../ui/ModalContainer/ModalContainer';
+import Button from '../../components/ui/Button/Button';
+import UpdateAvatar from '../UpdateAvatar/UpdateAvatar';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserData } from '../../redux/auth/operations';
+import { useAuthSelector } from '../../hooks/useAuthSelector';
 
 const updateUserValidationSchema = yup.object().shape({
-  gender: yup.string().oneOf(["male", "female"]),
-  name: yup.string().min(3, "Min length 3").max(32, "Max length 32"),
-  email: yup.string().email("Enter a valid email"),
+  gender: yup.string().oneOf(['male', 'female']),
+  name: yup.string().min(3, 'Min length 3').max(32, 'Max length 32'),
+  email: yup.string().email('Enter a valid email'),
   oldPassword: yup
     .string()
-    .min(8, "Min length 8")
-    .max(64, "Max length 64")
+    .min(8, 'Min length 8')
+    .max(64, 'Max length 64')
     .notRequired(),
   newPassword: yup
     .string()
-    .min(8, "Min length 8")
-    .max(64, "Max length 64")
+    .min(8, 'Min length 8')
+    .max(64, 'Max length 64')
     .notRequired()
-    .when("oldPassword", (oldPassword, field) =>
-      oldPassword[0] ? field.required("New password is required") : field
+    .when('oldPassword', (oldPassword, field) =>
+      oldPassword[0] ? field.required('New password is required') : field
     )
     .test(
-      "differentPassword",
-      "New password must be different from the old one",
+      'differentPassword',
+      'New password must be different from the old one',
       function (value) {
-        const oldPassword = this.resolve(yup.ref("oldPassword"));
+        const oldPassword = this.resolve(yup.ref('oldPassword'));
         return !oldPassword || String(value) !== String(oldPassword);
       }
     ),
   repeatPassword: yup
     .string()
-    .min(8, "Min length 8")
-    .max(64, "Max length 64")
-    .test("commonPassword", "Passwords must match", function (value) {
-      const newPassword = this.resolve(yup.ref("newPassword"));
+    .min(8, 'Min length 8')
+    .max(64, 'Max length 64')
+    .test('commonPassword', 'Passwords must match', function (value) {
+      const newPassword = this.resolve(yup.ref('newPassword'));
       return !newPassword || String(value) === String(newPassword);
     }),
 });
@@ -54,15 +54,15 @@ const SettingModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const INITIAL_VALUES = {
-    gender: user.gender || "",
-    name: user.name || "",
-    email: user.email || "",
-    oldPassword: "",
-    newPassword: "",
-    repeatPassword: "",
+    gender: user.gender || '',
+    name: user.name || '',
+    email: user.email || '',
+    oldPassword: '',
+    newPassword: '',
+    repeatPassword: '',
   };
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async values => {
     const updatedFields = {};
 
     if (values.name && values.name !== user.name) {
@@ -91,9 +91,9 @@ const SettingModal = ({ isOpen, onClose }) => {
     try {
       await dispatch(updateUserData(updatedFields)).unwrap();
       onClose();
-      toast.success("User data successfully updated!");
+      toast.success('User data successfully updated!');
     } catch (error) {
-      toast.error(error || "User data update error!");
+      toast.error(error || 'User data update error!');
     }
   };
 
@@ -102,7 +102,8 @@ const SettingModal = ({ isOpen, onClose }) => {
       overlayClassName={css.settingModalOverlay}
       className={css.settingModalWrapper}
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+    >
       <div className={css.titleWrapper}>
         <h2 className={css.title}>Setting</h2>
         <button className={css.btnClose} onClick={onClose}>
@@ -113,7 +114,8 @@ const SettingModal = ({ isOpen, onClose }) => {
       <Formik
         validationSchema={updateUserValidationSchema}
         initialValues={INITIAL_VALUES}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         {({ errors, touched }) => (
           <Form>
             <div className={css.formWrapper}>
@@ -126,7 +128,7 @@ const SettingModal = ({ isOpen, onClose }) => {
                   </label>
                   <label>
                     <Field
-                      style={{ marginLeft: "24px" }}
+                      style={{ marginLeft: '24px' }}
                       type="radio"
                       name="gender"
                       value="male"
@@ -139,7 +141,7 @@ const SettingModal = ({ isOpen, onClose }) => {
                     Your name
                     <Field
                       className={`${css.input} ${
-                        errors.name && touched.name ? css.inputError : ""
+                        errors.name && touched.name ? css.inputError : ''
                       }`}
                       type="text"
                       name="name"
@@ -157,7 +159,7 @@ const SettingModal = ({ isOpen, onClose }) => {
                     E-mail
                     <Field
                       className={`${css.input} ${
-                        errors.email && touched.email ? css.inputError : ""
+                        errors.email && touched.email ? css.inputError : ''
                       }`}
                       type="text"
                       name="email"
@@ -180,15 +182,16 @@ const SettingModal = ({ isOpen, onClose }) => {
                       className={`${css.input} ${
                         errors.oldPassword && touched.oldPassword
                           ? css.inputError
-                          : ""
+                          : ''
                       }`}
-                      type={showOldPassword ? "text" : "password"}
+                      type={showOldPassword ? 'text' : 'password'}
                       name="oldPassword"
                       placeholder="Password"
                     />
                     <span
                       className={css.eye}
-                      onClick={() => setShowOldPassword(!showOldPassword)}>
+                      onClick={() => setShowOldPassword(!showOldPassword)}
+                    >
                       {showOldPassword ? (
                         <Icon name="icon-eye" width="16px" height="16px" />
                       ) : (
@@ -213,15 +216,16 @@ const SettingModal = ({ isOpen, onClose }) => {
                       className={`${css.input} ${
                         errors.newPassword && touched.newPassword
                           ? css.inputError
-                          : ""
+                          : ''
                       }`}
-                      type={showNewPassword ? "text" : "password"}
+                      type={showNewPassword ? 'text' : 'password'}
                       name="newPassword"
                       placeholder="Password"
                     />
                     <span
                       className={css.eye}
-                      onClick={() => setShowNewPassword(!showNewPassword)}>
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                    >
                       {showNewPassword ? (
                         <Icon name="icon-eye" width="16px" height="16px" />
                       ) : (
@@ -246,17 +250,16 @@ const SettingModal = ({ isOpen, onClose }) => {
                       className={`${css.input} ${
                         errors.repeatPassword && touched.repeatPassword
                           ? css.inputError
-                          : ""
+                          : ''
                       }`}
-                      type={showRepeatPassword ? "text" : "password"}
+                      type={showRepeatPassword ? 'text' : 'password'}
                       name="repeatPassword"
                       placeholder="Password"
                     />
                     <span
                       className={css.eye}
-                      onClick={() =>
-                        setShowRepeatPassword(!showRepeatPassword)
-                      }>
+                      onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                    >
                       {showRepeatPassword ? (
                         <Icon name="icon-eye" width="16px" height="16px" />
                       ) : (
