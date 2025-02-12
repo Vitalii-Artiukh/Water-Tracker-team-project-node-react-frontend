@@ -27,7 +27,6 @@ const TodayListModal = ({
   handleVisibleForm,
   waterEntry,
   setWaterEntry,
-  dailyRecords,
 }) => {
   const timeOptions = useMemo(() => {
     let now = moment();
@@ -64,19 +63,17 @@ const TodayListModal = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setInitialValues({
-      waterVolume: 50,
-      time: moment().format('HH:mm'),
-      entryId: null,
-    });
-    setWaterVolume(50);
-  }, []);
-
-  useEffect(() => {
     if (waterEntry !== null) {
       const time = moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm');
       setInitialValues({ ...waterEntry, time });
       setWaterVolume(waterEntry.waterVolume);
+    } else {
+      setInitialValues({
+        waterVolume: 50,
+        time: moment().format('HH:mm'),
+        entryId: null,
+      });
+      setWaterVolume(50);
     }
 
     return () => {
@@ -108,32 +105,6 @@ const TodayListModal = ({
     setWaterEntry(null);
   };
 
-  const labelForCreate = entries => {
-    if (entries.length !== 0) {
-      const lastEntry = [...entries].sort(
-        (a, b) => new Date(b.time) - new Date(a.time)
-      )[0];
-
-      const timeText = moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format(
-        'HH:mm'
-      );
-
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={lastEntry.waterVolume + ' ml'}
-          timeText={timeText}
-        />
-      );
-    } else {
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={'Not notes yes'}
-          timeText={''}
-        />
-      );
-    }
-  };
-
   return (
     <>
       <ModalContainer
@@ -152,7 +123,7 @@ const TodayListModal = ({
               onClick={closeModal}
               aria-label="Close"
             >
-              <Icon name="icon-x-mark" width={24} height={24} />
+              <Icon name="icon-x-mark" />
             </button>
           </div>
           {initialValues && (
@@ -192,21 +163,25 @@ const TodayListModal = ({
                           ).format('HH:mm')}
                         />
                       )}
-                      {waterEntry === null &&
-                        labelForCreate(dailyRecords.entries)}
                       <p className={css.subtitle}>
                         {waterEntry
                           ? 'Correct entered data:'
                           : 'Choose a value:'}
                       </p>
                       <div>
-                        <p className={css.formTextLabel}>Amount of water:</p>
+                        <div className={css.formTextLabel}>
+                          Amount of water:
+                        </div>
                         <div className={css.buttonCircleContainer}>
                           <div
                             className={css.buttonRound}
                             onClick={() => decreaseWaterVolume(setFieldValue)}
                           >
-                            <Icon name={'icon-minus-small'} stroke="#407bff" />
+                            <Icon
+                              name={'icon-minus-small'}
+                              stroke="transparent"
+                              fill="#407bff"
+                            />
                           </div>
 
                           <div className={css.amountOfWaterLabel}>
@@ -223,21 +198,25 @@ const TodayListModal = ({
                       </div>
                     </div>
                     <div className={css.formItemBlock}>
-                      <div className={css.label}>Recording time:</div>
-                      <Field
-                        as="select"
-                        name="time"
-                        className={`${css.inputField} ${css.dropdown}  ${
+                      <p className={css.formTextLabel}>Recording time:</p>
+                      <div
+                        className={`${css.inputField} ${css.selectMask}  ${
                           errors.time && touched.time ? css.inputError : ''
                         }`}
-                        placeholder="Recording Time"
                       >
-                        {timeOptions.map(item => (
-                          <option key={item.value} value={item.value}>
-                            {item.value}
-                          </option>
-                        ))}
-                      </Field>
+                        <Field
+                          as="select"
+                          name="time"
+                          className={css.dropdown}
+                          placeholder="Recording Time"
+                        >
+                          {timeOptions.map(item => (
+                            <option key={item.value} value={item.value}>
+                              {item.value}
+                            </option>
+                          ))}
+                        </Field>
+                      </div>
                       <ErrorMessage
                         className={css.errorMessage}
                         name="time"
@@ -245,9 +224,9 @@ const TodayListModal = ({
                       />
                     </div>
                     <div className={css.formItemBlock}>
-                      <div className={css.labelTime}>
-                        <p>Enter the value of the water used:</p>
-                      </div>
+                      <p className={css.labelTime}>
+                        Enter the value of the water used:
+                      </p>
                       <Field
                         type="number"
                         name="waterVolume"
@@ -270,7 +249,7 @@ const TodayListModal = ({
                     </div>
 
                     <div className={css.modalFooter}>
-                      <div className={css.smallButton}>{waterVolume} ml</div>
+                      <p className={css.smallButton}>{waterVolume} ml</p>
                       <button type="submit" className={css.saveButton}>
                         Save
                       </button>
