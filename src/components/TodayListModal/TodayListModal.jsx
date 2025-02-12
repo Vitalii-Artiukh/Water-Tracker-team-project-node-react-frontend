@@ -27,7 +27,6 @@ const TodayListModal = ({
   handleVisibleForm,
   waterEntry,
   setWaterEntry,
-  dailyRecords,
 }) => {
   const timeOptions = useMemo(() => {
     let now = moment();
@@ -47,26 +46,41 @@ const TodayListModal = ({
       moment(a.key, 'HH:mm').diff(moment(b.key, 'HH:mm'))
     );
 
+    if (waterEntry !== null) {
+      const waterEntryTime = moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format(
+        'HH:mm'
+      );
+      timeArray.push({ key: waterEntryTime, value: waterEntryTime });
+    }
+
     return timeArray.filter(
       (item, index, self) => index === self.findIndex(t => t.key === item.key)
     );
-  }, []);
+  }, [waterEntry]);
 
-  const [initialValues, setInitialValues] = useState({
-    waterVolume: 50,
-    time: moment().format('HH:mm'),
-    entryId: null,
-  });
+  const [initialValues, setInitialValues] = useState(null);
+  const [waterVolume, setWaterVolume] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (waterEntry !== null) {
-      setInitialValues(waterEntry);
+      const time = moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm');
+      setInitialValues({ ...waterEntry, time });
       setWaterVolume(waterEntry.waterVolume);
+    } else {
+      setInitialValues({
+        waterVolume: 50,
+        time: moment().format('HH:mm'),
+        entryId: null,
+      });
+      setWaterVolume(50);
     }
-  }, [waterEntry]);
 
-  const [waterVolume, setWaterVolume] = useState(initialValues.waterVolume);
-  const dispatch = useDispatch();
+    return () => {
+      setWaterVolume(null);
+      setInitialValues(null);
+    };
+  }, [waterEntry]);
 
   const decreaseWaterVolume = setFieldValue => {
     setWaterVolume(prevState => {
@@ -77,116 +91,103 @@ const TodayListModal = ({
     });
   };
 
-  const increaseWaterVolume = setFieldValue =>
+  const increaseWaterVolume = setFieldValue => {
     setWaterVolume(prevState => {
       const newValue = prevState + 50;
       const value = newValue > 1500 ? prevState : newValue;
       setFieldValue('waterVolume', value);
       return value;
     });
+  };
 
   const closeModal = () => {
     handleVisibleForm();
     setWaterEntry(null);
   };
 
-  const labelForCreate = entries => {
-    if (entries.length === 0) {
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={'Not notes yes'}
-          timeText={''}
-        />
-      );
-    } else {
-      const lastEntry = [...entries].sort(
-        (a, b) => new Date(b.time) - new Date(a.time)
-      )[0];
-
-      return (
-        <TodayListModalHeaderLabel
-          waterVolumeText={lastEntry.waterVolume + ' ml'}
-          timeText={moment(lastEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
-        />
-      );
-    }
-  };
-
   return (
     <>
-      <ModalContainer isOpen={showWaterForm} onClose={closeModal} className={css.modal} overlayClassName={css.overlay}>
+      <ModalContainer
+        isOpen={showWaterForm}
+        onClose={closeModal}
+        className={css.modal}
+        overlayClassName={css.overlay}
+      >
         <div className={css.modalContent}>
           <div className={css.modalHeader}>
-            {/* <div className={css.modalHeader}> */}
-              <h2 className={css.title}>
-                {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
-              </h2>
-              <button
-                className={css.closeBtn}
-                onClick={closeModal}
-                aria-label="Close"
-              >
-                <Icon name="icon-x-mark"/>
-              </button>
-            {/* </div> */}
+            <h2 className={css.title}>
+              {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
+            </h2>
+            <button
+              className={css.closeBtn}
+              onClick={closeModal}
+              aria-label="Close"
+            >
+              <Icon name="icon-x-mark" />
+            </button>
           </div>
-          <Formik
-            initialValues={initialValues}
-            enableReinitialize={true}
-            validationSchema={validationSchemas}
-            onSubmit={(values, { setSubmitting }) => {
-              let { time, waterVolume } = values;
-              time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm');
-              if (waterEntry != null) {
-                dispatch(
-                  updateWaterEntrie({
-                    entrieId: waterEntry._id,
-                    entrieData: { newTime: time, waterVolume },
-                  })
-                );
-              } else {
-                dispatch(addWaterEntrie({ time, waterVolume }));
-              }
+          {initialValues && (
+            <Formik
+              initialValues={initialValues}
+              enableReinitialize
+              validationSchema={validationSchemas}
+              onSubmit={(values, { setSubmitting }) => {
+                let { time, waterVolume } = values;
+                time = moment(time, 'HH:mm').format('YYYY-MM-DDTHH:mm');
+                if (waterEntry != null) {
+                  dispatch(
+                    updateWaterEntrie({
+                      entrieId: waterEntry._id,
+                      entrieData: { newTime: time, waterVolume },
+                    })
+                  );
+                } else {
+                  dispatch(addWaterEntrie({ time, waterVolume }));
+                }
 
-              handleVisibleForm();
-              setSubmitting(false);
-              setWaterEntry(null);
-            }}
-          >
-            {({ errors, touched, setFieldValue }) => {
-              return (
-                <Form>
-                  <div className={css.formItemBlock}>
-                    {waterEntry && (
-                      <TodayListModalHeaderLabel
-                        waterVolumeText={waterEntry.waterVolume + ' ml'}
-                        timeText={moment(waterEntry.time, 'YYYY-MM-DDTHH:mm').format('HH:mm')}
-                      />
-                    )}
-                    {waterEntry === null &&
-                      labelForCreate(dailyRecords.entries)}
-                    <p className={css.subtitle}>
-                      {waterEntry ? 'Correct entered data:' : 'Choose a value:'}
-                    </p>
-                    <div>
-                      <p className={css.formTextLabel}>
-                        Amount of water:
+                handleVisibleForm();
+                setSubmitting(false);
+                setWaterEntry(null);
+              }}
+            >
+              {({ errors, touched, setFieldValue }) => {
+                return (
+                  <Form>
+                    <div className={css.formItemBlock}>
+                      {waterEntry && (
+                        <TodayListModalHeaderLabel
+                          waterVolumeText={waterEntry.waterVolume + ' ml'}
+                          timeText={moment(
+                            waterEntry.time,
+                            'YYYY-MM-DDTHH:mm'
+                          ).format('HH:mm')}
+                        />
+                      )}
+                      <p className={css.subtitle}>
+                        {waterEntry
+                          ? 'Correct entered data:'
+                          : 'Choose a value:'}
                       </p>
-
-                      <div className={css.buttonCircleContainer}>
-                        <div>
+                      <div>
+                        <div className={css.formTextLabel}>
+                          Amount of water:
+                        </div>
+                        <div className={css.buttonCircleContainer}>
                           <div
                             className={css.buttonRound}
                             onClick={() => decreaseWaterVolume(setFieldValue)}
                           >
-                            <Icon name={'icon-minus-small'} stroke="#407bff" />
+                            <Icon
+                              name={'icon-minus-small'}
+                              stroke="transparent"
+                              fill="#407bff"
+                            />
                           </div>
-                        </div>
-                        <div className={css.amountOfWaterLabel}>
-                          {waterVolume} ml
-                        </div>
 
-                        <div>
+                          <div className={css.amountOfWaterLabel}>
+                            {waterVolume} ml
+                          </div>
+
                           <div
                             className={css.buttonRound}
                             onClick={() => increaseWaterVolume(setFieldValue)}
@@ -196,62 +197,68 @@ const TodayListModal = ({
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className={css.formItemBlock}>
-                    <p className={css.formTextLabel}>Recording time:</p>
-                    <Field
-                      as="select"
-                      name="time"
-                      className={`${css.inputField} ${css.dropdown}  ${
-                        errors.time && touched.time ? css.inputError : ''
-                      }`}
-                      placeholder="Recording Time"
-                    >
-                      {timeOptions.map(item => (
-                        <option key={item.value} value={item.value}>
-                          {item.value}
-                        </option>
-                      ))}
-                    </Field>
-                    <ErrorMessage
-                      className={css.errorMessage}
-                      name="time"
-                      component="span"
-                    />
-                  </div>
-                  <div className={css.formItemBlock}>
-                    {/* <div className={css.labelTime}> */}
-                      <p className={css.labelTime}>Enter the value of the water used:</p>
-                    {/* </div> */}
-                    <Field
-                      type="number"
-                      name="waterVolume"
-                      onBlur={e => {
-                        setFieldValue('waterVolume', e.target.value);
-                        setWaterVolume(e.target.value);
-                      }}
-                      className={`${css.inputField} ${
-                        errors.waterVolume && touched.waterVolume
-                          ? css.inputError
-                          : ''
-                      }`}
-                      placeholder="Recording Time"
-                    />
-                    <ErrorMessage
-                      className={css.errorMessage}
-                      name="waterVolume"
-                      component="span"
-                    />
-                  </div>
+                    <div className={css.formItemBlock}>
+                      <p className={css.formTextLabel}>Recording time:</p>
+                      <div
+                        className={`${css.inputField} ${css.selectMask}  ${
+                          errors.time && touched.time ? css.inputError : ''
+                        }`}
+                      >
+                        <Field
+                          as="select"
+                          name="time"
+                          className={css.dropdown}
+                          placeholder="Recording Time"
+                        >
+                          {timeOptions.map(item => (
+                            <option key={item.value} value={item.value}>
+                              {item.value}
+                            </option>
+                          ))}
+                        </Field>
+                      </div>
+                      <ErrorMessage
+                        className={css.errorMessage}
+                        name="time"
+                        component="span"
+                      />
+                    </div>
+                    <div className={css.formItemBlock}>
+                      <p className={css.labelTime}>
+                        Enter the value of the water used:
+                      </p>
+                      <Field
+                        type="number"
+                        name="waterVolume"
+                        onBlur={e => {
+                          setFieldValue('waterVolume', e.target.value);
+                          setWaterVolume(Number(e.target.value));
+                        }}
+                        className={`${css.inputField} ${
+                          errors.waterVolume && touched.waterVolume
+                            ? css.inputError
+                            : ''
+                        }`}
+                        placeholder="Recording Time"
+                      />
+                      <ErrorMessage
+                        className={css.errorMessage}
+                        name="waterVolume"
+                        component="span"
+                      />
+                    </div>
 
-                  <div className={css.modalFooter}>
-                    <p className={css.smallButton}>{waterVolume} ml</p>
-                    <button type="submit" className={css.saveButton}>Save</button>
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
+                    <div className={css.modalFooter}>
+                      <p className={css.smallButton}>{waterVolume} ml</p>
+                      <button type="submit" className={css.saveButton}>
+                        Save
+                      </button>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
+          )}
         </div>
       </ModalContainer>
     </>
