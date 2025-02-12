@@ -10,9 +10,16 @@ export const useWaterSelector = () => {
     waterSelectors.selectLoading
   );
 
+  const sortedMonthStats = useSelector(waterSelectors.selectSortedMonthStats);
+  const sortedDailyRecords = useSelector(
+    waterSelectors.selectSortedDailyRecords
+  );
+
   return {
     monthStats,
     dailyRecords,
+    sortedMonthStats,
+    sortedDailyRecords,
     currentServing,
     error,
     isLoading: monthLoading || dailyLoading || entrieLoading,

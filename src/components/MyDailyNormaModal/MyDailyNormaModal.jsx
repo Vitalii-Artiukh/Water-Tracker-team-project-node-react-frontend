@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { fields } from "./dailyNormaModalFields.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import { authOperations } from "../../redux/index.js";
@@ -58,13 +58,10 @@ const MyDailyNormaModal = ({ isOpen, closeModal }) => {
 
   const [formValues, setFormValues] = useState(getInitialValues());
 
-  useEffect(() => {
-    localStorage.setItem("dailyNormData", JSON.stringify(formValues));
-  }, [formValues]);
-
   const handleSubmit = async (values) => {
     try {
       await dispatch(authOperations.updateUserWaterRate(Number(values.water) * 1000)).unwrap();
+      localStorage.setItem("dailyNormData", JSON.stringify(values));
       toast.success("Your Daily Norma successfully updated!");
       closeModal();
     } catch (error) {

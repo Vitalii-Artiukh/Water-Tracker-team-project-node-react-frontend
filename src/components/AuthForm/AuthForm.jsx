@@ -2,6 +2,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../ui/Button/Button.jsx";
 import Icon from "../ui/Icon";
 import css from "./AuthForm.module.css";
 
@@ -133,9 +134,9 @@ const AuthForm = ({ onSubmit, title, type }) => {
             </label>
           )}
 
-          <button type="submit" disabled={isSubmitting} className={css.btn}>
+          <Button type="submit" width="100%" disabled={isSubmitting}>
             {title}
-          </button>
+          </Button>
           <div>
             {type === "signUp" ? (
               <Link to="/signin" className={css.link}>
