@@ -138,11 +138,19 @@ const TodayListModal = ({
                   dispatch(
                     updateWaterEntrie({
                       entrieId: waterEntry._id,
-                      entrieData: { newTime: time, waterVolume },
+                      entrieData: {
+                        newTime: time,
+                        waterVolume: Number(waterVolume),
+                      },
                     })
                   );
                 } else {
-                  dispatch(addWaterEntrie({ time, waterVolume }));
+                  dispatch(
+                    addWaterEntrie({
+                      time,
+                      waterVolume: Number(waterVolume),
+                    })
+                  );
                 }
 
                 handleVisibleForm();

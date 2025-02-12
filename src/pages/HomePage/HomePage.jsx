@@ -47,13 +47,15 @@ const HomePage = () => {
         setWaterEntry={setWaterEntry}
         openWaterModal={openWaterModal}
       />
-      <TodayListModal
-        dailyRecords={dailyRecords}
-        showWaterForm={showWaterForm}
-        handleVisibleForm={closeWaterModal}
-        waterEntry={waterEntry}
-        setWaterEntry={setWaterEntry}
-      />
+      {showWaterForm && (
+        <TodayListModal
+          dailyRecords={dailyRecords}
+          showWaterForm={showWaterForm}
+          handleVisibleForm={closeWaterModal}
+          waterEntry={waterEntry}
+          setWaterEntry={setWaterEntry}
+        />
+      )}
     </div>
   );
 };

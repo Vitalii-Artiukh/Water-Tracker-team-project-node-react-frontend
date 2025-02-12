@@ -107,6 +107,11 @@
   transition: border var(--primary-transition);
 }
 
+.inputField[type='number']::-webkit-inner-spin-button,
+.inputField[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+}
+
 .inputField:active,
 .inputField:focus {
   border: 1px solid #c5d9fd;
