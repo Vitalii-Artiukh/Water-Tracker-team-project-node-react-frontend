@@ -144,7 +144,6 @@ const TodayListModal = ({
       >
         <div className={css.modalContent}>
           <div className={css.modalHeader}>
-            {/* <div className={css.modalHeader}> */}
             <h2 className={css.title}>
               {waterEntry ? 'Edit the entered amount of water' : 'Add water'}
             </h2>
@@ -153,9 +152,8 @@ const TodayListModal = ({
               onClick={closeModal}
               aria-label="Close"
             >
-              <Icon name="icon-x-mark" />
+              <Icon name="icon-x-mark" width={24} height={24} />
             </button>
-            {/* </div> */}
           </div>
           {initialValues && (
             <Formik
@@ -202,9 +200,7 @@ const TodayListModal = ({
                           : 'Choose a value:'}
                       </p>
                       <div>
-                        <div className={css.formTextLabel}>
-                          Amount of water:
-                        </div>
+                        <p className={css.formTextLabel}>Amount of water:</p>
                         <div className={css.buttonCircleContainer}>
                           <div
                             className={css.buttonRound}
@@ -227,7 +223,7 @@ const TodayListModal = ({
                       </div>
                     </div>
                     <div className={css.formItemBlock}>
-                      <p className={css.formTextLabel}>Recording time:</p>
+                      <div className={css.label}>Recording time:</div>
                       <Field
                         as="select"
                         name="time"
@@ -249,17 +245,15 @@ const TodayListModal = ({
                       />
                     </div>
                     <div className={css.formItemBlock}>
-                      {/* <div className={css.labelTime}> */}
-                      <p className={css.labelTime}>
-                        Enter the value of the water used:
-                      </p>
-                      {/* </div> */}
+                      <div className={css.labelTime}>
+                        <p>Enter the value of the water used:</p>
+                      </div>
                       <Field
                         type="number"
                         name="waterVolume"
                         onBlur={e => {
                           setFieldValue('waterVolume', e.target.value);
-                          setWaterVolume(e.target.value);
+                          setWaterVolume(Number(e.target.value));
                         }}
                         className={`${css.inputField} ${
                           errors.waterVolume && touched.waterVolume
@@ -276,7 +270,7 @@ const TodayListModal = ({
                     </div>
 
                     <div className={css.modalFooter}>
-                      <p className={css.smallButton}>{waterVolume} ml</p>
+                      <div className={css.smallButton}>{waterVolume} ml</div>
                       <button type="submit" className={css.saveButton}>
                         Save
                       </button>
