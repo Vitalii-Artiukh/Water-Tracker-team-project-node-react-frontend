@@ -29,6 +29,11 @@
   line-height: 1.25;
   text-align: right;
   color: var(--primary-color-black);
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 .buttonDropDownMenu {
   background-color: transparent;
@@ -50,5 +55,9 @@
   .userName {
     font-size: 18px;
     line-height: 1.33333;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 }
